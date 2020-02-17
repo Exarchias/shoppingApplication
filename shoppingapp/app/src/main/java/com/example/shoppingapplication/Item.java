@@ -4,7 +4,7 @@ package com.example.shoppingapplication;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "user_table")
+@Entity(tableName = "item_table")
 public class Item{
 
     //Robert: NEVER use the primary key in the constructor.
