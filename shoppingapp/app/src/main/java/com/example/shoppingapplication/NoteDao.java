@@ -11,9 +11,8 @@ import androidx.room.Update;
 import java.util.List;
 
 //Robert: This is a DAO, (Data Access Object), interface.
-// I usually don't like interfaces but I decided to follow the design.
-//The big idea is that method that calls the Data Base should have and abstraction here.
-//again: I don't like interfaces either.
+//The big idea is that the data base handles the queries through this intefaces.
+//I don't like interfaces either.
 
 @Dao
 public interface NoteDao {
@@ -62,9 +61,10 @@ public interface NoteDao {
     @Query("SELECT * FROM note_table ORDER BY priority DESC")
     LiveData<List<Note>> getAllNotes();
 
-    @Query("SELECT * FROM user_table ORDER BY id DESC")
+    @Query("SELECT * FROM user_table ORDER BY id ASC")
     LiveData<List<Note>> getAllusers();
 
-    @Query("SELECT * FROM note_table ORDER BY id DESC")
+    @Query("SELECT * FROM note_table ORDER BY id ASC")
     LiveData<List<Note>> getAllItems();
+
 }
