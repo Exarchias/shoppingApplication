@@ -9,7 +9,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-//Robert: This is the actual DataBase
+//Robert: This is the actual DataBase.
+//PLEASE avoid to do any changes in this class, (apart of the hardcoded populations of course)
 @Database(entities = {Note.class, User.class, Item.class}, version = 1)
 public abstract class NoteDatabase extends RoomDatabase {
 
@@ -50,9 +51,11 @@ public abstract class NoteDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            //====== Populate the Data base here with hardcoded items ======================
             noteDao.insert(new Note("Title 1", "Description 1", 1));
             noteDao.insert(new Note("Title 2", "Description 2", 2));
             noteDao.insert(new Note("Title 3", "Description 3", 3));
+            //==============================================================================
             return null;
         }
     }

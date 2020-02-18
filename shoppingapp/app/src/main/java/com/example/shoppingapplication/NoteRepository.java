@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+//Robert: It is better to avoid to do any changes in this class. do you coding on the ViewModel.
+//ViewModel is a higher abstraction than the Repository, and it works well with the business logic.
 public class NoteRepository {
     private NoteDao noteDao;
     private LiveData<List<Note>> allNotes; //For testing purposes

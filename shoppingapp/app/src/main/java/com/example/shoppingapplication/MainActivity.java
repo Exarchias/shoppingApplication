@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
         noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
             @Override
             public void onChanged(@Nullable List<Note> notes) {
-                //update RecyclerView
+                //Tests the handshake by detecting the if the entities are updated.
+                //I wish to implement better testing scripts bur I did enough for now.
                 Toast.makeText(MainActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
             }
         });

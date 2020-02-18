@@ -14,6 +14,7 @@ import java.util.List;
 //The big idea is that the data base handles the queries through this intefaces.
 //I don't like interfaces either.
 
+//Robert: PLEASE avoid to do any changes in this class.
 @Dao
 public interface NoteDao {
 
