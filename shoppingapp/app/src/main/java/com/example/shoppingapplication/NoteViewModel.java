@@ -23,17 +23,19 @@ public class NoteViewModel extends AndroidViewModel {
     //Feel free to GET your Data from here. Don't add things to the lists manually. use the methods.
     private LiveData<List<User>> allUsers;
     private LiveData<List<Item>> allItems;
-    ArrayList<Note> arrayAllNotes;
-    ArrayList<User> arrayAllUsers;
-    ArrayList<Item> arrayAllItems;
+    ArrayList<Note> arrayAllNotes; //testing
+    ArrayList<User> arrayAllUsers; //users as a normal Arraylist
+    ArrayList<Item> arrayAllItems; //items as a normal ArrayList
 
     public NoteViewModel(@NonNull Application application) {
         super(application);
         repository = new NoteRepository(application);
         allNotes = repository.getAllNotes(); //testing
-        allUsers = repository.getAllUsers(); //users
+        allUsers = repository.getAllUsers(); //users as LiveData
         allItems = repository.getAllItems(); //items
-        arrayAllNotes = getArrayAllNotes();
+        arrayAllNotes = getArrayAllNotes(); //testing
+        arrayAllUsers = getArrayAllUsers(); //users as a normal Arraylist
+        arrayAllItems = getArrayAllItems(); //items as a normal ArrayList
     }
 
     //Insert a note. For testing purposes.
@@ -114,58 +116,71 @@ public class NoteViewModel extends AndroidViewModel {
         return allItems;
     }
 
+    //Returns an arrayList with all the Note objects from the LiveData List "allNotes". TESTED
     ArrayList<Note> getArrayAllNotes(){
-        final ArrayList<Note> tempAr  = new ArrayList<>();
-        //Note theNote = new Note("Yolo", "yoloyolo", 666);
-        //tempAr.add(theNote);
-        allNotes.observeForever(new Observer<List<Note>>()
-        {
-           @Override
-            public void onChanged(@Nullable List<Note> notes) {
-               ListIterator<Note> notesIterator = notes.listIterator();
-               while(notesIterator.hasNext()){
-                   tempAr.add(notesIterator.next());
-               }
+        if(allNotes != null){
+            final ArrayList<Note> tempAr  = new ArrayList<>();
+            //Note theNote = new Note("Yolo", "yoloyolo", 666);
+            //tempAr.add(theNote);
+            allNotes.observeForever(new Observer<List<Note>>()
+                                    {
+                                        @Override
+                                        public void onChanged(@Nullable List<Note> notes) {
+                                            ListIterator<Note> notesIterator = notes.listIterator();
+                                            while(notesIterator.hasNext()){
+                                                tempAr.add(notesIterator.next());
+                                            }
 
-        }}
-        );
-        return tempAr;
+                                        }}
+            );
+            return tempAr;
+        } else {
+            return null;
+        }
+    }
+
+    //Returns an arrayList with all the User objects from the LiveData List "allUsers". NEEDS to BE TESTED
+    ArrayList<User> getArrayAllUsers(){
+        if(allUsers != null){
+            final ArrayList<User> tempAr  = new ArrayList<>();
+            allUsers.observeForever(new Observer<List<User>>()
+                                    {
+                                        @Override
+                                        public void onChanged(@Nullable List<User> users) {
+                                            ListIterator<User> usersIterator = users.listIterator();
+                                            while(usersIterator.hasNext()){
+                                                tempAr.add(usersIterator.next());
+                                            }
+
+                                        }}
+            );
+            return tempAr;
+        } else {
+            return null;
+        }
     }
 
 
-//    //turns a LiveData List of Nots objects to a ArrayList of Note objects
-//    void getArrayAllNotes(){
-//
-//        Note theNote = new Note("Yolo", "yoloyolo", 666);
-//        arrayAllNotes.add(theNote);
-//
-////        getAllNotes().observeForever(new Observer<List<Note>>() {
-////            @Override
-////            public void onChanged(@Nullable List<Note> notes) {
-////
-////                //this is how we take the objects from the list. But we need some kind of itteration.
-////                //Note note = getAllNotes().getValue().get(0);
-////                //String msg = note.getTitle();
-////                //String msg2 = "";
-////                //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-////                //notes.listIterator();
-////
-////                // Getting ListIterator
-////                //ListIterator<Note> notesIterator = notes.listIterator();
-////                Note theNote = new Note("Yolo", "yoloyolo", 666);
-////                arrayAllNotes.add(theNote);
-////
-////                // Traversing elements
-//////                int count = 0;
-//////                while(notesIterator.hasNext()){
-//////                    //Note theNote = notesIterator.next();
-//////                    Note theNote = new Note("Yolo", "yoloyolo", 666);
-//////                    arrayAllNotes.add(theNote);
-//////
-//////                }
-////
-////                //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
-////            }
-////        });
-//    }
+    //Returns an arrayList with all the Item objects from the LiveData List "allItems". NEEDS to BE TESTED
+    ArrayList<Item> getArrayAllItems(){
+        if(allItems != null){
+            final ArrayList<Item> tempAr  = new ArrayList<>();
+            allItems.observeForever(new Observer<List<Item>>()
+                                    {
+                                        @Override
+                                        public void onChanged(@Nullable List<Item> items) {
+                                            ListIterator<Item> itemsIterator = items.listIterator();
+                                            while(itemsIterator.hasNext()){
+                                                tempAr.add(itemsIterator.next());
+                                            }
+
+                                        }}
+            );
+            return tempAr;
+        } else {
+            return null;
+        }
+    }
+
+
 }
