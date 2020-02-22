@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -31,23 +32,29 @@ public class MainActivity extends AppCompatActivity {
                 Note note = noteViewModel.getAllNotes().getValue().get(0);
                 String msg = note.getTitle();
                 String msg2 = "";
+                String msg3 = "This is an ArrayList: ";
                 //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
                 //notes.listIterator();
 
                 // Getting ListIterator
-                ListIterator<Note> notesIterator = notes.listIterator();
+                //ListIterator<Note> notesIterator = notes.listIterator();
 
                 // Traversing elements
-                int count = 0;
-                while(notesIterator.hasNext()){
-                    //msg = String.valueOf(count);
-                    count++;
-                    //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    msg2 = msg2 + notesIterator.next().getTitle() + " " + count + " ";
-                    //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
+                //int count = 0;
+//                while(notesIterator.hasNext()){
+//                    //msg = String.valueOf(count);
+//                    count++;
+//                    //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+//                    msg2 = msg2 + notesIterator.next().getTitle() + " " + count + " ";
+//                    //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
+//                }
+                ArrayList<Note> theNoteArray = noteViewModel.arrayAllNotes;
+                for(Note note1: theNoteArray){
+                    msg3 = msg3 + note1.getTitle() + " / " ;
                 }
 
-                Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(MainActivity.this, msg3, Toast.LENGTH_LONG).show();
             }
         });
     }

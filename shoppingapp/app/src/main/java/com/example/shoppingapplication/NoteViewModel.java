@@ -1,10 +1,18 @@
 package com.example.shoppingapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+
 import android.app.Application;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 //Robert: The main reason why ViewModel exists. As a placeholder for the repository.
 //Feel free to use ModelView as your main dataholder. I may do the same.
@@ -15,6 +23,9 @@ public class NoteViewModel extends AndroidViewModel {
     //Feel free to GET your Data from here. Don't add things to the lists manually. use the methods.
     private LiveData<List<User>> allUsers;
     private LiveData<List<Item>> allItems;
+    ArrayList<Note> arrayAllNotes;
+    ArrayList<User> arrayAllUsers;
+    ArrayList<Item> arrayAllItems;
 
     public NoteViewModel(@NonNull Application application) {
         super(application);
@@ -22,6 +33,7 @@ public class NoteViewModel extends AndroidViewModel {
         allNotes = repository.getAllNotes(); //testing
         allUsers = repository.getAllUsers(); //users
         allItems = repository.getAllItems(); //items
+        arrayAllNotes = getArrayAllNotes();
     }
 
     //Insert a note. For testing purposes.
@@ -101,4 +113,59 @@ public class NoteViewModel extends AndroidViewModel {
     public LiveData<List<Item>> getAllItems() {
         return allItems;
     }
+
+    ArrayList<Note> getArrayAllNotes(){
+        final ArrayList<Note> tempAr  = new ArrayList<>();
+        //Note theNote = new Note("Yolo", "yoloyolo", 666);
+        //tempAr.add(theNote);
+        allNotes.observeForever(new Observer<List<Note>>()
+        {
+           @Override
+            public void onChanged(@Nullable List<Note> notes) {
+               ListIterator<Note> notesIterator = notes.listIterator();
+               while(notesIterator.hasNext()){
+                   tempAr.add(notesIterator.next());
+               }
+
+        }}
+        );
+        return tempAr;
+    }
+
+
+//    //turns a LiveData List of Nots objects to a ArrayList of Note objects
+//    void getArrayAllNotes(){
+//
+//        Note theNote = new Note("Yolo", "yoloyolo", 666);
+//        arrayAllNotes.add(theNote);
+//
+////        getAllNotes().observeForever(new Observer<List<Note>>() {
+////            @Override
+////            public void onChanged(@Nullable List<Note> notes) {
+////
+////                //this is how we take the objects from the list. But we need some kind of itteration.
+////                //Note note = getAllNotes().getValue().get(0);
+////                //String msg = note.getTitle();
+////                //String msg2 = "";
+////                //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+////                //notes.listIterator();
+////
+////                // Getting ListIterator
+////                //ListIterator<Note> notesIterator = notes.listIterator();
+////                Note theNote = new Note("Yolo", "yoloyolo", 666);
+////                arrayAllNotes.add(theNote);
+////
+////                // Traversing elements
+//////                int count = 0;
+//////                while(notesIterator.hasNext()){
+//////                    //Note theNote = notesIterator.next();
+//////                    Note theNote = new Note("Yolo", "yoloyolo", 666);
+//////                    arrayAllNotes.add(theNote);
+//////
+//////                }
+////
+////                //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
+////            }
+////        });
+//    }
 }
