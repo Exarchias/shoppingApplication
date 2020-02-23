@@ -21,18 +21,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
         noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
             @Override
             public void onChanged(@Nullable List<Note> notes) {
                 //Tests the handshake by detecting the if the entities are updated.
                 //I wish to implement better testing scripts bur I did enough for now.
-                Toast.makeText(MainActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
                 //this is how we take the objects from the list. But we need some kind of itteration.
                 //Note note = noteViewModel.getAllNotes().getValue().get(0);
                 //String msg = note.getTitle();
                 String msg2 = "";
-                String msg3 = "This is an ArrayList: ";
+                //String msg3 = "This is an ArrayList: ";
                 //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
                 //notes.listIterator();
 
@@ -49,22 +51,36 @@ public class MainActivity extends AppCompatActivity {
 //                    //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
 //                }
 
-                ArrayList<Note> theNoteArray = noteViewModel.arrayAllNotes;
-//                if(theNoteArray != null){
-//                    for(Note note1: theNoteArray){
-//                        msg3 = msg3 + note1.getTitle() + " / " ;
-//                    }
-//                }
-
+                //====== Test Script ================================
                 ArrayList<User> theUserArray = noteViewModel.arrayAllUsers;
+                ArrayList<Item> theItemArray = noteViewModel.arrayAllItems;
+                ArrayList<Note> theNoteArray = noteViewModel.arrayAllNotes;
+
+                String msg3 = "The test runs: ";
+                if(theNoteArray != null){
+                    for(Note note1: theNoteArray){
+                        msg3 = msg3 + note1.getTitle() + " / " ;
+                    }
+                }
+
+
                 if(theUserArray != null){
+                    msg3 = msg3 + theUserArray.size();
                     for(User user1: theUserArray){
                         msg3 = msg3 + user1.getName() + " / " ;
                     }
                 }
 
 
+                if(theItemArray != null){
+                    for(Item note1: theItemArray){
+                        msg3 = msg3 + note1.getTitle() + " / " ;
+                    }
+                }
+
                 Toast.makeText(MainActivity.this, msg3, Toast.LENGTH_LONG).show();
+                //===============================
+
             }
         });
     }

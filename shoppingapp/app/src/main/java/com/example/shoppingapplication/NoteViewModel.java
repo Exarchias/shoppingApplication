@@ -141,8 +141,9 @@ public class NoteViewModel extends AndroidViewModel {
 
     //Returns an arrayList with all the User objects from the LiveData List "allUsers". NEEDS to BE TESTED
     ArrayList<User> getArrayAllUsers(){
+        final ArrayList<User> tempAr  = new ArrayList<>();
         if(allUsers != null){
-            final ArrayList<User> tempAr  = new ArrayList<>();
+            //final ArrayList<User> tempAr  = new ArrayList<>();
             allUsers.observeForever(new Observer<List<User>>()
                                     {
                                         @Override
@@ -156,7 +157,8 @@ public class NoteViewModel extends AndroidViewModel {
             );
             return tempAr;
         } else {
-            return null;
+            tempAr.add(new User("Mrempty", false));
+            return tempAr;
         }
     }
 
