@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
 //                }
 
                 ArrayList<Note> theNoteArray = noteViewModel.arrayAllNotes;
-                if(theNoteArray != null){
-                    for(Note note1: theNoteArray){
-                        msg3 = msg3 + note1.getTitle() + " / " ;
-                    }
-                }
+//                if(theNoteArray != null){
+//                    for(Note note1: theNoteArray){
+//                        msg3 = msg3 + note1.getTitle() + " / " ;
+//                    }
+//                }
 
                 ArrayList<User> theUserArray = noteViewModel.arrayAllUsers;
                 if(theUserArray != null){

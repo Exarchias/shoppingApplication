@@ -10,6 +10,8 @@ import java.util.List;
 //ViewModel is a higher abstraction than the Repository, and it works well with the business logic.
 public class NoteRepository {
     private NoteDao noteDao;
+    private UserDao userDao;
+    private ItemDao itemDao;
     private LiveData<List<Note>> allNotes; //For testing purposes
 
     //The lists bellow are the ones that you will GET your data. The get updated automatically
@@ -24,9 +26,11 @@ public class NoteRepository {
     public NoteRepository(Application application) {
         NoteDatabase database = NoteDatabase.getInstance(application);
         noteDao = database.noteDao();
+        userDao = database.userDao();
+        itemDao = database.itemDao();
         allNotes = noteDao.getAllNotes();
-        allUsers = noteDao.getAllusers();
-        allItems = noteDao.getAllItems();
+        allUsers = userDao.getAllusers();
+        allItems = itemDao.getAllItems();
     }
 
     //Robert: The methods here are the methods that we actually use, in order to allow
@@ -38,12 +42,12 @@ public class NoteRepository {
 
     //Insert User. Use it!
     public void insertUser(User user) {
-        new InsertUserAsyncTask(noteDao).execute(user);
+        new InsertUserAsyncTask(userDao).execute(user);
     }
 
     //Insert User. Use it!
     public void insertItem(Item item) {
-        new InsertItemAsyncTask(noteDao).execute(item);
+        new InsertItemAsyncTask(itemDao).execute(item);
     }
 
     //Update Note. Testing purposes
@@ -53,12 +57,12 @@ public class NoteRepository {
 
     //Update User. Use it!
     public void updateUser(User user) {
-        new UpdateUserAsyncTask(noteDao).execute(user);
+        new UpdateUserAsyncTask(userDao).execute(user);
     }
 
     //Update Item. Use it!
     public void updateItem(Item item) {
-        new UpdateItemAsyncTask(noteDao).execute(item);
+        new UpdateItemAsyncTask(itemDao).execute(item);
     }
 
     //Delete Note. Testing Purposes
@@ -68,12 +72,12 @@ public class NoteRepository {
 
     //Delete User. Use it!
     public void deleteUser(User user) {
-        new DeleteUserAsyncTask(noteDao).execute(user);
+        new DeleteUserAsyncTask(userDao).execute(user);
     }
 
     //Delete Item. Use it!
     public void deleteItem(Item item) {
-        new DeleteItemAsyncTask(noteDao).execute(item);
+        new DeleteItemAsyncTask(itemDao).execute(item);
     }
 
     //Delete ALL Notes. Testing purposes.
@@ -83,12 +87,12 @@ public class NoteRepository {
 
     //Delete ALL Users. Use that if you have. Try to AVOID it.
     public void deleteAllUsers() {
-        new DeleteAllUsersAsyncTask(noteDao).execute();
+        new DeleteAllUsersAsyncTask(userDao).execute();
     }
 
     //Delete ALL Items. Use that if you have. Try to AVOID it.
     public void deleteAllItems() {
-        new DeleteAllItemsAsyncTask(noteDao).execute();
+        new DeleteAllItemsAsyncTask(itemDao).execute();
     }
 
     //Testing purposes
@@ -126,30 +130,30 @@ public class NoteRepository {
 
     //Insert User (ASYNC)
     private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void> {
-        private NoteDao noteDao;
+        private UserDao userDao;
 
-        private InsertUserAsyncTask(NoteDao noteDao) {
-            this.noteDao = noteDao;
+        private InsertUserAsyncTask(UserDao userDao) {
+            this.userDao = userDao;
         }
 
         @Override
         protected Void doInBackground(User... users) {
-            noteDao.insert(users[0]);
+            userDao.insert(users[0]);
             return null;
         }
     }
 
     //Insert Item (ASYNC)
     private static class InsertItemAsyncTask extends AsyncTask<Item, Void, Void> {
-        private NoteDao noteDao;
+        private ItemDao itemDao;
 
-        private InsertItemAsyncTask(NoteDao noteDao) {
-            this.noteDao = noteDao;
+        private InsertItemAsyncTask(ItemDao itemDao) {
+            this.itemDao = itemDao;
         }
 
         @Override
         protected Void doInBackground(Item... items) {
-            noteDao.insert(items[0]);
+            itemDao.insert(items[0]);
             return null;
         }
     }
@@ -171,30 +175,30 @@ public class NoteRepository {
 
     //Update User (ASYNC)
     private static class UpdateUserAsyncTask extends AsyncTask<User, Void, Void> {
-        private NoteDao noteDao;
+        private UserDao userDao;
 
-        private UpdateUserAsyncTask(NoteDao noteDao) {
-            this.noteDao = noteDao;
+        private UpdateUserAsyncTask(UserDao userDao) {
+            this.userDao = userDao;
         }
 
         @Override
         protected Void doInBackground(User... users) {
-            noteDao.update(users[0]);
+            userDao.update(users[0]);
             return null;
         }
     }
 
     //Update Item (ASYNC)
     private static class UpdateItemAsyncTask extends AsyncTask<Item, Void, Void> {
-        private NoteDao noteDao;
+        private ItemDao itemDao;
 
-        private UpdateItemAsyncTask(NoteDao noteDao) {
-            this.noteDao = noteDao;
+        private UpdateItemAsyncTask(ItemDao itemDao) {
+            this.itemDao = itemDao;
         }
 
         @Override
         protected Void doInBackground(Item... items) {
-            noteDao.update(items[0]);
+            itemDao.update(items[0]);
             return null;
         }
     }
@@ -216,30 +220,30 @@ public class NoteRepository {
 
     //Delete User (ASYNC)
     private static class DeleteUserAsyncTask extends AsyncTask<User, Void, Void> {
-        private NoteDao noteDao;
+        private UserDao userDao;
 
-        private DeleteUserAsyncTask(NoteDao noteDao) {
-            this.noteDao = noteDao;
+        private DeleteUserAsyncTask(UserDao userDao) {
+            this.userDao = userDao;
         }
 
         @Override
         protected Void doInBackground(User... users) {
-            noteDao.delete(users[0]);
+            userDao.delete(users[0]);
             return null;
         }
     }
 
     //Delete Item (ASYNC)
     private static class DeleteItemAsyncTask extends AsyncTask<Item, Void, Void> {
-        private NoteDao noteDao;
+        private ItemDao itemDao;
 
-        private DeleteItemAsyncTask(NoteDao noteDao) {
-            this.noteDao = noteDao;
+        private DeleteItemAsyncTask(ItemDao itemDao) {
+            this.itemDao = itemDao;
         }
 
         @Override
         protected Void doInBackground(Item... items) {
-            noteDao.delete(items[0]);
+            itemDao.delete(items[0]);
             return null;
         }
     }
@@ -261,30 +265,30 @@ public class NoteRepository {
 
     //Delete ALL users (ASYNC)
     private static class DeleteAllUsersAsyncTask extends AsyncTask<Void, Void, Void> {
-        private NoteDao noteDao;
+        private UserDao userDao;
 
-        private DeleteAllUsersAsyncTask(NoteDao noteDao) {
-            this.noteDao = noteDao;
+        private DeleteAllUsersAsyncTask(UserDao userDao) {
+            this.userDao = userDao;
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            noteDao.deleteAllUsers();
+            userDao.deleteAllUsers();
             return null;
         }
     }
 
     //Delete ALL items (ASYNC)
     private static class DeleteAllItemsAsyncTask extends AsyncTask<Void, Void, Void> {
-        private NoteDao noteDao;
+        private ItemDao itemDao;
 
-        private DeleteAllItemsAsyncTask(NoteDao noteDao) {
-            this.noteDao = noteDao;
+        private DeleteAllItemsAsyncTask(ItemDao itemDao) {
+            this.itemDao = itemDao;
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            noteDao.deleteAllItems();
+            itemDao.deleteAllItems();
             return null;
         }
     }

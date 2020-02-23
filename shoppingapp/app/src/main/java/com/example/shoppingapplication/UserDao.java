@@ -16,26 +16,26 @@ import java.util.List;
 
 //Robert: PLEASE avoid to do any changes in this class.
 @Dao
-public interface NoteDao {
+public interface UserDao {
 
     //====== Insert ===============
     @Insert
-    void insert(Note note);
+    void insert(User user);
 
     //====== Update ===============
     @Update
-    void update(Note note);
+    void update(User user);
 
     //====== Delete ===============
     @Delete
-    void delete(Note note);
+    void delete(User user);
 
     //====== Delete All ===============
-    @Query("DELETE FROM note_table")
-    void deleteAllNotes();
+    @Query("DELETE FROM user_table")
+    void deleteAllUsers();
 
     //====== Select All ===============
-    @Query("SELECT * FROM note_table ORDER BY priority DESC")
-    LiveData<List<Note>> getAllNotes();
+    @Query("SELECT * FROM user_table ORDER BY id ASC")
+    LiveData<List<User>> getAllusers();
 
 }

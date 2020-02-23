@@ -18,6 +18,8 @@ public abstract class NoteDatabase extends RoomDatabase {
     private static NoteDatabase instance;
 
     public abstract NoteDao noteDao();
+    public abstract UserDao userDao();
+    public abstract ItemDao itemDao();
 
     public static synchronized NoteDatabase getInstance(Context context) {
         if (instance == null) {
@@ -44,9 +46,13 @@ public abstract class NoteDatabase extends RoomDatabase {
     //ASYNC for popylating the data base on creation. Try to avoid changes here.
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
         private NoteDao noteDao;
+        private UserDao userDao;
+        private ItemDao itemDao;
 
         private PopulateDbAsyncTask(NoteDatabase db) {
             noteDao = db.noteDao();
+            userDao = db.userDao();
+            itemDao = db.itemDao();
         }
 
         @Override
@@ -55,7 +61,9 @@ public abstract class NoteDatabase extends RoomDatabase {
             noteDao.insert(new Note("Title 1", "Description 1", 1));
             noteDao.insert(new Note("Title 2", "Description 2", 2));
             noteDao.insert(new Note("Title 3", "Description 3", 3));
-            noteDao.insert(new User("Admin", true));
+            userDao.insert(new User("Admin", true));
+            userDao.insert(new User("Alice", false));
+            userDao.insert(new User("Bob", false));
             //==============================================================================
             return null;
         }
