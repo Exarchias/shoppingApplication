@@ -65,7 +65,7 @@ public interface NoteDao {
     @Query("SELECT * FROM user_table ORDER BY id ASC")
     LiveData<List<User>> getAllusers();
 
-    @Query("SELECT * FROM note_table ORDER BY id ASC")
+    @Query("SELECT * FROM item_table ORDER BY id ASC")
     LiveData<List<Item>> getAllItems();
 
 }

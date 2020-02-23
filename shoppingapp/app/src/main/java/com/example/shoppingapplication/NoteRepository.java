@@ -25,6 +25,8 @@ public class NoteRepository {
         NoteDatabase database = NoteDatabase.getInstance(application);
         noteDao = database.noteDao();
         allNotes = noteDao.getAllNotes();
+        allUsers = noteDao.getAllusers();
+        allItems = noteDao.getAllItems();
     }
 
     //Robert: The methods here are the methods that we actually use, in order to allow

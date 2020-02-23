@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
                 //I wish to implement better testing scripts bur I did enough for now.
                 Toast.makeText(MainActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
                 //this is how we take the objects from the list. But we need some kind of itteration.
-                Note note = noteViewModel.getAllNotes().getValue().get(0);
-                String msg = note.getTitle();
+                //Note note = noteViewModel.getAllNotes().getValue().get(0);
+                //String msg = note.getTitle();
                 String msg2 = "";
                 String msg3 = "This is an ArrayList: ";
                 //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
@@ -48,9 +48,19 @@ public class MainActivity extends AppCompatActivity {
 //                    msg2 = msg2 + notesIterator.next().getTitle() + " " + count + " ";
 //                    //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
 //                }
+
                 ArrayList<Note> theNoteArray = noteViewModel.arrayAllNotes;
-                for(Note note1: theNoteArray){
-                    msg3 = msg3 + note1.getTitle() + " / " ;
+                if(theNoteArray != null){
+                    for(Note note1: theNoteArray){
+                        msg3 = msg3 + note1.getTitle() + " / " ;
+                    }
+                }
+
+                ArrayList<User> theUserArray = noteViewModel.arrayAllUsers;
+                if(theUserArray != null){
+                    for(User user1: theUserArray){
+                        msg3 = msg3 + user1.getName() + " / " ;
+                    }
                 }
 
 
