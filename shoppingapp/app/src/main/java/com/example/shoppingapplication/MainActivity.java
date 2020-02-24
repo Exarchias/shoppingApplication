@@ -41,17 +41,17 @@ public class MainActivity extends AppCompatActivity {
 
 
                 // Getting ListIterator
-                ListIterator<Note> notesIterator = notes.listIterator();
+                //ListIterator<Note> notesIterator = notes.listIterator();
 
                  //Traversing elements
-                int count = 0;
-                while(notesIterator.hasNext()){
-                    //msg = String.valueOf(count);
-                    count++;
-                    //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    msg2 = msg2 + notesIterator.next().getTitle() + " " + count + " ";
-                    //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
-                }
+//                int count = 0;
+//                while(notesIterator.hasNext()){
+//                    //msg = String.valueOf(count);
+//                    count++;
+//                    //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+//                    msg2 = msg2 + notesIterator.next().getTitle() + " " + count + " ";
+//                    //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
+//                }
 
                 //====== Test Script ================================
                 ArrayList<User> theUserArray = noteViewModel.arrayAllUsers;

@@ -38,6 +38,9 @@ public class NoteViewModel extends AndroidViewModel {
         arrayAllItems = getArrayAllItems(); //items as a normal ArrayList
 
         //====== Populate the Data base here with hardcoded items ======================
+        deleteAllNotes(); //it is important otherwise it will fill the db with unlimited notes.
+        deleteAllItems(); //it is important otherwise it will fill the db with unlimited items.
+        deleteAllUsers(); //it is important otherwise it will fill the db with unlimited users.
         insert(new Note("Title 1", "Description 1", 1));
         insert(new Note("Title 2", "Description 2", 2));
         insert(new Note("Title 3", "Description 3", 3));
