@@ -2,6 +2,7 @@ package com.example.shoppingapplication;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -11,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 //Robert: This is the actual DataBase.
 //PLEASE avoid to do any changes in this class, (apart of the hardcoded populations of course)
-@Database(entities = {Note.class, User.class, Item.class}, version = 1)
+@Database(entities = {Note.class, User.class, Item.class}, version = 5)
 public abstract class NoteDatabase extends RoomDatabase {
 
     //Robert: it is a singleton pattern. That means that no second Database can be initiated.
@@ -25,6 +26,7 @@ public abstract class NoteDatabase extends RoomDatabase {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     NoteDatabase.class, "note_database")
+                    .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();

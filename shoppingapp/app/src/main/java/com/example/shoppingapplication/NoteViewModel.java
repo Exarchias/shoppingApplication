@@ -36,6 +36,18 @@ public class NoteViewModel extends AndroidViewModel {
         arrayAllNotes = getArrayAllNotes(); //testing
         arrayAllUsers = getArrayAllUsers(); //users as a normal Arraylist
         arrayAllItems = getArrayAllItems(); //items as a normal ArrayList
+
+        //====== Populate the Data base here with hardcoded items ======================
+        insert(new Note("Title 1", "Description 1", 1));
+        insert(new Note("Title 2", "Description 2", 2));
+        insert(new Note("Title 3", "Description 3", 3));
+        insertUser(new User("Admin", true));
+        insertUser(new User("Alice", false));
+        insertUser(new User("Bob", false));
+        insertItem(new Item("Item 1", "Description 1"));
+        insertItem(new Item("item 2", "Description 1"));
+        insertItem(new Item("item 3", "Description 1"));
+        //==============================================================================
     }
 
     //Insert a note. For testing purposes.
