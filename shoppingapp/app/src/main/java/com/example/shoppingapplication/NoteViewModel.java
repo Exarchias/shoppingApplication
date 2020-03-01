@@ -43,10 +43,49 @@ public class NoteViewModel extends AndroidViewModel {
         deleteAllUsers(); //it is important otherwise it will fill the db with unlimited users.
         pullFromDataHolderToTheArrayLists(); //it works
         syncLiveDataLists(); //it works
+        //useThatDeleteEverythingFromEverywhere();//it works!
+
+//        useThatDeleteAllUsers(); //it works!
+//        useThatDeleteAllItems(); //it works!
+//        useThatDeleteAllNotes(); //it works!
+
         //transferNotesFromArray(); //it works
         //transferItemsFromArray(); //seems to work
         //transferUsersFromArray(); //seems to work
         //==============================================================================
+    }
+    //Deletes Everything from Everywhere. Testing and debugging purposes.
+    //"usethat" methods are the final interface.
+    void useThatDeleteEverythingFromEverywhere(){
+        useThatDeleteAllUsers(); //it works!
+        useThatDeleteAllItems(); //it works!
+        useThatDeleteAllNotes(); //it works!
+    }
+
+    //Deletes all the notes from Everywhere. Testing and debugging purposes.
+    //"usethat" methods are the final interface.
+    void useThatDeleteAllNotes(){
+        deleteAllNotes();
+        arrayAllNotes.clear();
+        DataHolder.arrayAllNotes.clear();
+    }
+
+    //Deletes all the items from Everywhere. Testing and debugging purposes.
+    //"usethat" methods are the final interface.
+    void useThatDeleteAllItems(){
+        deleteAllItems();
+        arrayAllItems.clear();
+        DataHolder.arrayAllItems.clear();
+    }
+
+    //Deletes all the Users from Everywhere. Testing and debugging purposes.
+    //"usethat" methods are the final interface.
+    void useThatDeleteAllUsers(){
+        deleteAllUsers();
+        //arrayAllUsers.removeAll(arrayAllUsers);
+        arrayAllUsers.clear();
+        //DataHolder.arrayAllUsers.removeAll(DataHolder.arrayAllUsers);
+        DataHolder.arrayAllUsers.clear();
     }
 
     //pulls the data from the DataHolder to the arrayLists of NoteViewModel.
