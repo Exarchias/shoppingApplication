@@ -44,12 +44,12 @@ public class NoteViewModel extends AndroidViewModel {
         insert(new Note(1, "Title 1", "Description 1", 1));
         insert(new Note(2,"Title 2", "Description 2", 2));
         insert(new Note(3, "Title 3", "Description 3", 3));
-        insertUser(new User("Admin", true));
-        insertUser(new User("Alice", false));
-        insertUser(new User("Bob", false));
-        insertItem(new Item("Item 1", "Description 1"));
-        insertItem(new Item("item 2", "Description 1"));
-        insertItem(new Item("item 3", "Description 1"));
+        insertUser(new User(1, "Admin", false, "12345"));
+        insertUser(new User(2, "Alice", false, "12345"));
+        insertUser(new User(3, "Bob", false, "12345"));
+        insertItem(new Item(1, "Item 1", "Description 1"));
+        insertItem(new Item(2, "item 2", "Description 2"));
+        insertItem(new Item(3, "item 3", "Description 3"));
         //==============================================================================
     }
 
@@ -172,7 +172,7 @@ public class NoteViewModel extends AndroidViewModel {
             );
             return tempAr;
         } else {
-            tempAr.add(new User("Mrempty", false));
+            tempAr.add(new User(5000, "Mrempty", false, "12345"));
             return tempAr;
         }
     }

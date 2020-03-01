@@ -9,10 +9,11 @@ import androidx.room.PrimaryKey;
 public class Item{
 
     //Robert: NEVER use the primary key in the constructor.
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int id;
     private int ownersId = 10000;
     private boolean sold = false;
+    private int noteId = 0;
 
     private String title = "Item";
     private String type = "generic";
@@ -33,7 +34,8 @@ public class Item{
 
     //Robert: This is a Constructor. you can have more constructors.
     // NEVER add the primary key, (id), in a constructor
-    public Item(String title, String description) {
+    public Item(int id, String title, String description) {
+        this.id = id;
         this.title = title;
         this.description = description;
     }
@@ -175,5 +177,13 @@ public class Item{
 
     public void setPhoto6(String photo6) {
         this.photo6 = photo6;
+    }
+
+    public int getNoteId() {
+        return noteId;
+    }
+
+    public void setNoteId(int noteId) {
+        this.noteId = noteId;
     }
 }

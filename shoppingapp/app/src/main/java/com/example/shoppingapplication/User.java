@@ -10,8 +10,7 @@ import java.util.Date;
 @Entity(tableName = "user_table")
 public class User {
 
-    //Robert: NEVER use the primary key in the constructor.
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int id;
 
     private String name; //the username of the user
@@ -47,28 +46,22 @@ public class User {
 
     //Robert: This is a Constructor. you can have more constructors. NEVER add the primary key, (id),
     // in a constructor
-    //This is the first Constructor ever used. Hardly to have any future use.
-    public User(String name, boolean isAdmin) {
-        this.name = name;
-        this.isAdmin = isAdmin;
-    }
-
-    @Ignore
-    //Robert: This is a Constructor. you can have more constructors. NEVER add the primary key, (id),
-    // in a constructor
     //this is one is a very basic one. It takes the basics for any User
-    public User(String name, boolean isAdmin, String password) {
+    public User(int id, String name, boolean isAdmin, String password) {
+        this.id = id;
         this.name = name;
         this.isAdmin = isAdmin;
         this.password = password;
     }
 
-    @Ignore
+
     //Robert: This is a Constructor. you can have more constructors. NEVER add the primary key, (id),
     // in a constructor
     //this is one is a very basic one. It takes the basics for any User
     //But it INCLUSES the email.
-    public User(String name, boolean isAdmin, String password, String email) {
+    @Ignore
+    public User(int id, String name, boolean isAdmin, String password, String email) {
+        this.id = id;
         this.name = name;
         this.isAdmin = isAdmin;
         this.password = password;
