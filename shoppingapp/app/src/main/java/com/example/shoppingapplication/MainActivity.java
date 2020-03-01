@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final TextView textView = (TextView)findViewById(R.id.textview1);
+        final TextView textView2 = (TextView)findViewById(R.id.textView2);
+        final TextView textView3 = (TextView)findViewById(R.id.textView3);
 
 
 
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 //                //this is how we take the objects from the list. But we need some kind of itteration.
 //                //Note note = noteViewModel.getAllNotes().getValue().get(0);
 //                //String msg = note.getTitle();
-                String msg2 = "With LiveData";
+                String msg2 = "Notes With LiveData: ";
 //                //String msg3 = "This is an ArrayList: ";
 //                //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
 //                //notes.listIterator();
@@ -95,6 +97,56 @@ public class MainActivity extends AppCompatActivity {
 //
 //                Toast.makeText(MainActivity.this, msg3 + " lol " + msg2, Toast.LENGTH_LONG).show();
 //                //===============================
+
+            }
+        });
+
+
+        noteViewModel.getAllUsers().observe(this, new Observer<List<User>>() {
+            @Override
+            public void onChanged(@Nullable List<User> users) {
+                String msg4 = " Users With LiveData: ";
+
+
+                // Getting ListIterator
+                ListIterator<User> usersIterator = users.listIterator();
+
+                 //Traversing elements
+                if(usersIterator != null){
+                    while(usersIterator.hasNext()){
+                        //msg = String.valueOf(count);
+                        //count++;
+                        //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        msg4 = msg4 + usersIterator.next().getName() + " / ";
+                        //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                textView2.setText(msg4);
+
+            }
+        });
+
+        noteViewModel.getAllItems().observe(this, new Observer<List<Item>>() {
+            @Override
+            public void onChanged(@Nullable List<Item> items) {
+                String msg4 = "Items With LiveData: ";
+
+                // Getting ListIterator
+                ListIterator<Item> itemsIterator = items.listIterator();
+
+                //Traversing elements
+                if(itemsIterator != null){
+                    while(itemsIterator.hasNext()){
+                        //msg = String.valueOf(count);
+                        //count++;
+                        //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        msg4 = msg4 + itemsIterator.next().getTitle() + " / ";
+                        //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                textView3.setText(msg4);
 
             }
         });
