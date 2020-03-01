@@ -60,15 +60,7 @@ public abstract class NoteDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(Void... voids) {
             //====== Populate the Data base here with hardcoded items ======================
-            noteDao.insert(new Note("Title 1", "Description 1", 1));
-            noteDao.insert(new Note("Title 2", "Description 2", 2));
-            noteDao.insert(new Note("Title 3", "Description 3", 3));
-            userDao.insert(new User("Admin", true));
-            userDao.insert(new User("Alice", false));
-            userDao.insert(new User("Bob", false));
-            itemDao.insert(new Item("Item 1", "Description 1"));
-            itemDao.insert(new Item("item 2", "Description 1"));
-            itemDao.insert(new Item("item 3", "Description 1"));
+
             //==============================================================================
             return null;
         }
