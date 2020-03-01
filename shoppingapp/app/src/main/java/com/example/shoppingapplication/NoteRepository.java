@@ -9,9 +9,9 @@ import java.util.List;
 //Robert: It is better to avoid to do any changes in this class. do you coding on the ViewModel.
 //ViewModel is a higher abstraction than the Repository, and it works well with the business logic.
 public class NoteRepository {
-    private NoteDao noteDao;
-    private UserDao userDao;
-    private ItemDao itemDao;
+    public NoteDao noteDao;
+    public UserDao userDao;
+    public ItemDao itemDao;
     private LiveData<List<Note>> allNotes; //For testing purposes
 
     //The lists bellow are the ones that you will GET your data. The get updated automatically
@@ -31,6 +31,7 @@ public class NoteRepository {
         allNotes = noteDao.getAllNotes();
         allUsers = userDao.getAllusers();
         allItems = itemDao.getAllItems();
+
     }
 
     //Robert: The methods here are the methods that we actually use, in order to allow
