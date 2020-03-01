@@ -45,7 +45,8 @@ public class Item{
     // NEVER add the primary key, (id), in a constructor
     //This here is a basic constructor that includes the owner's Id
     @Ignore
-    public Item(String title, String description, int ownersId) {
+    public Item(int id, String title, String description, int ownersId) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.ownersId = ownersId;

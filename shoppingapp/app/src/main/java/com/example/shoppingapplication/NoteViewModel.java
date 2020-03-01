@@ -33,23 +33,32 @@ public class NoteViewModel extends AndroidViewModel {
         allNotes = repository.getAllNotes(); //testing
         allUsers = repository.getAllUsers(); //users as LiveData
         allItems = repository.getAllItems(); //items
-        //arrayAllNotes = getArrayAllNotes(); //testing
-        //arrayAllUsers = getArrayAllUsers(); //users as a normal Arraylist
-        //arrayAllItems = getArrayAllItems(); //items as a normal ArrayList
+        arrayAllNotes = DataHolder.notePopulate(); //testing
+        arrayAllUsers = DataHolder.userPopulate(); //users as a normal Arraylist
+        arrayAllItems = DataHolder.itemPopulate(); //items as a normal ArrayList
 
         //====== Populate the Data base here with hardcoded items ======================
         deleteAllNotes(); //it is important otherwise it will fill the db with unlimited notes.
         deleteAllItems(); //it is important otherwise it will fill the db with unlimited items.
         deleteAllUsers(); //it is important otherwise it will fill the db with unlimited users.
-        insert(new Note(1, "Title 1", "Description 1", 1));
-        insert(new Note(2,"Title 2", "Description 2", 2));
-        insert(new Note(3, "Title 3", "Description 3", 3));
-        insertUser(new User(1, "Admin", false, "12345"));
-        insertUser(new User(2, "Alice", false, "12345"));
-        insertUser(new User(3, "Bob", false, "12345"));
-        insertItem(new Item(1, "Item 1", "Description 1"));
-        insertItem(new Item(2, "item 2", "Description 2"));
-        insertItem(new Item(3, "item 3", "Description 3"));
+//        insert(new Note(1, "Title 1", "Description 1", 1));
+//        insert(new Note(2,"Title 2", "Description 2", 2));
+//        insert(new Note(3, "Title 3", "Description 3", 3));
+//        for (Item item: arrayAllItems){
+//            //insertItem(new Item(item.getId(), item.getTitle(), item.getDescription(), item.getOwnersId()));
+//            repository.itemDao.insert(item);
+//        }
+//
+//        for (Note note: arrayAllNotes){
+//            //insertItem(new Item(item.getId(), item.getTitle(), item.getDescription(), item.getOwnersId()));
+//            repository.noteDao.insert(note);
+//        }
+//        insertUser(new User(1, "Admin", false, "12345"));
+//        insertUser(new User(2, "Alice", false, "12345"));
+//        insertUser(new User(3, "Bob", false, "12345"));
+//        insertItem(new Item(1, "Item 1", "Description 1"));
+//        insertItem(new Item(2, "item 2", "Description 2"));
+//        insertItem(new Item(3, "item 3", "Description 3"));
 //        DataHolder.arrayAllNotes.add(new Note(1, "Title 1", "Description 1", 1));
 //        DataHolder.arrayAllNotes.add(new Note(2,"Title 2", "Description 2", 2));
 //        DataHolder.arrayAllNotes.add(new Note(3, "Title 3", "Description 3", 3));
@@ -59,7 +68,10 @@ public class NoteViewModel extends AndroidViewModel {
 //        DataHolder.arrayAllItems.add(new Item(1, "Item 1", "Description 1"));
 //        DataHolder.arrayAllItems.add(new Item(2, "item 2", "Description 2"));
 //        DataHolder.arrayAllItems.add(new Item(3, "item 3", "Description 3"));
-        //syncLiveDataLists();
+        syncLiveDataLists();
+        //transferNotesFromArray(); //it works
+        //transferItemsFromArray(); //seems to work
+        //transferUsersFromArray(); //seems to work
         //==============================================================================
     }
 
@@ -74,16 +86,16 @@ public class NoteViewModel extends AndroidViewModel {
     //transfers the users from the arrayList to the SQLite.
     //It goes through the Querry because the LiveData List should not be accessed directly.
     void transferUsersFromArray(){
-        for (User user: DataHolder.arrayAllUsers){
-            insertUser(user);
-            //repository.userDao.insert(user);
+        for (User user: arrayAllUsers){
+            //insertUser(user);
+            repository.userDao.insert(user);
         }
     }
 
     //transfers the items from the arrayList to the SQLite.
     //It goes through the SQLite to the List because the LiveData List should not be accessed directly.
     void transferItemsFromArray(){
-        for (Item item: DataHolder.arrayAllItems){
+        for (Item item: arrayAllItems){
             insertItem(item);
             //repository.itemDao.insert(item);
         }
@@ -92,9 +104,9 @@ public class NoteViewModel extends AndroidViewModel {
     //transfers the notes from the arrayList to the SQLite.
     //It goes through the SQLite to the List because the LiveData List should not be accessed directly.
     void transferNotesFromArray(){
-        for (Note note: DataHolder.arrayAllNotes){
-            insert(note);
-            //repository.noteDao.insert(note);
+        for (Note note: arrayAllNotes){
+            //insert(note);
+            repository.noteDao.insert(note);
         }
     }
 

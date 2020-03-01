@@ -48,13 +48,22 @@ public class MainActivity extends AppCompatActivity {
 //
 //                 //Traversing elements
                 //int count = 0;
-                while(notesIterator.hasNext()){
-                    //msg = String.valueOf(count);
-                    //count++;
-                    //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    msg2 = msg2 + notesIterator.next().getTitle() + " / ";
-                    //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
+                if(notesIterator != null){
+                    while(notesIterator.hasNext()){
+                        //msg = String.valueOf(count);
+                        //count++;
+                        //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        msg2 = msg2 + notesIterator.next().getTitle() + " / ";
+                        //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
+                    }
                 }
+
+
+//                if(noteViewModel.arrayAllNotes != null){
+//                    for(Note note : noteViewModel.arrayAllNotes){
+//                        msg2 = msg2 + note.getTitle() + " / ";
+//                    }
+//                }
                 textView.setText(msg2);
 //
 //                //====== Test Script ================================
