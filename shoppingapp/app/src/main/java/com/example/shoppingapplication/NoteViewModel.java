@@ -74,7 +74,7 @@ public class NoteViewModel extends AndroidViewModel {
     //transfers the users from the arrayList to the SQLite.
     //It goes through the Querry because the LiveData List should not be accessed directly.
     void transferUsersFromArray(){
-        for (User user: arrayAllUsers){
+        for (User user: DataHolder.arrayAllUsers){
             insertUser(user);
             //repository.userDao.insert(user);
         }
@@ -83,7 +83,7 @@ public class NoteViewModel extends AndroidViewModel {
     //transfers the items from the arrayList to the SQLite.
     //It goes through the SQLite to the List because the LiveData List should not be accessed directly.
     void transferItemsFromArray(){
-        for (Item item: arrayAllItems){
+        for (Item item: DataHolder.arrayAllItems){
             insertItem(item);
             //repository.itemDao.insert(item);
         }
@@ -92,7 +92,7 @@ public class NoteViewModel extends AndroidViewModel {
     //transfers the notes from the arrayList to the SQLite.
     //It goes through the SQLite to the List because the LiveData List should not be accessed directly.
     void transferNotesFromArray(){
-        for (Note note: arrayAllNotes){
+        for (Note note: DataHolder.arrayAllNotes){
             insert(note);
             //repository.noteDao.insert(note);
         }

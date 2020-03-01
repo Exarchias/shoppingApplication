@@ -1,6 +1,7 @@
 package com.example.shoppingapplication;
 
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -20,39 +21,41 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final TextView textView = (TextView)findViewById(R.id.textview1);
 
 
 
 
 
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
- //       noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
- //           @Override
-  //          public void onChanged(@Nullable List<Note> notes) {
+        noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
+            @Override
+            public void onChanged(@Nullable List<Note> notes) {
 //                //Tests the handshake by detecting the if the entities are updated.
 //                //I wish to implement better testing scripts bur I did enough for now.
 //                //Toast.makeText(MainActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
 //                //this is how we take the objects from the list. But we need some kind of itteration.
 //                //Note note = noteViewModel.getAllNotes().getValue().get(0);
 //                //String msg = note.getTitle();
-//                String msg2 = "";
+                String msg2 = "With LiveData";
 //                //String msg3 = "This is an ArrayList: ";
 //                //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
 //                //notes.listIterator();
 //
 //
-//                // Getting ListIterator
-//                //ListIterator<Note> notesIterator = notes.listIterator();
+                // Getting ListIterator
+                ListIterator<Note> notesIterator = notes.listIterator();
 //
 //                 //Traversing elements
-////                int count = 0;
-////                while(notesIterator.hasNext()){
-////                    //msg = String.valueOf(count);
-////                    count++;
-////                    //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-////                    msg2 = msg2 + notesIterator.next().getTitle() + " " + count + " ";
-////                    //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
-////                }
+                //int count = 0;
+                while(notesIterator.hasNext()){
+                    //msg = String.valueOf(count);
+                    //count++;
+                    //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    msg2 = msg2 + notesIterator.next().getTitle() + " / ";
+                    //Toast.makeText(MainActivity.this, msg2, Toast.LENGTH_SHORT).show();
+                }
+                textView.setText(msg2);
 //
 //                //====== Test Script ================================
 //                ArrayList<User> theUserArray = noteViewModel.arrayAllUsers;
@@ -84,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(MainActivity.this, msg3 + " lol " + msg2, Toast.LENGTH_LONG).show();
 //                //===============================
 
-//            }
- //       });
+            }
+        });
 
         //====== Test Script ================================
 
