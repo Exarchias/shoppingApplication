@@ -87,8 +87,8 @@ public class NoteViewModel extends AndroidViewModel {
     //It goes through the Querry because the LiveData List should not be accessed directly.
     void transferUsersFromArray(){
         for (User user: arrayAllUsers){
-            //insertUser(user);
-            repository.userDao.insert(user);
+            insertUser(user);
+            //repository.userDao.insert(user);
         }
     }
 
@@ -105,8 +105,8 @@ public class NoteViewModel extends AndroidViewModel {
     //It goes through the SQLite to the List because the LiveData List should not be accessed directly.
     void transferNotesFromArray(){
         for (Note note: arrayAllNotes){
-            //insert(note);
-            repository.noteDao.insert(note);
+            insert(note);
+            //repository.noteDao.insert(note);
         }
     }
 
