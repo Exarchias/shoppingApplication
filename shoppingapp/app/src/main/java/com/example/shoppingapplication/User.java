@@ -14,28 +14,29 @@ public class User {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private String name;
+    private String name; //the username of the user
     private boolean isAdmin;
     private String password;
-    private String email;
-    private String address;
-    private String postCode;
-    private String city;
-    private String Country;
-    private String telephone;
-    private String mobilePhone;
+    private String email = "example@example.com";
+    private String fullName = "John Doe"; //the full name of the user
+    private String address = "Example Street 21";
+    private String postCode = "12345";
+    private String city = "Kristianstad";
+    private String Country = "Sweden";
+    private String telephone = "+461234567890";
+    private String mobilePhone = "+461234567890";
     private int userNumber; //not the same as id. this can be used in case that an id needs to be publix.
     // Better AVOID to use it if you are not having a specific plan about it.
-    private int age; //it might be generated automatically, in that case the setter will be removed.
+    private int age = 30; //it might be generated automatically, in that case the setter will be removed.
     @Ignore
     private Date loginDate;
-    private String loginDateSTR;
+    private String loginDateSTR = "DD/MM/YYYY";
 
     @Ignore
     private Date dayOfBirth;
-    private String dayOfBirthSTR;
+    private String dayOfBirthSTR = "DD/MM/YYYY";
 
-    private int wallet; //In case that a wallet feature is implemented.
+    private int wallet = 100; //In case that a wallet feature is implemented.
 
     @Ignore
     public ArrayList<Item> purchasedItems; //This is for the case we need to implement history of the user.
@@ -216,5 +217,13 @@ public class User {
 
     public void setDayOfBirthSTR(String dayOfBirthSTR) {
         this.dayOfBirthSTR = dayOfBirthSTR;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }
