@@ -25,6 +25,25 @@ public class MainActivity extends AppCompatActivity {
         final TextView textView2 = (TextView)findViewById(R.id.textView2);
         final TextView textView3 = (TextView)findViewById(R.id.textView3);
 
+        //This object is for testing and is used many lines below in order to test the
+        //noteViewModel.useThatCreateUser(john) method. it works
+        //The important thing about the data manupulation is the timing, as you don't want
+        //to manipulate the data while the data is loading.
+        User john = new User(4, "john", false, "12345"); //Testing
+
+        //This object is for testing and is used many lines below in order to test the
+        //noteViewModel.useThatCreateItem(item4) method. it works.
+        //The important thing about the data manupulation is the timing, as you don't want
+        //to manipulate the data while the data is loading.
+        Item item4 = new Item(4, "Item 4", "Description 4");
+
+        //This object is for testing and is used many lines below in order to test the
+        //noteViewModel.useThatCreateNote(note4) method. it works.
+        //The important thing about the data manupulation is the timing, as you don't want
+        //to manipulate the data while the data is loading.
+        Note note4 = new Note(4, "Title 4", "Description 4", 1);
+
+
 
 
 
@@ -154,6 +173,16 @@ public class MainActivity extends AppCompatActivity {
         //====== Test Script ================================
 
         String msg2 = "Second Test ";
+
+        //Adding a user using the useThat interface
+        noteViewModel.useThatCreateUser(john); //it works
+
+        //Adding an item using the useThat interface
+        noteViewModel.useThatCreateItem(item4); //it works
+
+        //Adding a note using the useThat interface
+        noteViewModel.useThatCreateNote(note4); //it works
+
 //        ArrayList<User> theUserArray = noteViewModel.arrayAllUsers;
 //        ArrayList<Item> theItemArray = noteViewModel.arrayAllItems;
 //        ArrayList<Note> theNoteArray = noteViewModel.arrayAllNotes;

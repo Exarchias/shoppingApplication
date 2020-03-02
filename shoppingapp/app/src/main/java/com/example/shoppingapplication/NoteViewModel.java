@@ -54,6 +54,37 @@ public class NoteViewModel extends AndroidViewModel {
         //transferUsersFromArray(); //seems to work
         //==============================================================================
     }
+
+    //Adds a user to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
+    //"usethat" methods are the final interface.
+    //The important thing about the data manupulation is the timing, as you don't want
+    //to manipulate the data while the data is loading.
+    void useThatCreateUser(User user){
+        insertUser(user);
+        arrayAllUsers.add(user);
+        DataHolder.arrayAllUsers.add(user);
+    }
+
+    //Adds an item to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
+    //"usethat" methods are the final interface.
+    //The important thing about the data manupulation is the timing, as you don't want
+    //to manipulate the data while the data is loading.
+    void useThatCreateItem(Item item){
+        insertItem(item);
+        arrayAllItems.add(item);
+        DataHolder.arrayAllItems.add(item);
+    }
+
+    //Adds a note to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
+    //"usethat" methods are the final interface.
+    //The important thing about the data manupulation is the timing, as you don't want
+    //to manipulate the data while the data is loading.
+    void useThatCreateNote(Note note){
+        insert(note);
+        arrayAllNotes.add(note);
+        DataHolder.arrayAllNotes.add(note);
+    }
+
     //Deletes Everything from Everywhere. Testing and debugging purposes.
     //"usethat" methods are the final interface.
     void useThatDeleteEverythingFromEverywhere(){
