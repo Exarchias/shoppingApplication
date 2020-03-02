@@ -33,6 +33,17 @@ public class Note {
         this.userId = userId;
     }
 
+    //Thise Constructor will be used when MySQL will be introduced to the system.
+    @Ignore
+    public Note(int id, String title, String description, int priority, int userId, String dateString) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.priority = priority;
+        this.userId = userId;
+        this.dateString = dateString;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

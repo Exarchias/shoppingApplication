@@ -52,6 +52,31 @@ public class Item{
         this.ownersId = ownersId;
     }
 
+    //This constructor will be used when the MySQL will be introduced to the System.
+    @Ignore
+    public Item(int id, int ownersId, boolean sold, int noteId, String title, String type,
+                String sizeSTR, int sizeInt, String material, String colour, String description,
+                String photo1, String photo2, String photo3, String photo4, String photo5,
+                String photo6) {
+        this.id = id;
+        this.ownersId = ownersId;
+        this.sold = sold;
+        this.noteId = noteId;
+        this.title = title;
+        this.type = type;
+        this.sizeSTR = sizeSTR;
+        this.sizeInt = sizeInt;
+        this.material = material;
+        this.colour = colour;
+        this.description = description;
+        this.photo1 = photo1;
+        this.photo2 = photo2;
+        this.photo3 = photo3;
+        this.photo4 = photo4;
+        this.photo5 = photo5;
+        this.photo6 = photo6;
+    }
+
     public int getId() {
         return id;
     }

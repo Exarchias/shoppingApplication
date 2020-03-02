@@ -67,6 +67,31 @@ public class User {
         this.password = password;
         this.email = email;
     }
+    @Ignore
+    //This is a constructor that uses all the variables. it will be used when MySQL will be
+    //introduced to the system.
+    public User(int id, String name, boolean isAdmin, String password, String email, String fullName,
+                String address, String postCode, String city, String country, String telephone,
+                String mobilePhone, int userNumber, int age, String loginDateSTR, String dayOfBirthSTR,
+                int wallet) {
+        this.id = id;
+        this.name = name;
+        this.isAdmin = isAdmin;
+        this.password = password;
+        this.email = email;
+        this.fullName = fullName;
+        this.address = address;
+        this.postCode = postCode;
+        this.city = city;
+        Country = country;
+        this.telephone = telephone;
+        this.mobilePhone = mobilePhone;
+        this.userNumber = userNumber;
+        this.age = age;
+        this.loginDateSTR = loginDateSTR;
+        this.dayOfBirthSTR = dayOfBirthSTR;
+        this.wallet = wallet;
+    }
 
     public int getId() {
         return id;
