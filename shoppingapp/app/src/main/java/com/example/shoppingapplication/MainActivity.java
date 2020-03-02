@@ -35,6 +35,21 @@ public class MainActivity extends AppCompatActivity {
         //please notice that the id here is 5, while on updating we will use another id.
         User alina = new User(5, "Alina", false, "12345"); //Testing
 
+        //We taking Bob in order to delete him from the Database below.
+        //if no bob is shown that means that the useThatDeleteUser() works.
+        //bob is usually located in position 2.
+        User userToBeDeleted = DataHolder.arrayAllUsers.get(2); //Testing
+
+        //We taking item3 in order to delete it from the Database below.
+        //if no item3 is shown that means that the useThatDeleteItem() works.
+        //item3 is usually located in position 2.
+        Item itemToBeDeleted = DataHolder.arrayAllItems.get(2); //Testing
+
+        //We taking the Note with title3 in order to delete it from the Database below.
+        //if no title3 is shown that means that the useThatDeleteNote() works.
+        //title3 is usually located in position 2.
+        Note noteToBeDeleted = DataHolder.arrayAllNotes.get(2); //Testing
+
         //This object is for testing and is used many lines below in order to test the
         //noteViewModel.useThatCreateItem(item4) method. it works.
         //The important thing about the data manupulation is the timing, as you don't want
@@ -186,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
         String msg2 = "Second Test ";
 
+
         //Adding a user using the useThat interface
         noteViewModel.useThatCreateUser(john); //it works
 
@@ -228,6 +244,18 @@ public class MainActivity extends AppCompatActivity {
         //after this item1 will dissapear and in its positon will be item5
         noteViewModel.useThatUpdateNote(note5); //it works!
 
+        //This method deletes the userToBeDeleted that we created above.
+        //This user is Bob which is usually located in position 2;
+        noteViewModel.useThatDeleteUser(userToBeDeleted); //It works
+
+        //This method deletes the itemToBeDeleted that we created above.
+        //This Item is item3 which is usually located in position 2;
+        noteViewModel.useThatDeleteItem(itemToBeDeleted); //It works
+
+        //This method deletes the noteToBeDeleted that we created above.
+        //This Note is title3 which is usually located in position 2;
+        noteViewModel.useThatDeleteNote(noteToBeDeleted); //It works
+
 //        ArrayList<User> theUserArray = noteViewModel.arrayAllUsers;
 //        ArrayList<Item> theItemArray = noteViewModel.arrayAllItems;
 //        ArrayList<Note> theNoteArray = noteViewModel.arrayAllNotes;
@@ -258,6 +286,8 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
         Toast.makeText(MainActivity.this, msg3 + " lol " + msg2, Toast.LENGTH_LONG).show();
+
+        //All the Tests are concluded and every data manipulation works as it should.
         //===============================
     }
 }
