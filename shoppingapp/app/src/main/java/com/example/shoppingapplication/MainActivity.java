@@ -31,17 +31,29 @@ public class MainActivity extends AppCompatActivity {
         //to manipulate the data while the data is loading.
         User john = new User(4, "john", false, "12345"); //Testing
 
+        //This User object intents to be used to test and demonstrate the updateing process of an object.
+        //please notice that the id here is 5, while on updating we will use another id.
+        User alina = new User(5, "Alina", false, "12345"); //Testing
+
         //This object is for testing and is used many lines below in order to test the
         //noteViewModel.useThatCreateItem(item4) method. it works.
         //The important thing about the data manupulation is the timing, as you don't want
         //to manipulate the data while the data is loading.
         Item item4 = new Item(4, "Item 4", "Description 4");
 
+        //This Item object intents to be used to test and demonstrate the updateing process of an object.
+        //please notice that the id here is 5, while on updating we will use another id.
+        Item item5 = new Item(5, "Item 5", "Description 5");
+
         //This object is for testing and is used many lines below in order to test the
         //noteViewModel.useThatCreateNote(note4) method. it works.
         //The important thing about the data manupulation is the timing, as you don't want
         //to manipulate the data while the data is loading.
         Note note4 = new Note(4, "Title 4", "Description 4", 1);
+
+        //This Note object intents to be used to test and demonstrate the updateing process of an object.
+        //please notice that the id here is 5, while on updating we will use another id.
+        Note note5 = new Note(5, "Title 5", "Description 5", 1);
 
 
 
@@ -182,6 +194,39 @@ public class MainActivity extends AppCompatActivity {
 
         //Adding a note using the useThat interface
         noteViewModel.useThatCreateNote(note4); //it works
+
+        //Here we are taking the id from Alice. which I know that is in positon 1.
+        int tmpId = DataHolder.arrayAllUsers.get(1).getId();
+
+        //here we are giving the id from Alice to Alina
+        alina.setId(tmpId);
+
+        //Here we are updating the User Alice, with the new User Alina which has the same id
+        //to have the same id is important.
+        //after this Alice will dissapear and in her positon will be Alina
+        noteViewModel.useThatUpdateUser(alina); //it works!
+
+        //Here we are taking the id from item1. which I know that is in positon 0.
+        int tmpId2 = DataHolder.arrayAllItems.get(0).getId();
+
+        //Here we are giving the id from item1 to item5
+        item5.setId(tmpId2);
+
+        //Here we are updating the item1, with the new Item item5 which has the same id
+        //to have the same id is important.
+        //after this item1 will dissapear and in its positon will be item5
+        noteViewModel.useThatUpdateItem(item5); //it works!
+
+        //Here we are taking the id from title1. which I know that is in positon 0.
+        int tmpId3 = DataHolder.arrayAllNotes.get(0).getId();
+
+        //Here we are giving the id from item1 to item5
+        note5.setId(tmpId3);
+
+        //Here we are updating the Note title1, with the new Note note5 which has the same id
+        //to have the same id is important.
+        //after this item1 will dissapear and in its positon will be item5
+        noteViewModel.useThatUpdateNote(note5); //it works!
 
 //        ArrayList<User> theUserArray = noteViewModel.arrayAllUsers;
 //        ArrayList<Item> theItemArray = noteViewModel.arrayAllItems;
