@@ -55,6 +55,78 @@ public class NoteViewModel extends AndroidViewModel {
         //==============================================================================
     }
 
+    //It deletes a User to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
+    //"usethat" methods are the final interface.
+    //The important thing about the data manupulation is the timing, as you don't want
+    //to manipulate the data while the data is loading.
+    void useThatDeleteUser(User user){
+        int tmpId = user.getId();
+        int positionMV = 0;
+        int positionDH = 0;
+        deleteUser(user);
+        for(User x: arrayAllUsers){
+            if(x.getId() == tmpId){
+                positionMV = arrayAllUsers.indexOf(x);
+            }
+        }
+        arrayAllUsers.remove(positionMV);
+        positionDH = positionMV;
+        for(User k: DataHolder.arrayAllUsers){
+            if(k.getId() == tmpId){
+                positionDH = DataHolder.arrayAllUsers.indexOf(k);
+            }
+        }
+        DataHolder.arrayAllUsers.remove(positionDH);
+    }
+
+    //It deletes an Item to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
+    //"usethat" methods are the final interface.
+    //The important thing about the data manupulation is the timing, as you don't want
+    //to manipulate the data while the data is loading.
+    void useThatDeleteItem(Item item){
+        int tmpId = item.getId();
+        int positionMV = 0;
+        int positionDH = 0;
+        deleteItem(item);
+        for(Item x: arrayAllItems){
+            if(x.getId() == tmpId){
+                positionMV = arrayAllItems.indexOf(x);
+            }
+        }
+        arrayAllItems.remove(positionMV);
+        positionDH = positionMV;
+        for(Item k: DataHolder.arrayAllItems){
+            if(k.getId() == tmpId){
+                positionDH = DataHolder.arrayAllItems.indexOf(k);
+            }
+        }
+        DataHolder.arrayAllItems.remove(positionDH);
+    }
+
+    //It deletes a Note to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
+    //"usethat" methods are the final interface.
+    //The important thing about the data manupulation is the timing, as you don't want
+    //to manipulate the data while the data is loading.
+    void useThatDeleteNote(Note note){
+        int tmpId = note.getId();
+        int positionMV = 0;
+        int positionDH = 0;
+        delete(note);
+        for(Note x: arrayAllNotes){
+            if(x.getId() == tmpId){
+                positionMV = arrayAllNotes.indexOf(x);
+            }
+        }
+        arrayAllNotes.remove(positionMV);
+        positionDH = positionMV;
+        for(Note k: DataHolder.arrayAllNotes){
+            if(k.getId() == tmpId){
+                positionDH = DataHolder.arrayAllNotes.indexOf(k);
+            }
+        }
+        DataHolder.arrayAllNotes.remove(positionDH);
+    }
+
     //Updates a specific user to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
     //"usethat" methods are the final interface.
     //The important thing about the data manupulation is the timing, as you don't want
