@@ -60,23 +60,25 @@ public class NoteViewModel extends AndroidViewModel {
     //The important thing about the data manupulation is the timing, as you don't want
     //to manipulate the data while the data is loading.
     void useThatDeleteUser(User user){
-        int tmpId = user.getId();
-        int positionMV = 0;
-        int positionDH = 0;
-        deleteUser(user);
-        for(User x: arrayAllUsers){
-            if(x.getId() == tmpId){
-                positionMV = arrayAllUsers.indexOf(x);
+        if(DataHolder.userIdExists(user.getId())){
+            int tmpId = user.getId();
+            int positionMV = 0;
+            int positionDH = 0;
+            deleteUser(user);
+            for(User x: arrayAllUsers){
+                if(x.getId() == tmpId){
+                    positionMV = arrayAllUsers.indexOf(x);
+                }
             }
-        }
-        arrayAllUsers.remove(positionMV);
-        positionDH = positionMV;
-        for(User k: DataHolder.arrayAllUsers){
-            if(k.getId() == tmpId){
-                positionDH = DataHolder.arrayAllUsers.indexOf(k);
+            arrayAllUsers.remove(positionMV);
+            positionDH = positionMV;
+            for(User k: DataHolder.arrayAllUsers){
+                if(k.getId() == tmpId){
+                    positionDH = DataHolder.arrayAllUsers.indexOf(k);
+                }
             }
+            DataHolder.arrayAllUsers.remove(positionDH);
         }
-        DataHolder.arrayAllUsers.remove(positionDH);
     }
 
     //It deletes an Item to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
@@ -84,23 +86,25 @@ public class NoteViewModel extends AndroidViewModel {
     //The important thing about the data manupulation is the timing, as you don't want
     //to manipulate the data while the data is loading.
     void useThatDeleteItem(Item item){
-        int tmpId = item.getId();
-        int positionMV = 0;
-        int positionDH = 0;
-        deleteItem(item);
-        for(Item x: arrayAllItems){
-            if(x.getId() == tmpId){
-                positionMV = arrayAllItems.indexOf(x);
+        if(DataHolder.itemIdExists(item.getId())){
+            int tmpId = item.getId();
+            int positionMV = 0;
+            int positionDH = 0;
+            deleteItem(item);
+            for(Item x: arrayAllItems){
+                if(x.getId() == tmpId){
+                    positionMV = arrayAllItems.indexOf(x);
+                }
             }
-        }
-        arrayAllItems.remove(positionMV);
-        positionDH = positionMV;
-        for(Item k: DataHolder.arrayAllItems){
-            if(k.getId() == tmpId){
-                positionDH = DataHolder.arrayAllItems.indexOf(k);
+            arrayAllItems.remove(positionMV);
+            positionDH = positionMV;
+            for(Item k: DataHolder.arrayAllItems){
+                if(k.getId() == tmpId){
+                    positionDH = DataHolder.arrayAllItems.indexOf(k);
+                }
             }
+            DataHolder.arrayAllItems.remove(positionDH);
         }
-        DataHolder.arrayAllItems.remove(positionDH);
     }
 
     //It deletes a Note to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
@@ -108,23 +112,25 @@ public class NoteViewModel extends AndroidViewModel {
     //The important thing about the data manupulation is the timing, as you don't want
     //to manipulate the data while the data is loading.
     void useThatDeleteNote(Note note){
-        int tmpId = note.getId();
-        int positionMV = 0;
-        int positionDH = 0;
-        delete(note);
-        for(Note x: arrayAllNotes){
-            if(x.getId() == tmpId){
-                positionMV = arrayAllNotes.indexOf(x);
+        if(DataHolder.noteIdExists(note.getId())){
+            int tmpId = note.getId();
+            int positionMV = 0;
+            int positionDH = 0;
+            delete(note);
+            for(Note x: arrayAllNotes){
+                if(x.getId() == tmpId){
+                    positionMV = arrayAllNotes.indexOf(x);
+                }
             }
-        }
-        arrayAllNotes.remove(positionMV);
-        positionDH = positionMV;
-        for(Note k: DataHolder.arrayAllNotes){
-            if(k.getId() == tmpId){
-                positionDH = DataHolder.arrayAllNotes.indexOf(k);
+            arrayAllNotes.remove(positionMV);
+            positionDH = positionMV;
+            for(Note k: DataHolder.arrayAllNotes){
+                if(k.getId() == tmpId){
+                    positionDH = DataHolder.arrayAllNotes.indexOf(k);
+                }
             }
+            DataHolder.arrayAllNotes.remove(positionDH);
         }
-        DataHolder.arrayAllNotes.remove(positionDH);
     }
 
     //Updates a specific user to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
@@ -134,23 +140,25 @@ public class NoteViewModel extends AndroidViewModel {
     //ALSO IMPORTANT in order to update correctly, the new object that updates the old
     // should have the same id with the old one.
     void useThatUpdateUser(User user){
-        int tmpId = user.getId();
-        int positionMV = 0;
-        int positionDH = 0;
-        updateUser(user);
-        for(User x: arrayAllUsers){
-            if(x.getId() == tmpId){
-                positionMV = arrayAllUsers.indexOf(x);
+        if(DataHolder.userIdExists(user.getId())){
+            int tmpId = user.getId();
+            int positionMV = 0;
+            int positionDH = 0;
+            updateUser(user);
+            for(User x: arrayAllUsers){
+                if(x.getId() == tmpId){
+                    positionMV = arrayAllUsers.indexOf(x);
+                }
             }
-        }
-        arrayAllUsers.set(positionMV, user);
-        positionDH = positionMV;
-        for(User k: DataHolder.arrayAllUsers){
-            if(k.getId() == tmpId){
-                positionDH = DataHolder.arrayAllUsers.indexOf(k);
+            arrayAllUsers.set(positionMV, user);
+            positionDH = positionMV;
+            for(User k: DataHolder.arrayAllUsers){
+                if(k.getId() == tmpId){
+                    positionDH = DataHolder.arrayAllUsers.indexOf(k);
+                }
             }
+            DataHolder.arrayAllUsers.set(positionDH, user);
         }
-        DataHolder.arrayAllUsers.set(positionDH, user);
     }
 
 
@@ -161,49 +169,53 @@ public class NoteViewModel extends AndroidViewModel {
     //ALSO IMPORTANT in order to update correctly, the new object that updates the old
     // should have the same id with the old one.
     void useThatUpdateItem(Item item){
-        int tmpId = item.getId();
-        int positionMV = 0;
-        int positionDH = 0;
-        updateItem(item);
-        for(Item x: arrayAllItems){
-            if(x.getId() == tmpId){
-                positionMV = arrayAllItems.indexOf(x);
+        if(DataHolder.itemIdExists(item.getId())){
+            int tmpId = item.getId();
+            int positionMV = 0;
+            int positionDH = 0;
+            updateItem(item);
+            for(Item x: arrayAllItems){
+                if(x.getId() == tmpId){
+                    positionMV = arrayAllItems.indexOf(x);
+                }
             }
-        }
-        arrayAllItems.set(positionMV, item);
-        positionDH = positionMV;
-        for(Item k: DataHolder.arrayAllItems){
-            if(k.getId() == tmpId){
-                positionDH = DataHolder.arrayAllItems.indexOf(k);
+            arrayAllItems.set(positionMV, item);
+            positionDH = positionMV;
+            for(Item k: DataHolder.arrayAllItems){
+                if(k.getId() == tmpId){
+                    positionDH = DataHolder.arrayAllItems.indexOf(k);
+                }
             }
+            DataHolder.arrayAllItems.set(positionDH, item);
         }
-        DataHolder.arrayAllItems.set(positionDH, item);
     }
 
     //Updates a specific Note to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
     //"usethat" methods are the final interface.
-    //The important thing about the data manupulation is the timing, as you don't want
+    //The important thing about the data manipulation is the timing, as you don't want
     //to manipulate the data while the data is loading.
     //ALSO IMPORTANT in order to update correctly, the new object that updates the old
     // should have the same id with the old one.
     void useThatUpdateNote(Note note){
-        int tmpId = note.getId();
-        int positionMV = 0;
-        int positionDH = 0;
-        update(note);
-        for(Note x: arrayAllNotes){
-            if(x.getId() == tmpId){
-                positionMV = arrayAllNotes.indexOf(x);
+        if(DataHolder.noteIdExists(note.getId())){
+            int tmpId = note.getId();
+            int positionMV = 0;
+            int positionDH = 0;
+            update(note);
+            for(Note x: arrayAllNotes){
+                if(x.getId() == tmpId){
+                    positionMV = arrayAllNotes.indexOf(x);
+                }
             }
-        }
-        arrayAllNotes.set(positionMV, note);
-        positionDH = positionMV;
-        for(Note k: DataHolder.arrayAllNotes){
-            if(k.getId() == tmpId){
-                positionDH = DataHolder.arrayAllNotes.indexOf(k);
+            arrayAllNotes.set(positionMV, note);
+            positionDH = positionMV;
+            for(Note k: DataHolder.arrayAllNotes){
+                if(k.getId() == tmpId){
+                    positionDH = DataHolder.arrayAllNotes.indexOf(k);
+                }
             }
+            DataHolder.arrayAllNotes.set(positionDH, note);
         }
-        DataHolder.arrayAllNotes.set(positionDH, note);
     }
 
     //Adds a user to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
@@ -211,9 +223,11 @@ public class NoteViewModel extends AndroidViewModel {
     //The important thing about the data manupulation is the timing, as you don't want
     //to manipulate the data while the data is loading.
     void useThatCreateUser(User user){
-        insertUser(user);
-        arrayAllUsers.add(user);
-        DataHolder.arrayAllUsers.add(user);
+        if(!DataHolder.userIdExists(user.getId())){
+            insertUser(user);
+            arrayAllUsers.add(user);
+            DataHolder.arrayAllUsers.add(user);
+        }
     }
 
     //Adds an item to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
@@ -221,9 +235,11 @@ public class NoteViewModel extends AndroidViewModel {
     //The important thing about the data manupulation is the timing, as you don't want
     //to manipulate the data while the data is loading.
     void useThatCreateItem(Item item){
-        insertItem(item);
-        arrayAllItems.add(item);
-        DataHolder.arrayAllItems.add(item);
+        if(!DataHolder.itemIdExists(item.getId())){
+            insertItem(item);
+            arrayAllItems.add(item);
+            DataHolder.arrayAllItems.add(item);
+        }
     }
 
     //Adds a note to every data structure (ViewModel, DataHolder, SQLite, Mysql etc)
@@ -231,9 +247,11 @@ public class NoteViewModel extends AndroidViewModel {
     //The important thing about the data manupulation is the timing, as you don't want
     //to manipulate the data while the data is loading.
     void useThatCreateNote(Note note){
-        insert(note);
-        arrayAllNotes.add(note);
-        DataHolder.arrayAllNotes.add(note);
+        if(!DataHolder.noteIdExists(note.getId())){
+            insert(note);
+            arrayAllNotes.add(note);
+            DataHolder.arrayAllNotes.add(note);
+        }
     }
 
     //Deletes Everything from Everywhere. Testing and debugging purposes.

@@ -45,4 +45,39 @@ public class DataHolder {
         tempAr.add(new Note(3, "Title 3", "Description 3", 3));
         return tempAr;
     }
+
+    //checks if the given User Id exists in the arrayAllUsers, and if the id exists returns true.
+    static boolean userIdExists(int id){
+
+        for(User user : arrayAllUsers){
+            if(user.getId()==id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //checks if the given Item Id exists in the arrayAllItems, and if the id exists returns true.
+    static boolean itemIdExists(int id){
+
+        for(Item item : arrayAllItems){
+            if(item.getId()==id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //checks if the given Note Id exists in the arrayAllnotes, and if the id exists returns true.
+    static boolean noteIdExists(int id){
+
+        for(Note note : arrayAllNotes){
+            if(note.getId()==id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
