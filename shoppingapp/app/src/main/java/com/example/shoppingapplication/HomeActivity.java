@@ -11,19 +11,23 @@ import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        if (user.isAdmin()) {
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
+        } else {
+            setActivityLisener();
+        }
         // when you log in you should end up in this activity-abdul
-
-
-
-
-
-setActivityLisener();
-
     }
+
+
 
 
 
