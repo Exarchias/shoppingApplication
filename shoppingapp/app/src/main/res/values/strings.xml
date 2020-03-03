@@ -3,4 +3,5 @@
     <string name="close">Close</string>
     <string name="update">Update</string>
     <string name="products">Products</string>
+    <string name="orders_currenc">USD</string>
 </resources>
