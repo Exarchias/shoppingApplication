@@ -76,7 +76,7 @@ public class OrdersActivity extends AppCompatActivity {
 
         DataHolder.itemIdExists(user.getId());
 
-        // if Item populate gets all the items in a list then this should work.
+        // if Item populate gets all the orders in a list then this should work.
         DataHolder.itemPopulate();
         a++;
 
