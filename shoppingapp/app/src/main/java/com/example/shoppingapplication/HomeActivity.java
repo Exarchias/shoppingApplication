@@ -71,6 +71,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+
     public void getAllViews() {
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
