@@ -33,16 +33,8 @@ public class RTools {
     }
 
 
-    //It delvers an ArrayList wil all the Orders (Note objects) of a user
-    static ArrayList<Note> theOrdersOfTheUser(User user){
-        ArrayList<Note> tempArr = new ArrayList<>();
-        for(Note order: DataHolder.arrayAllNotes){
-            if(order.getUserId() == user.getId()){
-                tempArr.add(order);
-            }
-        }
-        return tempArr;
-    }
+
+    // ================= ITEMS ========================================
 
     //it finds a user by their id
     static User findUserById(int id){
@@ -65,4 +57,90 @@ public class RTools {
         }
         return null;
     }
+
+    //Returns a String text with the details of the user
+    static String detailsOgTheUserAsString(User user){
+        String msg = user.getName() + ": \n";
+        msg = msg + "============\n";
+        msg = msg + "Name: " + user.getFullName() + "\n";
+        msg = msg + "Email: " + user.getEmail() + "\n";
+        msg = msg + "Telephone: " + user.getTelephone() + "\n";
+        msg = msg + "Address: " + user.getAddress() + " PC" + user.getPostCode() + "\n";
+        msg = msg + "City: " + user.getCity() + ", " + user.getCountry();
+        return  msg;
+    }
+
+    //It delivers an ArrayList with all the Orders (Note objects) of a user
+    static ArrayList<Note> theOrdersOfTheUser(User user){
+        ArrayList<Note> tempArr = new ArrayList<>();
+        for(Note order: DataHolder.arrayAllNotes){
+            if(order.getUserId() == user.getId()){
+                tempArr.add(order);
+            }
+        }
+        return tempArr;
+    }
+
+    //It delivers an ArrayList with all the purchased Items of a user
+    static ArrayList<Item> theItemsOfTheUser(User user){
+        ArrayList<Item> tempArr = new ArrayList<>();
+        for(Item item: DataHolder.arrayAllItems){
+            if(item.getOwnersId() == user.getId()){
+                tempArr.add(item);
+            }
+        }
+        return tempArr;
+    }
+
+
+    // ================= NOTES ========================================
+
+    //it finds a Note by its id
+    static Note findNoteById(int id){
+        for (Note note : DataHolder.arrayAllNotes){
+            if(id == note.getId()){
+                return note;
+            }
+        }
+        return null;
+    }
+
+    //it finds the title of a Note by its id
+    static String findNotesTitleById(int id){
+        if(DataHolder.noteIdExists(id)){
+            for (Note note : DataHolder.arrayAllNotes){
+                if(id == note.getId()){
+                    return note.getTitle();
+                }
+            }
+        }
+        return null;
+    }
+
+
+    // ================= ITEMS ========================================
+
+    //it finds an Item by its id
+    static Item findItemById(int id){
+        for (Item item : DataHolder.arrayAllItems){
+            if(id == item.getId()){
+                return item;
+            }
+        }
+        return null;
+    }
+
+    //it finds the title of a Note by its id
+    static String findItemsTitleById(int id){
+        if(DataHolder.itemIdExists(id)){
+            for (Item item : DataHolder.arrayAllItems){
+                if(id == item.getId()){
+                    return item.getTitle();
+                }
+            }
+        }
+        return null;
+    }
+
+
 }
