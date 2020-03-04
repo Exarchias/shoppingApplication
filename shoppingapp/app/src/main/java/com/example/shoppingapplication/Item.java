@@ -14,12 +14,22 @@ public class Item{
     private int ownersId = 10000;
     private boolean sold = false;
     private int noteId = 0;
+    private double price = 0.0;
 
     private String title = "Item";
     private String type = "generic";
     private String sizeSTR = "basic";
     private int sizeInt = 0;
     private String material = "unknown";
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     private String colour = "random";
 
     private String description = "A very useful item";

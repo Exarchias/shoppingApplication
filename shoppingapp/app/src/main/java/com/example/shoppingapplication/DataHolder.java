@@ -6,6 +6,7 @@ public class DataHolder {
     static ArrayList<Note> arrayAllNotes = notePopulate(); //testing
     static ArrayList<User> arrayAllUsers= userPopulate(); //users as a normal Arraylist
     static ArrayList<Item> arrayAllItems = itemPopulate(); //items as a normal ArrayList
+    static User activeUser; //The user who got logged in the system.
 
 
     static void populate(){
