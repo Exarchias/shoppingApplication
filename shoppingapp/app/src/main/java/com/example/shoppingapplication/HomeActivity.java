@@ -29,9 +29,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
 
-        if (user.isAdmin()) {
+          // if the user doesnt exist then you will be brought back to the mainActivity-abdul
+        if (DataHolder.checkUserExist(user.getId(),user.getPassword()) != true) {
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
         } else {

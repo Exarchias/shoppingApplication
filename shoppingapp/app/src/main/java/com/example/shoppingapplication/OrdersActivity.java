@@ -3,6 +3,7 @@ package com.example.shoppingapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -67,12 +68,22 @@ public class OrdersActivity extends AppCompatActivity {
     User userInFocus; //The selected user. Probably the DataHolder.activeUser
     Item itemInfccus; //the selected item
     Note orderInFocus; //the selected order
-
+   User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+
+         // same here if the user deosnt exist then you will not be ale to check the orderactivity.
+        if (DataHolder.checkUserExist(user.getId(),user.getPassword()) != true) {
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
+        }
         setContentView(R.layout.activity_order);
+
 
 
         listOrders = (ListView) findViewById(R.id.listview);

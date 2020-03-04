@@ -1,5 +1,7 @@
 package com.example.shoppingapplication;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DataHolder {
@@ -69,7 +71,29 @@ public class DataHolder {
         return false;
     }
 
-    //checks if the given Note Id exists in the arrayAllnotes, and if the id exists returns true.
+
+    public static boolean checkUserExist(int id, String userPass) {
+        boolean isUserFound = false;
+        for(User user : arrayAllUsers){
+            if(user.getId()== id){
+                isUserFound = true;
+            }else if (user.getPassword() == userPass) {
+                isUserFound = true;
+            }
+
+            isUserFound = false;
+
+
+
+
+            }
+
+        return isUserFound;
+        }
+
+
+
+        //checks if the given Note Id exists in the arrayAllnotes, and if the id exists returns true.
     static boolean noteIdExists(int id){
 
         for(Note note : arrayAllNotes){

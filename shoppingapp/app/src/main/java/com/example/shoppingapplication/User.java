@@ -4,6 +4,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -67,6 +69,10 @@ public class User {
         this.password = password;
         this.email = email;
     }
+
+
+
+
     @Ignore
     //This is a constructor that uses all the variables. it will be used when MySQL will be
     //introduced to the system.
