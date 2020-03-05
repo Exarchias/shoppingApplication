@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 

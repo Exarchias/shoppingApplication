@@ -1,21 +1,24 @@
 package com.example.shoppingapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
     private NoteViewModel noteViewModel;
+    private Button joinNowButton, loginButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,19 @@ public class MainActivity extends AppCompatActivity {
         final TextView textView = (TextView)findViewById(R.id.textview1);
         final TextView textView2 = (TextView)findViewById(R.id.textView2);
         final TextView textView3 = (TextView)findViewById(R.id.textView3);
+        Button loginbtn = (Button) findViewById(R.id.loginbtn);
+        Button registerbtn = (Button) findViewById(R.id.registerbtn);
+
+
+
+        loginbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         //This object is for testing and is used many lines below in order to test the
         //noteViewModel.useThatCreateUser(john) method. it works
