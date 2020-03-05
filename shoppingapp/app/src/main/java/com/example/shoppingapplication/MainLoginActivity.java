@@ -24,7 +24,6 @@ public class MainLoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.main_login_btn);
         progressDialog = new ProgressDialog(this);
 
-        //Paper.init(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,63 +43,5 @@ public class MainLoginActivity extends AppCompatActivity {
             }
         });
 
-
-/**
- * the app will remember the user phone and password and
- * the user will be sent direct to the home page
- */
-/*
-        String userPhoneKey = Paper.book().read(Prevalent.userPhoneKey);
-        String userPasswordKey = Paper.book().read(Prevalent.userPasswordKey);
-
-        if (userPhoneKey != "" && userPasswordKey != "") {
-            if (!TextUtils.isEmpty(userPhoneKey) && !TextUtils.isEmpty(userPasswordKey)) {
-               // allowAccess(userPhoneKey, userPasswordKey);
-
-                progressDialog.setTitle("Already logged in");
-                progressDialog.setMessage("Please wait.....");
-                progressDialog.setCanceledOnTouchOutside(false);
-                progressDialog.show();
-            }
-
-        }*/
-
     }
-
-  /*  private void allowAccess(final String phone, final String password) {
-
-        final DatabaseReference rootRef;
-        rootRef = FirebaseDatabase.getInstance().getReference();
-        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                //checks if the user is already has an account, if its just get the phone and let them login
-                if (dataSnapshot.child("Users").child(phone).exists()) {
-
-                    Users usersData = dataSnapshot.child("Users").child(phone).getValue(Users.class);
-
-                    if (usersData.getPhone().equals(phone)) {
-                        if (usersData.getPassword().equals(password)) {
-                            Toast.makeText(MainLoginActivity.this, "you are already logged in....", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
-
-                            Intent intent = new Intent(MainLoginActivity.this, HomeActivity.class);
-                            startActivity(intent);
-                        }
-                    }
-
-                } else {
-                    Toast.makeText(MainLoginActivity.this, "Account with this" + phone + "number do not exists", Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }*/
 }
