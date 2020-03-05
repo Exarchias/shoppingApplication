@@ -24,6 +24,7 @@ public class RTools {
     }
 
     //Robert: transforms a string to a hash encryption. This method uses the help of bytesToHex method.
+    //The minSDK version is 15 while this encryption needs minimum 19
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static String encrypted(String digested) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -33,8 +34,18 @@ public class RTools {
     }
 
 
+    //checks for password with hash encrypiton
+    static boolean checkLoginWithHash(User user, String password) throws NoSuchAlgorithmException {
+        if(user.getPassword().equalsIgnoreCase(encrypted(password))){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    // ================= ITEMS ========================================
+
+
+    // ================= USERS ========================================
 
     //it finds a user by their id
     static User findUserById(int id){
@@ -53,6 +64,30 @@ public class RTools {
                 if(id == user.getId()){
                     return user.getName();
                 }
+            }
+        }
+        return null;
+    }
+
+    //This will be used for the login. It returns a User with the given name
+    //name is the username not the full name.
+    static User findUserByName(String name){
+
+        for(User user : DataHolder.arrayAllUsers){
+            if(user.getName().equalsIgnoreCase(name)){
+                return user;
+            }
+        }
+        return null;
+    }
+
+    //This will be used for the login. It returns a User with the given name
+    //name is the username not the full name.
+    static User findUserByTelephone(String phone){
+
+        for(User user : DataHolder.arrayAllUsers){
+            if(user.getTelephone().equalsIgnoreCase(phone)){
+                return user;
             }
         }
         return null;

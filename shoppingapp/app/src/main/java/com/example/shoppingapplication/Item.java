@@ -43,7 +43,6 @@ public class Item{
 
 
     //Robert: This is a Constructor. you can have more constructors.
-    // NEVER add the primary key, (id), in a constructor
     public Item(int id, String title, String description) {
         this.id = id;
         this.title = title;
@@ -52,7 +51,6 @@ public class Item{
 
 
     //Robert: This is a Constructor. you can have more constructors.
-    // NEVER add the primary key, (id), in a constructor
     //This here is a basic constructor that includes the owner's Id
     @Ignore
     public Item(int id, String title, String description, int ownersId) {
@@ -60,6 +58,17 @@ public class Item{
         this.title = title;
         this.description = description;
         this.ownersId = ownersId;
+    }
+
+    //Robert: This is a Constructor. you can have more constructors.
+    //This here is a basic constructor that includes the owner's Id and Note's Id
+    @Ignore
+    public Item(int id, String title, String description, int ownersId, int noteId) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.ownersId = ownersId;
+        this.noteId = noteId;
     }
 
     //This constructor will be used when the MySQL will be introduced to the System.

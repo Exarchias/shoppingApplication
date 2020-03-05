@@ -1,6 +1,7 @@
 package com.example.shoppingapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -23,6 +24,7 @@ public class OrdersDetail extends AppCompatActivity {
     public TextView itemTitle, itemLeft, itemCategory;
     public EditText itemNumPics, itemPrice;
     ArrayList<Note> theOrdersOftheActiveUser = new ArrayList<>();
+    private NoteViewModel noteViewModel; //Kind of necessary in every activity
     String itemID;
     int numPicsLeft = 0;
     String title;
@@ -36,6 +38,8 @@ Item item;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders_detail);
+        //The following 1 line is kind of necessary in every activity.
+        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
 
       // if no items exist then you go back
         itemID = getIntent().getStringExtra("itemID");
@@ -149,10 +153,11 @@ viewOnClickListeners();
             if(price.equals("")) {
                 price = "0";
             }
+
             // we add the new values to the item
             item.setSizeSTR(numPics);
             item.setPrice(Double.parseDouble(price));
-
+            noteViewModel.useThatUpdateItem(item);
 
             // we need to update the items in the database to fit the new changes.
             // a query here would be useful
@@ -164,6 +169,13 @@ viewOnClickListeners();
             Toast.makeText(this, " Item Information Sucessfully Updated ", Toast.LENGTH_SHORT).show();
 
         } catch (Exception ex) {
+        }
+    }
+
+    void createitemsXtimes(Item item, int times){
+        for(int x=0; x<times; x++){
+            item.setId(5000);
+            noteViewModel.useThatCreateItem(item);
         }
     }
 }
