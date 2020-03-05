@@ -19,6 +19,7 @@ import java.util.ListIterator;
 public class MainActivity extends AppCompatActivity {
     private NoteViewModel noteViewModel;
     private Button joinNowButton, loginButton;
+    Button settingsbtn;
 
 
     @Override
@@ -30,6 +31,15 @@ public class MainActivity extends AppCompatActivity {
         final TextView textView3 = (TextView)findViewById(R.id.textView3);
         Button loginbtn = (Button) findViewById(R.id.loginbtn);
         Button registerbtn = (Button) findViewById(R.id.registerbtn);
+        settingsbtn =(Button)findViewById(R.id.settingsbtn);
+
+        settingsbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
+             startActivity(intent);
+            }
+        });
 
 
 
