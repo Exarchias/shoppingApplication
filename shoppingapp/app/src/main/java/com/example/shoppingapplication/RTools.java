@@ -34,14 +34,14 @@ public class RTools {
     }
 
 
-//    //checks for password with hash encrypiton
-//    static boolean checkLoginWithHash(User user, String password){
-//        if(user.getPassword().equalsIgnoreCase(encrypted(password)){
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
+    //checks for password with hash encrypiton
+    static boolean checkLoginWithHash(User user, String password) throws NoSuchAlgorithmException {
+        if(user.getPassword().equalsIgnoreCase(encrypted(password))){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 

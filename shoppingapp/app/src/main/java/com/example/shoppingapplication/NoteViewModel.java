@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer;
 import android.app.Application;
 import android.widget.Toast;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -27,7 +28,7 @@ public class NoteViewModel extends AndroidViewModel {
     ArrayList<User> arrayAllUsers; //users as a normal Arraylist
     ArrayList<Item> arrayAllItems; //items as a normal ArrayList
 
-    public NoteViewModel(@NonNull Application application) {
+    public NoteViewModel(@NonNull Application application) throws NoSuchAlgorithmException {
         super(application);
         repository = new NoteRepository(application);
         allNotes = repository.getAllNotes(); //testing
@@ -292,7 +293,7 @@ public class NoteViewModel extends AndroidViewModel {
     //This method can't be called from the DataHolder because it needs to be called from an activity
     //with a viewmodel.
     //This method is called for Sync reasons. it works!
-    void pullFromDataHolderToTheArrayLists(){
+    void pullFromDataHolderToTheArrayLists() throws NoSuchAlgorithmException {
         arrayAllNotes = DataHolder.notePopulate();
         arrayAllUsers = DataHolder.userPopulate();
         arrayAllItems = DataHolder.itemPopulate();
