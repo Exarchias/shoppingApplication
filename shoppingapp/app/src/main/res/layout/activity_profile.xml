@@ -45,4 +45,19 @@
         android:layout_below="@+id/fullname_editText_ProfileA"
         android:hint="Address..."
         />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/close_settings_textbtn_ProfileA"
+        android:onClick="onClick"
+        android:text="Button" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:text="TextView" />
 </RelativeLayout>

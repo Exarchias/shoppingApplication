@@ -1,6 +1,8 @@
 package com.example.shoppingapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,7 +21,7 @@ import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
     private NoteViewModel noteViewModel; //Kind of necessary in every activity
-
+    Button settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,17 @@ public class MainActivity extends AppCompatActivity {
         final EditText ediTextUserName = (EditText)findViewById(R.id.editTextUserName);
         final EditText ediTextPassWord = (EditText)findViewById(R.id.editTextPassWord);
         final Button button = (Button)findViewById(R.id.button);
+
+        settings=(Button)findViewById(R.id.settings);
+
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(MainActivity.this,ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //This object is for testing and is used many lines below in order to test the
         //noteViewModel.useThatCreateUser(john) method. it works
