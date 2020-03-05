@@ -6,6 +6,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DataHolder {
+    static int nextUserId = 4; //it is used for autoincrement of the id.
+
     static ArrayList<Note> arrayAllNotes = notePopulate(); //testing
     static ArrayList<User> arrayAllUsers; //users as a normal Arraylist
 
@@ -19,6 +21,9 @@ public class DataHolder {
 
     static ArrayList<Item> arrayAllItems = itemPopulate(); //items as a normal ArrayList
     static User activeUser; //The user who got logged in the system.
+    static User userInFocus; //When the system needs to focus to a specific user
+    static Note noteInFocus; //when the system needs to focus in a specific Note, (notes are used for orders)
+    static Item itemInFocus; //when the system needs to focus to a specific item.
 
 
 
@@ -36,9 +41,9 @@ public class DataHolder {
 
     static ArrayList<User> userPopulate() throws NoSuchAlgorithmException {
         ArrayList<User> tempAr = new ArrayList<>();
-        tempAr.add(new User(1, "Admin", false, RTools.encrypted("12345")));
-        tempAr.add(new User(2, "Alice", false, RTools.encrypted("12345")));
-        tempAr.add(new User(3, "Bob", false, RTools.encrypted("12345")));
+        tempAr.add(new User(1, "Admin", false, RTools.encrypted("12345"), "admin@test.clom", "1234567890"));
+        tempAr.add(new User(2, "Alice", false, RTools.encrypted("12345"), "alice@test.clom", "2345678901"));
+        tempAr.add(new User(3, "Bob", false, RTools.encrypted("12345"), "Bob@test.clom", "3456789012"));
         return tempAr;
     }
 

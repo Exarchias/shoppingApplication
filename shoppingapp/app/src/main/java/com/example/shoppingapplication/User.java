@@ -45,15 +45,16 @@ public class User {
 
 
 
-    //Robert: This is a Constructor. you can have more constructors. NEVER add the primary key, (id),
-    // in a constructor
+    //Robert: This is a Constructor. you can have more constructors.
     //this is one is a very basic one. It takes the basics for any User
+    @Ignore
     public User(int id, String name, boolean isAdmin, String password) {
         this.id = id;
         this.name = name;
         this.isAdmin = isAdmin;
         this.password = password;
     }
+
 
 
     //Robert: This is a Constructor. you can have more constructors. NEVER add the primary key, (id),
@@ -70,33 +71,18 @@ public class User {
     }
 
 
-
-
-    @Ignore
-    //This is a constructor that uses all the variables. it will be used when MySQL will be
-    //introduced to the system.
-    public User(int id, String name, boolean isAdmin, String password, String email, String fullName,
-                String address, String postCode, String city, String country, String telephone,
-                String mobilePhone, int userNumber, int age, String loginDateSTR, String dayOfBirthSTR,
-                int wallet) {
+    //Robert: Since the Login System will use the telephone number. This constructor is the one that
+    //needs to be used for the register.
+    public User(int id, String name, boolean isAdmin, String password, String email, String telephone){
         this.id = id;
         this.name = name;
         this.isAdmin = isAdmin;
         this.password = password;
         this.email = email;
-        this.fullName = fullName;
-        this.address = address;
-        this.postCode = postCode;
-        this.city = city;
-        Country = country;
         this.telephone = telephone;
-        this.mobilePhone = mobilePhone;
-        this.userNumber = userNumber;
-        this.age = age;
-        this.loginDateSTR = loginDateSTR;
-        this.dayOfBirthSTR = dayOfBirthSTR;
-        this.wallet = wallet;
     }
+
+
 
     public int getId() {
         return id;
