@@ -21,6 +21,7 @@ public class DataHolder {
 
     static ArrayList<Item> arrayAllItems = itemPopulate(); //items as a normal ArrayList
     static User activeUser; //The user who got logged in the system.
+    static boolean isAdmin;
     static User userInFocus; //When the system needs to focus to a specific user
     static Note noteInFocus; //when the system needs to focus in a specific Note, (notes are used for orders)
     static Item itemInFocus; //when the system needs to focus to a specific item.

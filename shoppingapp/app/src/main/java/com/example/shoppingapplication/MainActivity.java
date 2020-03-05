@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
 
         //This object is for testing and is used many lines below in order to test the
@@ -306,4 +308,5 @@ public class MainActivity extends AppCompatActivity {
         //All the Tests are concluded and every data manipulation works as it should.
         //===============================
     }
+
 }
