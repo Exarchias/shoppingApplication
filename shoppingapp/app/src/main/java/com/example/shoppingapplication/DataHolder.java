@@ -24,9 +24,13 @@ public class DataHolder {
 
     static ArrayList<Item> itemPopulate(){
         ArrayList<Item> tempAr = new ArrayList<>();
-        tempAr.add(new Item(1, "Item 1", "Description 1"));
-        tempAr.add(new Item(2, "item 2", "Description 2"));
-        tempAr.add(new Item(3, "item 3", "Description 3"));
+        tempAr.add(new Item(1, "Item 1", "Description 1", 2, 1));
+        tempAr.add(new Item(2, "item 2", "Description 2", 2,2));
+        tempAr.add(new Item(3, "item 3", "Description 3", 2, 3));
+        tempAr.add(new Item(4, "Item 1", "Description 1", 3, 4));
+        tempAr.add(new Item(5, "item 2", "Description 2", 3, 5));
+        tempAr.add(new Item(6, "item 3", "Description 3", 3, 6));
+
         return tempAr;
     }
 
@@ -40,9 +44,12 @@ public class DataHolder {
 
     static ArrayList<Note> notePopulate(){
         ArrayList<Note> tempAr = new ArrayList<>();
-        tempAr.add(new Note(1, "Title 1", "Description 1", 1));
-        tempAr.add(new Note(2,"Title 2", "Description 2", 2));
-        tempAr.add(new Note(3, "Title 3", "Description 3", 3));
+        tempAr.add(new Note(1, "Al Title 1", "Description 1", 2));
+        tempAr.add(new Note(2,"Al Title 2", "Description 2", 2));
+        tempAr.add(new Note(3, "Al Title 3", "Description 3", 2));
+        tempAr.add(new Note(4, "Bob Title 1", "Description 1", 3));
+        tempAr.add(new Note(5,"Bob Title 2", "Description 2", 3));
+        tempAr.add(new Note(6, "Bob Title 3", "Description 3", 3));
         return tempAr;
     }
 

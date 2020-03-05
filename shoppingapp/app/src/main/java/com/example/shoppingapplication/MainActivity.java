@@ -1,6 +1,8 @@
 package com.example.shoppingapplication;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         final TextView textView = (TextView)findViewById(R.id.textview1);
         final TextView textView2 = (TextView)findViewById(R.id.textView2);
         final TextView textView3 = (TextView)findViewById(R.id.textView3);
+        final EditText ediTextUserName = (EditText)findViewById(R.id.editTextUserName);
+        final EditText ediTextPassWord = (EditText)findViewById(R.id.editTextPassWord);
+        final Button button = (Button)findViewById(R.id.button);
 
         //This object is for testing and is used many lines below in order to test the
         //noteViewModel.useThatCreateUser(john) method. it works
