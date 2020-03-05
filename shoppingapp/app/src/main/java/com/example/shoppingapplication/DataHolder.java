@@ -60,6 +60,31 @@ public class DataHolder {
         return false;
     }
 
+    //This will be used for the login. It checks if a User with the given name exists
+    //name is the username not the full name.
+    static boolean userNameExists(String name){
+
+        for(User user : arrayAllUsers){
+            if(user.getName().equalsIgnoreCase(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //This may be used for the login if the one who works on the login decide that.
+    // It checks if a User with the given telephone number exists
+    //The telephone number is given in String type.
+    static boolean userTelephoneExists(String phone){
+
+        for(User user : arrayAllUsers){
+            if(user.getTelephone().equalsIgnoreCase(phone)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     //checks if the given Item Id exists in the arrayAllItems, and if the id exists returns true.
     static boolean itemIdExists(int id){
 
@@ -83,13 +108,11 @@ public class DataHolder {
 
             isUserFound = false;
 
-
-
-
             }
 
         return isUserFound;
         }
+
 
 
 
