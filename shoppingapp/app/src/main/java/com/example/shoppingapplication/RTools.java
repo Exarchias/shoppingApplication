@@ -35,6 +35,7 @@ public class RTools {
 
 
     //checks for password with hash encrypiton
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     static boolean checkLoginWithHash(User user, String password) throws NoSuchAlgorithmException {
         if(user.getPassword().equalsIgnoreCase(encrypted(password))){
             return true;
