@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private NoteViewModel noteViewModel;
     private Button joinNowButton, loginButton;
     Button settingsbtn;
+    Button loginbtn;
 
 
     @Override
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Button loginbtn = (Button) findViewById(R.id.loginbtn);
         Button registerbtn = (Button) findViewById(R.id.registerbtn);
         settingsbtn =(Button)findViewById(R.id.settingsbtn);
+        loginbtn=(Button)findViewById(R.id.loginbtn);
 
         settingsbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -274,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
 
         //This method deletes the userToBeDeleted that we created above.
         //This user is Bob which is usually located in position 2;
-        noteViewModel.useThatDeleteUser(userToBeDeleted); //It works
+        //noteViewModel.useThatDeleteUser(userToBeDeleted); //It works
 
         //This method deletes the itemToBeDeleted that we created above.
         //This Item is item3 which is usually located in position 2;
