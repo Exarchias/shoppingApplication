@@ -12,12 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
     private NoteViewModel noteViewModel;
     private Button joinNowButton, loginButton;
+    Button settingsbtn;
 
 
     @Override
@@ -29,6 +31,15 @@ public class MainActivity extends AppCompatActivity {
         final TextView textView3 = (TextView)findViewById(R.id.textView3);
         Button loginbtn = (Button) findViewById(R.id.loginbtn);
         Button registerbtn = (Button) findViewById(R.id.registerbtn);
+        settingsbtn =(Button)findViewById(R.id.settingsbtn);
+
+        settingsbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
+             startActivity(intent);
+            }
+        });
 
 
 
@@ -39,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
 
         //This object is for testing and is used many lines below in order to test the
@@ -306,4 +318,5 @@ public class MainActivity extends AppCompatActivity {
         //All the Tests are concluded and every data manipulation works as it should.
         //===============================
     }
+
 }

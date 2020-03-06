@@ -73,8 +73,7 @@ public class OrdersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-
-
+Item item;
          // same here if the user deosnt exist then you will not be ale to check the orderactivity.
         if (DataHolder.checkUserExist(user.getId(),user.getPassword()) != true) {
             Intent i = new Intent(this, MainActivity.class);
@@ -89,6 +88,10 @@ public class OrdersActivity extends AppCompatActivity {
         closeButton = (ImageView) findViewById(R.id.closeButton);
         orderTotalPrice = (TextView) findViewById(R.id.orderTotalPrice);
 
+
+        fetchOrders(itemInfccus.getId());
+fetchItemsInfo(arrayAllItems.get(0));
+fetchOrdersDetail(orderInFocus);
         //Robert:lets do things differently :)
 //        int a = countOrderDatabase();
 //        itemID = new int[a];

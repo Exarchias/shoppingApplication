@@ -73,4 +73,18 @@
         tools:layout_editor_absoluteY="104dp"
         tools:ignore="MissingConstraints" />
 
+    <Button
+        android:id="@+id/settingsbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="621dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="62dp"
+        android:text="Test"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

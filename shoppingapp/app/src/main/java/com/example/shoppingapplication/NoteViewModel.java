@@ -225,6 +225,9 @@ public class NoteViewModel extends AndroidViewModel {
     //to manipulate the data while the data is loading.
     void useThatCreateUser(User user){
         if(!DataHolder.userIdExists(user.getId())){
+            int id = DataHolder.nextUserId;
+            DataHolder.nextUserId = id +1;
+            user.setId(id); //auto increment of the id.
             insertUser(user);
             arrayAllUsers.add(user);
             DataHolder.arrayAllUsers.add(user);
