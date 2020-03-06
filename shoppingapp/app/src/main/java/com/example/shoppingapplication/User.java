@@ -61,14 +61,14 @@ public class User {
     // in a constructor
     //this is one is a very basic one. It takes the basics for any User
     //But it INCLUSES the email.
-    @Ignore
-    public User(int id, String name, boolean isAdmin, String encrypted, String password, String email){
-        this.id = id;
-        this.name = name;
-        this.isAdmin = isAdmin;
-        this.password = password;
-        this.email = email;
-    }
+//    @Ignore
+//    public User(int id, String name, boolean isAdmin, String encrypted, String password, String email){
+//        this.id = id;
+//        this.name = name;
+//        this.isAdmin = isAdmin;
+//        this.password = password;
+//        this.email = email;
+//    }
 
 
     //Robert: Since the Login System will use the telephone number. This constructor is the one that
