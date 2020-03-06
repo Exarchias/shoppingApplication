@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Button joinNowButton, loginButton;
     Button settingsbtn;
     Button loginbtn;
+    Button easyLogin;
 
 
     @Override
@@ -33,7 +34,17 @@ public class MainActivity extends AppCompatActivity {
         Button loginbtn = (Button) findViewById(R.id.loginbtn);
         Button registerbtn = (Button) findViewById(R.id.registerbtn);
         settingsbtn =(Button)findViewById(R.id.settingsbtn);
-        loginbtn=(Button)findViewById(R.id.loginbtn);
+        //loginbtn=(Button)findViewById(R.id.loginbtn);
+        easyLogin=(Button)findViewById(R.id.easyLogin);
+
+        easyLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DataHolder.activeUser = DataHolder.arrayAllUsers.get(0);
+                Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         settingsbtn.setOnClickListener(new View.OnClickListener() {
             @Override
