@@ -75,10 +75,10 @@ public class OrdersActivity extends AppCompatActivity {
 
 Item item;
          // same here if the user deosnt exist then you will not be ale to check the orderactivity.
-        if (DataHolder.checkUserExist(user.getId(),user.getPassword()) != true) {
+   /*     if (DataHolder.checkUserExist(user.getId(), user.getPassword()) != true) {
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
-        }
+        }*/
         setContentView(R.layout.activity_order);
 
 

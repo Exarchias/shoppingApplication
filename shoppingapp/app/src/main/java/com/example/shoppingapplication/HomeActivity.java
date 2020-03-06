@@ -28,10 +28,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
 
           // if the user doesnt exist then you will be brought back to the mainActivity-abdul
-        if (DataHolder.checkUserExist(user.getId(),user.getPassword()) != true) {
+     /*   if (DataHolder.checkUserExist(user.getId(),user.getPassword()) != true) {
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
-        } else {
+        } else {*/
             setContentView(R.layout.activity_home);
 
 
@@ -41,7 +41,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             viewOnClickListeners();
         }
         // when you log in you should end up in this activity-abdul
-    }
 
 
 
