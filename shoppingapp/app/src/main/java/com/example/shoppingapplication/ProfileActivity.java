@@ -15,7 +15,7 @@ public class ProfileActivity extends AppCompatActivity {  //Or USER SETTINGS ACT
     EditText editText;
     EditText editText1;
     EditText editText3;
-    Button button2;
+    Button btnUpdate;
     TextView txt;
     TextView txt1;
     TextView txt2;
@@ -23,7 +23,7 @@ public class ProfileActivity extends AppCompatActivity {  //Or USER SETTINGS ACT
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        button2=(Button)findViewById(R.id.button2);
+        btnUpdate=(Button)findViewById(R.id.btnupdate_profileA);
         editText=(EditText)findViewById(R.id.fullname_editText_ProfileA);
         editText1=(EditText)findViewById(R.id.phonenumber_editText_ProfileA);
         editText3=(EditText)findViewById(R.id.address_editText_ProfileA);
