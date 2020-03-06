@@ -21,7 +21,6 @@ import java.security.NoSuchAlgorithmException;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText inputPhonenumber, inputPassword;
-    private NoteViewModel noteViewModel;
 
     private Button loginButton;
     private ProgressDialog progressDialog;
@@ -30,12 +29,13 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox chkBoxRememberMe;
     private TextView adminLink, notAdminLink;
 
+    private NoteViewModel noteViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
 
         loginButton = findViewById(R.id.login_btn);
         inputPassword = findViewById(R.id.login_password_input);
@@ -46,6 +46,8 @@ public class LoginActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         chkBoxRememberMe = findViewById(R.id.remember_me_chkb);
+
+        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -58,21 +60,21 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    //Robert !
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void loggedin(String phone, String password) throws NoSuchAlgorithmException {
-        String passEncrypt = RTools.encrypted(password);
-        boolean telexists = false;
-        for (User user : DataHolder.arrayAllUsers) {
-            if (user.getTelephone().equalsIgnoreCase(phone)) {
-                telexists = true;
+    public void login(String phone, String password) throws NoSuchAlgorithmException {
+        User user;
+        if(DataHolder.userTelephoneExists(phone)){
+            user = RTools.findUserByTelephone(phone);
+            if (RTools.checkLoginWithHash(user, password)){
+                DataHolder.activeUser = user;
+                //DataHolder.isAdmin =  user.isAdmin();
+                //move to new activity. This little part maybe in need of small edit,
+                // (depends on the Activity which it is in)
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(intent);
             }
-            if (telexists) {
 
-            }
         }
-
     }
 
 }
