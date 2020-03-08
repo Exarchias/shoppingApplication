@@ -9,15 +9,18 @@ public class DisplayOrders {
     int itemID, orderID, orderNumberSelected;
     double orderPrice;
     public Drawable orderIcon;
+    public String orderIcon2;
 
-    public DisplayOrders(int itemID, String orderTitle, int orderNumberSelected, double orderPrice, int orderID, byte[] itemIcon) {
+    public DisplayOrders(int itemID, String orderTitle, int orderNumberSelected, double orderPrice, int orderID, String itemIcon) {
         super();
         this.itemID = itemID;
         this.orderID = orderID;
         this.orderTitle = orderTitle;
         this.orderPrice = orderPrice;
         this.orderNumberSelected = orderNumberSelected;
-        this.orderIcon = new BitmapDrawable(BitmapFactory.decodeByteArray(itemIcon, 0, itemIcon.length));
+        //Robert: I see the problem. You need it Drawable. I will try to do a conversion.
+        //this.orderIcon = new BitmapDrawable(BitmapFactory.decodeByteArray(itemIcon, 0, itemIcon.length));
+        this.orderIcon2 = itemIcon;
     }
 }
 

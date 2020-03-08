@@ -40,6 +40,12 @@ public class OrdersActivity extends AppCompatActivity {
     int itemID;
     int orderID;
     double price = 0.0;
+    String photo1 = "photoname";
+    String photo2 = "photoname";
+    String photo3 = "photoname";
+    String photo4 = "photoname";
+    String photo5 = "photoname";
+    String photo6 = "photoname";
 
     //variables for the order in focus
     int orderOwnerID; //The owner of the order. The one who made the purchese
@@ -138,12 +144,12 @@ int numberSelected=0;
         price = item.getPrice();
           // we add all the values of the item to a ordersadapter.
         // photo needs to be byte so i changed it in the item class                                        // we can chane the photo here to be able to get a string photo
-        displayOrders(itemID, item.getTitle(), numberSelected, (numberSelected* item.getPrice()), orderID, item.getPhoto());
+        displayOrders(itemID, item.getTitle(), numberSelected, (numberSelected* item.getPrice()), orderID, item.getPhoto1());
 
     }
 
   // this method gets the display orderadapter
-    private boolean displayOrders(int itemID, String itemTitle, int orderNumPics, double orderPrice, int orderID, byte[] itemIcon) {
+    private boolean displayOrders(int itemID, String itemTitle, int orderNumPics, double orderPrice, int orderID, String itemIcon) {
         ordersAdapter.add(new DisplayOrders(itemID, itemTitle, orderNumPics, orderPrice, orderID, itemIcon));
         return true;
     }
