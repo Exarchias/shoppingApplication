@@ -95,7 +95,7 @@ public class OrdersActivity extends AppCompatActivity {
         orderTotalPrice = (TextView) findViewById(R.id.orderTotalPrice);
         ordersAdapter = new DisplayOrderAdapter(getApplicationContext(), R.layout.orders_display_area);
 
-//        fetchOrders(orderInFocus.getUserId());
+//   fetchOrders(orderInFocus.getUserId());
         fetchItemsInfo();
         orderTotalPrice.setText("" + orderTotal);
         fetchOrdersDetail(orderInFocus);
@@ -133,7 +133,7 @@ public class OrdersActivity extends AppCompatActivity {
 ////    }
 
     // this method fetches all the details of the item in focus.
-    public void fetchItemsInfo() {
+    public void fetchItemsInfo( ) {
         int numberSelected = 0;
         if (itemID==0) {
             Toast.makeText(this, " No items in cart", Toast.LENGTH_SHORT).show();
