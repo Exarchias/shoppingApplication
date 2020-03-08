@@ -3,7 +3,6 @@ package com.example.shoppingapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -18,6 +17,7 @@ import java.util.ArrayList;
 //It makes sense, right? :)
 public class OrdersActivity extends AppCompatActivity {
     private ListView listOrders;
+    private DisplayOrderAdapter ordersAdapter;
 
     public TextView orderTotalPrice;
     public ImageView removeButton;
@@ -49,7 +49,7 @@ public class OrdersActivity extends AppCompatActivity {
     String orderDateAsString = "DD/MM/YYYY";
     int numberOfItemsInTheOrder = 0;
     //An arrayList with all the items of the order in focus
-    ArrayList<Item>theItemsofTheActiveOrder = new ArrayList<>();
+    ArrayList<Item> theItemsofTheActiveOrder = new ArrayList<>();
     double orderTotal = 0.0;
     //public String userPaid[];
 
@@ -66,15 +66,15 @@ public class OrdersActivity extends AppCompatActivity {
     User userInFocus; //The selected user. Probably the DataHolder.activeUser
     Item itemInfccus; //the selected item
     Note orderInFocus; //the selected order
-   User user;
+    User user;
+    Item item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-Item item;
-         // same here if the user deosnt exist then you will not be ale to check the orderactivity.
+        // same here if the user deosnt exist then you will not be ale to check the orderactivity.
    /*     if (DataHolder.checkUserExist(user.getId(), user.getPassword()) != true) {
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
@@ -82,26 +82,22 @@ Item item;
         setContentView(R.layout.activity_order);
 
 
-
         listOrders = (ListView) findViewById(R.id.listview);
         ordersActivity = (ConstraintLayout) findViewById(R.id.OrdersActivity);
         closeButton = (ImageView) findViewById(R.id.closeButton);
         orderTotalPrice = (TextView) findViewById(R.id.orderTotalPrice);
+        ordersAdapter = new DisplayOrderAdapter(getApplicationContext(), R.layout.orders_display_area);
 
-
-        fetchOrders(itemInfccus.getId());
-fetchItemsInfo(arrayAllItems.get(0));
-fetchOrdersDetail(orderInFocus);
+        fetchOrders(orderInFocus.getUserId());
+        fetchItemsInfo();
+        orderTotalPrice.setText("" + orderTotal);
+        fetchOrdersDetail(orderInFocus);
         //Robert:lets do things differently :)
 //        int a = countOrderDatabase();
 //        itemID = new int[a];
 //        itemNumPics = new int[a];
 //        orderID = new int[a];
 //        userPaid = new String[a];
-
-
-
-
 
 
 //        fetchOrders();
@@ -130,8 +126,8 @@ fetchOrdersDetail(orderInFocus);
 ////    }
 
     // this method fetches all the details of the item in focus.
-    public void fetchItemsInfo(Item item)  {
-
+    public void fetchItemsInfo() {
+int numberSelected=0;
         itemID = item.getId();
         ownerName = RTools.findUserNameById(item.getOwnersId());
         // need orderid
@@ -140,6 +136,16 @@ fetchOrdersDetail(orderInFocus);
         title = item.getTitle();
         description = item.getDescription();
         price = item.getPrice();
+          // we add all the values of the item to a ordersadapter.
+        // photo needs to be byte so i changed it in the item class                                        // we can chane the photo here to be able to get a string photo
+        displayOrders(itemID, item.getTitle(), numberSelected, (numberSelected* item.getPrice()), orderID, item.getPhoto());
+
+    }
+
+  // this method gets the display orderadapter
+    private boolean displayOrders(int itemID, String itemTitle, int orderNumPics, double orderPrice, int orderID, byte[] itemIcon) {
+        ordersAdapter.add(new DisplayOrders(itemID, itemTitle, orderNumPics, orderPrice, orderID, itemIcon));
+        return true;
     }
 
 //Robert: it doesn't work, and it is redundant. I understand what you are trying to do, so we will

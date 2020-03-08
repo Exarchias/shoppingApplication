@@ -33,7 +33,7 @@ public class Item{
     private String colour = "random";
 
     private String description = "A very useful item";
-    private String photo1 = "photoname";
+    private byte[] photo;
     private String photo2 = "photoname";
     private String photo3 = "photoname";
     private String photo4 = "photoname";
@@ -75,7 +75,7 @@ public class Item{
     @Ignore
     public Item(int id, int ownersId, boolean sold, int noteId, String title, String type,
                 String sizeSTR, int sizeInt, String material, String colour, String description,
-                String photo1, String photo2, String photo3, String photo4, String photo5,
+                byte[] photo, String photo2, String photo3, String photo4, String photo5,
                 String photo6) {
         this.id = id;
         this.ownersId = ownersId;
@@ -88,7 +88,7 @@ public class Item{
         this.material = material;
         this.colour = colour;
         this.description = description;
-        this.photo1 = photo1;
+        this.photo = photo;
         this.photo2 = photo2;
         this.photo3 = photo3;
         this.photo4 = photo4;
@@ -176,12 +176,12 @@ public class Item{
         this.colour = colour;
     }
 
-    public String getPhoto1() {
-        return photo1;
+    public byte[] getPhoto() {
+        return photo;
     }
 
-    public void setPhoto1(String photo1) {
-        this.photo1 = photo1;
+    public void setPhoto(byte[] photo) {
+        this.photo= photo;
     }
 
     public String getPhoto2() {

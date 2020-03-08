@@ -15,13 +15,20 @@ import android.widget.ScrollView;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     User user;
+    Item item;
     private ListView listItems, listItemsTwo;
     private ImageView toogleBar, viewCart;
     ScrollView scrollView;
     private DrawerLayout mDrawerLayout;
+    public int numberofItems;
+    ArrayList<Item> ListofAllItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +44,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setActivityLisener();
         getAllViews();
         viewOnClickListeners();
+
+        numberofItems = getNumberOfItems();
+
+
+
     }
-        // when you log in you should end up in this activity-abdul
+
+    // this method is for fetching a list of all items.
+    public int getNumberOfItems() {
+
+
+        int numItems = 0;
+        if(DataHolder.userIdExists(numItems)){
+            ListofAllItems = RTools.theItemsOfTheUser(user);
+            numItems = item.getId();
+        }
+        return numItems;
+    }
+
+    // when you log in you should end up in this activity-abdul
 
 
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/ordersDetail"
+    android:descendantFocusability="blocksDescendants"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/ordersDisplayLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="110dp"
+        android:orientation="horizontal"
+        android:elevation="5dp">
+
+        <ImageView
+            android:id="@+id/orderIcon"
+            android:layout_width="80dp"
+            android:layout_margin="10dp"
+            android:layout_height="match_parent"
+            android:background="@mipmap/ic_launcher_round"
+            android:padding="5dp"
+            />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="25dp"
+                android:id="@+id/orderTitle"
+                android:textColor="#1aa"
+                android:textSize="18dp"
+                android:layout_marginTop="30dp"
+                android:text="Placeholder Message"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"/>
+            <TextView
+                android:id="@+id/orderNumPics"
+                android:layout_width="fill_parent"
+                android:layout_height="25dp"
+                android:text="12pcs"
+                android:textSize="14dp"
+                android:textStyle="italic"
+                android:textColor="#000"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/itemID"
+        android:visibility="invisible"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/orderID"
+        android:visibility="invisible"/>
+</LinearLayout>
