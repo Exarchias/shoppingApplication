@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -94,7 +95,7 @@ public class OrdersActivity extends AppCompatActivity {
         orderTotalPrice = (TextView) findViewById(R.id.orderTotalPrice);
         ordersAdapter = new DisplayOrderAdapter(getApplicationContext(), R.layout.orders_display_area);
 
-        fetchOrders(orderInFocus.getUserId());
+//   fetchOrders(orderInFocus.getUserId());
         fetchItemsInfo();
         orderTotalPrice.setText("" + orderTotal);
         fetchOrdersDetail(orderInFocus);
@@ -132,27 +133,32 @@ public class OrdersActivity extends AppCompatActivity {
 ////    }
 
     // this method fetches all the details of the item in focus.
-    public void fetchItemsInfo() {
-int numberSelected=0;
-        itemID = item.getId();
-        ownerName = RTools.findUserNameById(item.getOwnersId());
-        // need orderid
-        orderID = item.getNoteId(); //note is the order
-        price = item.getPrice();
-        title = item.getTitle();
-        description = item.getDescription();
-        price = item.getPrice();
-        photo1 = item.getPhoto1();
-        photo2 = item.getPhoto2();
-        photo3 = item.getPhoto3();
-        photo4 = item.getPhoto4();
-        photo5 = item.getPhoto5();
-        photo6 = item.getPhoto6();
+    public void fetchItemsInfo( ) {
+        int numberSelected = 0;
+        if (itemID==0) {
+            Toast.makeText(this, " No items in cart", Toast.LENGTH_SHORT).show();
 
-          // we add all the values of the item to a ordersadapter.
-        // photo needs to be byte so i changed it in the item class                                        // we can chane the photo here to be able to get a string photo
-        displayOrders(itemID, item.getTitle(), numberSelected, (numberSelected* item.getPrice()), orderID, item.getPhoto1());
+        } else {
+            itemID = item.getId();
+            ownerName = RTools.findUserNameById(item.getOwnersId());
+            // need orderid
+            orderID = item.getNoteId(); //note is the order
+            price = item.getPrice();
+            title = item.getTitle();
+            description = item.getDescription();
+            price = item.getPrice();
+            photo1 = item.getPhoto1();
+            photo2 = item.getPhoto2();
+            photo3 = item.getPhoto3();
+            photo4 = item.getPhoto4();
+            photo5 = item.getPhoto5();
+            photo6 = item.getPhoto6();
 
+            // we add all the values of the item to a ordersadapter.
+            // photo needs to be byte so i changed it in the item class                                        // we can chane the photo here to be able to get a string photo
+            displayOrders(itemID, item.getTitle(), numberSelected, (numberSelected * item.getPrice()), orderID, item.getPhoto1());
+
+        }
     }
 
   // this method gets the display orderadapter
@@ -190,17 +196,24 @@ int numberSelected=0;
 
     //Fetches the deatails from the order in focus.
     public void fetchOrdersDetail(Note order){
-        ArrayList<Item>tmpItemArr = fetchTheItemsOfTheOrder(order);
-        orderID = order.getId();
-        orderTitle = order.getDescription();
-        orderDateAsString = order.getDateString();
-        orderTotal = 0.0;
-        orderOwnerID = order.getUserId();
-        orderOwnerName = RTools.findUserNameById(orderOwnerID);
-        numberOfItemsInTheOrder = tmpItemArr.size();
-        for(Item item: tmpItemArr){
-            orderTotal = orderTotal + item.getPrice();
+
+        if (orderID==0) {
+            Toast.makeText(this, " No orders in cart", Toast.LENGTH_SHORT).show();
+
+        }else {
+            ArrayList<Item>tmpItemArr = fetchTheItemsOfTheOrder(order);
+            orderID = order.getId();
+            orderTitle = order.getDescription();
+            orderDateAsString = order.getDateString();
+            orderTotal = 0.0;
+            orderOwnerID = order.getUserId();
+            orderOwnerName = RTools.findUserNameById(orderOwnerID);
+            numberOfItemsInTheOrder = tmpItemArr.size();
+            for(Item item: tmpItemArr){
+                orderTotal = orderTotal + item.getPrice();
+            }
         }
+
     }
 
     //it fetches all the items that belong to the Order and returns them as an arraylist
