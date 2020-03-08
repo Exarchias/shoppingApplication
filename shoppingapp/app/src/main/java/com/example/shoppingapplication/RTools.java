@@ -9,8 +9,17 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 //Helpful methods that doen't belong to a specific class.
 public class RTools {
+
+    //Logout from the system. it makes the activeuser Null and returns to the login page.
+    static void logout(){
+        DataHolder.activeUser = null;
+        DataHolder.userInFocus = null;
+        DataHolder.isAdmin = false;
+    }
 
     //Robert: this method transforms  a byte stream to a Hex format. We use this method for our hash encryption.
     private static String bytesToHex(byte[] hash) {

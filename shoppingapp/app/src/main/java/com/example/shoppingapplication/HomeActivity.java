@@ -27,19 +27,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-          // if the user doesnt exist then you will be brought back to the mainActivity-abdul
-     /*   if (DataHolder.checkUserExist(user.getId(),user.getPassword()) != true) {
-            Intent i = new Intent(this, MainActivity.class);
+        // if the user doesnt exist then you will be brought back to the mainActivity-abdul
+        if (DataHolder.activeUser == null) {
+            Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
-        } else {*/
-            setContentView(R.layout.activity_home);
-
-
-
-            setActivityLisener();
-            getAllViews();
-            viewOnClickListeners();
         }
+        setContentView(R.layout.activity_home);
+
+        setActivityLisener();
+        getAllViews();
+        viewOnClickListeners();
+    }
         // when you log in you should end up in this activity-abdul
 
 
@@ -104,6 +102,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             //startActivity(new Intent(this, CheckoutActivity.class));
 
         } else if (id == R.id.navSignOut) {
+            RTools.logout();
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
 
         }
         return true;

@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DataHolder.activeUser = DataHolder.arrayAllUsers.get(0);
+                DataHolder.userInFocus = DataHolder.arrayAllUsers.get(0);
+                DataHolder.isAdmin = true;
                 Intent intent = new Intent(MainActivity.this,HomeActivity.class);
                 startActivity(intent);
             }

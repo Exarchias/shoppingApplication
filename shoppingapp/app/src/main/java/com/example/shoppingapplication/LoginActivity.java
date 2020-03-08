@@ -53,8 +53,13 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                //startActivity(intent);
+                try {
+                    login(inputPhonenumber.getText().toString(), inputPassword.getText().toString());
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
 
             }
         });
@@ -67,7 +72,8 @@ public class LoginActivity extends AppCompatActivity {
             user = RTools.findUserByTelephone(phone);
             if (RTools.checkLoginWithHash(user, password)){
                 DataHolder.activeUser = user;
-                //DataHolder.isAdmin =  user.isAdmin();
+                DataHolder.userInFocus = user;
+                DataHolder.isAdmin = user.isAdmin();
                 //move to new activity. This little part maybe in need of small edit,
                 // (depends on the Activity which it is in)
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
