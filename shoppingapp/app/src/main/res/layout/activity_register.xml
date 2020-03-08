@@ -13,7 +13,7 @@
         android:layout_height="100dp"
         android:src="@drawable/applogo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="190dp"
+        android:layout_marginTop="20dp"
         />
 
     <EditText
@@ -51,11 +51,32 @@
         android:textSize="17sp"
         android:textStyle="bold"
         />
+
+    <!-- email  edit text -->
+    <EditText
+        android:id="@+id/register_email_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_phone_number_input"
+        android:background="@drawable/input_design"
+        android:padding="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="6dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        />
+
+
     <EditText
         android:id="@+id/register_password_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/register_phone_number_input"
+        android:layout_below="@id/register_email_input"
         android:background="@drawable/input_design"
         android:padding="10dp"
         android:layout_marginLeft="15dp"
@@ -69,21 +90,22 @@
         android:textStyle="bold"
         />
 
+
     <Button
         android:id="@+id/register_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/register_password_input"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/buttons"
         android:padding="10dp"
-        android:textAllCaps="false"
-        android:textSize="18sp"
         android:text="Create Account"
+        android:textAllCaps="false"
         android:textColor="@android:color/white"
-        tools:ignore="RtlCompat"/>
+        android:textSize="18sp"
+        tools:ignore="RtlCompat" />
 
 
 

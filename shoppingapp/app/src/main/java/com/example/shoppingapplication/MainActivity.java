@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
+
     private NoteViewModel noteViewModel;
     private Button joinNowButton, loginButton;
     Button settingsbtn;

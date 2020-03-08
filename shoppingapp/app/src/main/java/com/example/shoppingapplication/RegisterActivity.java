@@ -18,7 +18,7 @@ import java.security.NoSuchAlgorithmException;
 public class RegisterActivity extends AppCompatActivity {
 
     private Button createAccountButton;
-    private EditText inputName, inputPhoneNumber, inputPassword;
+    private EditText inputName, inputPhoneNumber, inputPassword, inputEmail;
     private ProgressDialog progressDialog;
     private NoteViewModel noteViewModel;
 
@@ -30,35 +30,60 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         createAccountButton = findViewById(R.id.register_btn);
+
         inputName = findViewById(R.id.register_username_input);
         inputPhoneNumber = findViewById(R.id.register_phone_number_input);
         inputPassword = findViewById(R.id.register_password_input);
+        inputEmail = findViewById(R.id.register_email_input);
+
         progressDialog = new ProgressDialog(this);
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
 
 
         createAccountButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
+                //validate before you
+                String name = inputName.getText().toString();
+                String phone = inputPhoneNumber.getText().toString().trim();
+                String pass = inputPassword.getText().toString();
+                String email = inputEmail.getText().toString();
+
+// if password is less than 4 character
+                if (pass.length() < 4) {
+                    inputPassword.setError("Pass word must be >4");
+                    inputPassword.setFocusable(true);
+                } else {
+
+                    try {
+                        boolean check = register(name, email, pass, phone, false);
+                        if (check) {
+                            Toast.makeText(RegisterActivity.this, "Account created successfully ", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                    }
+                }
+
 
             }
         });
-
-        //create account here
-        //check if edit text is empty
-        //
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public boolean register(String username, String email, String password,
                             String phone, boolean admin) throws NoSuchAlgorithmException {
-        if(!DataHolder.userNameExists(username)){
-            if(!DataHolder.userTelephoneExists(phone)){
-                try{
+        if (!DataHolder.userNameExists(username)) {
+            if (!DataHolder.userTelephoneExists(phone)) {
+                try {
                     User tmpUser = new User(5000, username, admin, RTools.encrypted(password),
                             email, phone);
+                    // creating new user and saving it into Data Holder
+                    DataHolder.arrayAllUsers.add(tmpUser);
                     return true;
-                } catch (Exception e){
+                } catch (Exception e) {
                     return false;
                 }
 
@@ -66,7 +91,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return false;
     }
-
 
 
 }

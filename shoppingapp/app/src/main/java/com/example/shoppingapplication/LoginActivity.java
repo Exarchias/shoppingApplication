@@ -51,10 +51,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                //startActivity(intent);
+
                 try {
                     login(inputPhonenumber.getText().toString(), inputPassword.getText().toString());
                 } catch (NoSuchAlgorithmException e) {
@@ -68,17 +68,31 @@ public class LoginActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void login(String phone, String password) throws NoSuchAlgorithmException {
         User user;
-        if(DataHolder.userTelephoneExists(phone)){
+        if (DataHolder.userTelephoneExists(phone)) {
             user = RTools.findUserByTelephone(phone);
-            if (RTools.checkLoginWithHash(user, password)){
+
+            if (RTools.checkLoginWithHash(user, password)) {
                 DataHolder.activeUser = user;
                 DataHolder.userInFocus = user;
                 DataHolder.isAdmin = user.isAdmin();
                 //move to new activity. This little part maybe in need of small edit,
                 // (depends on the Activity which it is in)
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(intent);
+                if (user.isAdmin()) {
+
+                    // change an activity when admin logged in/ send to Admin page
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+
+
+                } else {
+
+                    // change an activity when user logged in send to User page
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+
+                }
             }
+
 
         }
     }
