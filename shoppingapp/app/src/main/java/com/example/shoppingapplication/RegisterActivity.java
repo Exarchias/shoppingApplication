@@ -2,12 +2,14 @@ package com.example.shoppingapplication;
 
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -47,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         //
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public boolean register(String username, String email, String password,
                             String phone, boolean admin) throws NoSuchAlgorithmException {
         if(!DataHolder.userNameExists(username)){
