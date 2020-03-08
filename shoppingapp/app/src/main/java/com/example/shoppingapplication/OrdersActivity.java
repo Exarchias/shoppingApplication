@@ -142,6 +142,13 @@ int numberSelected=0;
         title = item.getTitle();
         description = item.getDescription();
         price = item.getPrice();
+        photo1 = item.getPhoto1();
+        photo2 = item.getPhoto2();
+        photo3 = item.getPhoto3();
+        photo4 = item.getPhoto4();
+        photo5 = item.getPhoto5();
+        photo6 = item.getPhoto6();
+
           // we add all the values of the item to a ordersadapter.
         // photo needs to be byte so i changed it in the item class                                        // we can chane the photo here to be able to get a string photo
         displayOrders(itemID, item.getTitle(), numberSelected, (numberSelected* item.getPrice()), orderID, item.getPhoto1());
