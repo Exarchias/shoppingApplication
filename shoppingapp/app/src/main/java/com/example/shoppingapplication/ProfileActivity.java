@@ -3,6 +3,7 @@ package com.example.shoppingapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {  //Or USER SETTINGS ACTIVITY
     private NoteViewModel noteViewModel;
-
+    Button adminPanelTest;
     EditText editText;
     EditText editText1;
     EditText editText3;
@@ -31,7 +32,15 @@ public class ProfileActivity extends AppCompatActivity {  //Or USER SETTINGS ACT
         txt=(TextView)findViewById(R.id.textView4);
         txt1=(TextView)findViewById(R.id.textView5);
         txt2=(TextView)findViewById(R.id.textView6);
+        adminPanelTest=(Button)findViewById(R.id.btn_AdminPanel);
 
+        adminPanelTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, AdminPanel.class);
+                ProfileActivity.this.startActivity(intent);
+            }
+        });
 
 
 

@@ -7,11 +7,12 @@
     tools:context=".AdminPanel">
 
     <ListView
+        android:id="@+id/first_listView_AdminPanel"
         android:layout_width="200dp"
         android:layout_height="400dp"
         />
     <ListView
-        
+        android:id="@+id/second_listView_AdminPanel"
         android:layout_width="200dp"
         android:layout_height="400dp"
         />
