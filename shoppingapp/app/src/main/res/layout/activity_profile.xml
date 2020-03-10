@@ -66,4 +66,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView5"
         android:text="TextView" />
+
+    <Button
+        android:id="@+id/btn_AdminPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="459dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginBottom="72dp"
+        android:text="AdminPanelTest"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/settingsbtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerbtn" />
 </RelativeLayout>

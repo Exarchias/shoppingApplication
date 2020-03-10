@@ -1,5 +1,9 @@
 package com.example.shoppingapplication;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -40,6 +44,7 @@ public class DataHolder {
         return tempAr;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     static ArrayList<User> userPopulate() throws NoSuchAlgorithmException {
         ArrayList<User> tempAr = new ArrayList<>();
         tempAr.add(new User(1, "Admin", false, RTools.encrypted("12345"), "admin@test.clom", "1234567890"));
@@ -122,7 +127,6 @@ public class DataHolder {
 
         return isUserFound;
         }
-
 
 
 

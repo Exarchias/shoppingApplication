@@ -33,6 +33,7 @@ public class Item{
     private String colour = "random";
 
     private String description = "A very useful item";
+    //private byte[] photo;
     private String photo1 = "photoname";
     private String photo2 = "photoname";
     private String photo3 = "photoname";
@@ -71,11 +72,10 @@ public class Item{
         this.noteId = noteId;
     }
 
-    //This constructor will be used when the MySQL will be introduced to the System.
+    //This constructor will NOT be used when the MySQL will be introduced to the System.
     @Ignore
     public Item(int id, int ownersId, boolean sold, int noteId, String title, String type,
-                String sizeSTR, int sizeInt, String material, String colour, String description,
-                String photo1, String photo2, String photo3, String photo4, String photo5,
+                String sizeSTR, int sizeInt, String material, String colour, String description, String photo2, String photo3, String photo4, String photo5,
                 String photo6) {
         this.id = id;
         this.ownersId = ownersId;
@@ -88,7 +88,6 @@ public class Item{
         this.material = material;
         this.colour = colour;
         this.description = description;
-        this.photo1 = photo1;
         this.photo2 = photo2;
         this.photo3 = photo3;
         this.photo4 = photo4;
@@ -175,6 +174,15 @@ public class Item{
     public void setColour(String colour) {
         this.colour = colour;
     }
+
+//    public byte[] getPhoto() {
+//        return photo;
+//    }
+
+//    public void setPhoto(byte[] photo) {
+//        this.photo= photo;
+//    }
+
 
     public String getPhoto1() {
         return photo1;

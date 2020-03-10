@@ -17,11 +17,13 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
+
     private NoteViewModel noteViewModel;
     private Button joinNowButton, loginButton;
     Button settingsbtn;
     Button loginbtn;
     Button easyLogin;
+
 
 
     @Override
@@ -37,14 +39,20 @@ public class MainActivity extends AppCompatActivity {
         //loginbtn=(Button)findViewById(R.id.loginbtn);
         easyLogin=(Button)findViewById(R.id.easyLogin);
 
+
+
         easyLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DataHolder.activeUser = DataHolder.arrayAllUsers.get(0);
+                DataHolder.userInFocus = DataHolder.arrayAllUsers.get(0);
+                DataHolder.isAdmin = true;
                 Intent intent = new Intent(MainActivity.this,HomeActivity.class);
                 startActivity(intent);
             }
         });
+
+
 
         settingsbtn.setOnClickListener(new View.OnClickListener() {
             @Override

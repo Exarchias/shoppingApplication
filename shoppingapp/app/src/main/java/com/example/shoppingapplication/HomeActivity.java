@@ -15,32 +15,55 @@ import android.widget.ScrollView;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     User user;
+    Item item;
     private ListView listItems, listItemsTwo;
     private ImageView toogleBar, viewCart;
     ScrollView scrollView;
     private DrawerLayout mDrawerLayout;
+    public int numberofItems;
+    ArrayList<Item> ListofAllItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-          // if the user doesnt exist then you will be brought back to the mainActivity-abdul
-     /*   if (DataHolder.checkUserExist(user.getId(),user.getPassword()) != true) {
-            Intent i = new Intent(this, MainActivity.class);
+        // if the user doesnt exist then you will be brought back to the mainActivity-abdul
+        if (DataHolder.activeUser == null) {
+            Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
-        } else {*/
-            setContentView(R.layout.activity_home);
-
-
-
-            setActivityLisener();
-            getAllViews();
-            viewOnClickListeners();
         }
-        // when you log in you should end up in this activity-abdul
+        setContentView(R.layout.activity_home);
+
+        setActivityLisener();
+        getAllViews();
+        viewOnClickListeners();
+
+        numberofItems = getNumberOfItems();
+
+
+
+    }
+
+    // this method is for fetching a list of all items.
+    public int getNumberOfItems() {
+
+
+        int numItems = 0;
+        if(DataHolder.userIdExists(numItems)){
+            ListofAllItems = RTools.theItemsOfTheUser(user);
+            numItems = item.getId();
+        }
+        return numItems;
+    }
+
+    // when you log in you should end up in this activity-abdul
 
 
 
@@ -95,7 +118,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.navOrders) {
-            //startActivity(new Intent(this, OrdersActivity.class));
+            startActivity(new Intent(this, OrdersActivity.class));
         } else if (id == R.id.navProfile) {
             startActivity(new Intent(this, ProfileActivity.class));
         } else if (id == R.id.navNew) {
@@ -104,6 +127,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             //startActivity(new Intent(this, CheckoutActivity.class));
 
         } else if (id == R.id.navSignOut) {
+            RTools.logout();
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
 
         }
         return true;
