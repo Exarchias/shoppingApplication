@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Button easyLogin;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         //loginbtn=(Button)findViewById(R.id.loginbtn);
         easyLogin=(Button)findViewById(R.id.easyLogin);
 
+
+
         easyLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
         settingsbtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    tools:context=".AdminPanel">
+
+    <ListView
+        android:id="@+id/first_listView_AdminPanel"
+        android:layout_width="211dp"
+        android:layout_height="396dp" />
+
+    <ListView
+        android:id="@+id/second_listView_AdminPanel"
+        android:layout_width="215dp"
+        android:layout_height="400dp"
+        android:layout_below="@+id/first_listView_AdminPanel"
+
+        />
+
+    <Button
+        android:id="@+id/btn_createItem"
+        android:layout_width="92dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_CreateUser"
+        android:layout_toRightOf="@id/first_listView_AdminPanel"
+
+
+        android:text="CreateItem" />
+
+    <Button
+        android:id="@+id/btn_editItem"
+        android:layout_width="wrap_content"
+        android:layout_height="66dp"
+        android:layout_toRightOf="@+id/first_listView_AdminPanel"
+        android:layout_below="@id/btn_createItem"
+        android:text="EditItem"
+
+
+        />
+
+    <Button
+        android:id="@+id/btn_CreateUser"
+        android:layout_width="wrap_content"
+        android:layout_height="66dp"
+        android:layout_toRightOf="@id/first_listView_AdminPanel"
+        android:text="CreateUser"
+
+
+        />
+
+    <Button
+        android:id="@+id/btn_editUser"
+        android:layout_width="wrap_content"
+        android:layout_height="66dp"
+        android:layout_toRightOf="@id/second_listView_AdminPanel"
+        android:layout_below="@+id/btn_editItem"
+        android:text="EditUser"
+
+
+        />
+
+    <Button
+        android:id="@+id/btn_deleteItem"
+        android:layout_width="wrap_content"
+        android:layout_height="66dp"
+        android:layout_below="@+id/btn_editUser"
+        android:layout_toRightOf="@id/second_listView_AdminPanel"
+
+        android:text="DeleteItem"
+
+
+        />
+    <Button
+        android:id="@+id/btn_deleteUser"
+        android:layout_width="wrap_content"
+        android:layout_height="66dp"
+        android:layout_below="@+id/btn_deleteItem"
+        android:layout_toRightOf="@id/second_listView_AdminPanel"
+
+        android:text="DeleteUser"
+
+
+        />
+
+
+</RelativeLayout>

@@ -4,10 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.shoppingapplication.gmailSender.GmailSender;
 
 import java.util.ArrayList;
 
@@ -74,13 +79,23 @@ public class OrdersActivity extends AppCompatActivity {
     Item itemInfccus; //the selected item
     Note orderInFocus; //the selected order
     User user;
+<<<<<<< HEAD
+
+=======
     Item item;
+>>>>>>> 3f65d90fa232b16f6951bcf8ed8cb5d2b0db1cc5
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
+<<<<<<< HEAD
+
+
+        Item item;
+=======
+>>>>>>> 3f65d90fa232b16f6951bcf8ed8cb5d2b0db1cc5
         // same here if the user deosnt exist then you will not be ale to check the orderactivity.
    /*     if (DataHolder.checkUserExist(user.getId(), user.getPassword()) != true) {
             Intent i = new Intent(this, MainActivity.class);
@@ -88,17 +103,32 @@ public class OrdersActivity extends AppCompatActivity {
         }*/
         setContentView(R.layout.activity_order);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
+<<<<<<< HEAD
+        StrictMode.setThreadPolicy(policy);
+
+=======
+>>>>>>> 3f65d90fa232b16f6951bcf8ed8cb5d2b0db1cc5
         listOrders = (ListView) findViewById(R.id.listview);
         ordersActivity = (ConstraintLayout) findViewById(R.id.OrdersActivity);
         closeButton = (ImageView) findViewById(R.id.closeButton);
         orderTotalPrice = (TextView) findViewById(R.id.orderTotalPrice);
+<<<<<<< HEAD
+        Button confirmButton = (Button) findViewById(R.id.confirm_btn);
+
+//Calling functions on uninitialized objects???
+        //fetchOrders(itemInfccus.getId());
+        //fetchItemsInfo(arrayAllItems.get(0));
+        //fetchOrdersDetail(orderInFocus);
+=======
         ordersAdapter = new DisplayOrderAdapter(getApplicationContext(), R.layout.orders_display_area);
 
 //   fetchOrders(orderInFocus.getUserId());
         fetchItemsInfo();
         orderTotalPrice.setText("" + orderTotal);
         fetchOrdersDetail(orderInFocus);
+>>>>>>> 3f65d90fa232b16f6951bcf8ed8cb5d2b0db1cc5
         //Robert:lets do things differently :)
 //        int a = countOrderDatabase();
 //        itemID = new int[a];
@@ -113,6 +143,23 @@ public class OrdersActivity extends AppCompatActivity {
 //        }
 //        orderTotalPrice.setText(""+orderTotal);
 
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+
+                    String email = "noreply.activityfinder@gmail.com";  // temp gmail account to send mails from
+                    String pass = "something713";
+                    GmailSender gmailSender = new GmailSender(email,pass);
+                    gmailSender.sendMail("test", "Hello gmail","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
 
     }
 //// this method should fetch all itemsinformation
@@ -133,6 +180,18 @@ public class OrdersActivity extends AppCompatActivity {
 ////    }
 
     // this method fetches all the details of the item in focus.
+<<<<<<< HEAD
+    public void fetchItemsInfo(Item item) {
+
+        itemID = item.getId();
+        ownerName = RTools.findUserNameById(item.getOwnersId());
+        // need orderid
+        orderID = item.getNoteId(); //note is the order
+        price = item.getPrice();
+        title = item.getTitle();
+        description = item.getDescription();
+        price = item.getPrice();
+=======
     public void fetchItemsInfo( ) {
         int numberSelected = 0;
         if (itemID==0) {
@@ -165,6 +224,7 @@ public class OrdersActivity extends AppCompatActivity {
     private boolean displayOrders(int itemID, String itemTitle, int orderNumPics, double orderPrice, int orderID, String itemIcon) {
         ordersAdapter.add(new DisplayOrders(itemID, itemTitle, orderNumPics, orderPrice, orderID, itemIcon));
         return true;
+>>>>>>> 3f65d90fa232b16f6951bcf8ed8cb5d2b0db1cc5
     }
 
 //Robert: it doesn't work, and it is redundant. I understand what you are trying to do, so we will
@@ -195,6 +255,19 @@ public class OrdersActivity extends AppCompatActivity {
 //    }
 
     //Fetches the deatails from the order in focus.
+<<<<<<< HEAD
+    public void fetchOrdersDetail(Note order) {
+        ArrayList<Item> tmpItemArr = fetchTheItemsOfTheOrder(order);
+        orderID = order.getId();
+        orderTitle = order.getDescription();
+        orderDateAsString = order.getDateString();
+        orderTotal = 0.0;
+        orderOwnerID = order.getUserId();
+        orderOwnerName = RTools.findUserNameById(orderOwnerID);
+        numberOfItemsInTheOrder = tmpItemArr.size();
+        for (Item item : tmpItemArr) {
+            orderTotal = orderTotal + item.getPrice();
+=======
     public void fetchOrdersDetail(Note order){
 
         if (orderID==0) {
@@ -212,14 +285,15 @@ public class OrdersActivity extends AppCompatActivity {
             for(Item item: tmpItemArr){
                 orderTotal = orderTotal + item.getPrice();
             }
+>>>>>>> 3f65d90fa232b16f6951bcf8ed8cb5d2b0db1cc5
         }
 
     }
 
     //it fetches all the items that belong to the Order and returns them as an arraylist
-    public ArrayList<Item> fetchTheItemsOfTheOrder(Note order){
-        ArrayList<Item>theItemsofTheOrder = new ArrayList<>();
-        for(Item item : DataHolder.arrayAllItems){
+    public ArrayList<Item> fetchTheItemsOfTheOrder(Note order) {
+        ArrayList<Item> theItemsofTheOrder = new ArrayList<>();
+        for (Item item : DataHolder.arrayAllItems) {
             theItemsofTheOrder.add(item);
         }
         return theItemsofTheOrder;
@@ -246,8 +320,8 @@ public class OrdersActivity extends AppCompatActivity {
 
 
     //fetches all the orders to the local ArrayList "theOrdersOftheActiveUser"
-    public void fetchOrders(int userID){
-        if(DataHolder.userIdExists(userID)){
+    public void fetchOrders(int userID) {
+        if (DataHolder.userIdExists(userID)) {
             theOrdersOftheActiveUser = RTools.theOrdersOfTheUser(RTools.findUserById(userID));
         }
     }
