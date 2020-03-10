@@ -82,27 +82,10 @@ public class OrdersActivity extends AppCompatActivity {
     User user;
     Item item;
 
-    Button confirmButton = (Button) findViewById(R.id.confirmButton);
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-
-                    String email = "noreply.activityfinder@gmail.com";  // temp gmail account to send mails from
-                    String pass = "something713";
-                    GmailSender gmailSender = new GmailSender(email,pass);
-                    gmailSender.sendMail("test", "Hello gmail","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-
 
         // same here if the user deosnt exist then you will not be ale to check the orderactivity.
    /*     if (DataHolder.checkUserExist(user.getId(), user.getPassword()) != true) {
@@ -122,6 +105,23 @@ public class OrdersActivity extends AppCompatActivity {
         ordersAdapter = new DisplayOrderAdapter(getApplicationContext(), R.layout.orders_display_area);
 
         Button confirmButton = (Button) findViewById(R.id.confirmButton);
+
+ confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+
+                    String email = "noreply.activityfinder@gmail.com";  // temp gmail account to send mails from
+                    String pass = "something713";
+                    GmailSender gmailSender = new GmailSender(email,pass);
+                    gmailSender.sendMail("test", "Hello gmail","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
 //   fetchOrders(orderInFocus.getUserId());
         fetchItemsInfo();
         orderTotalPrice.setText("" + orderTotal);

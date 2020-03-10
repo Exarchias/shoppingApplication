@@ -17,7 +17,6 @@
         <activity android:name=".CreateItemActivity" />
         <activity android:name=".AdminPanel" />
         <activity android:name=".OrdersDetail" />
-        <activity android:name=".OrdersActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".DeliveryDetailActivity" />
         <activity android:name=".DisplayOrderActivity" />
