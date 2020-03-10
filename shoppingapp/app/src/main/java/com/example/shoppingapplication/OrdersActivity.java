@@ -2,12 +2,17 @@ package com.example.shoppingapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.os.Bundle;
+import android.view.View;
+import android.os.StrictMode;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.shoppingapplication.gmailSender.GmailSender;
 
 import java.util.ArrayList;
 
@@ -54,6 +59,7 @@ public class OrdersActivity extends AppCompatActivity {
     String orderTitle = "a random order";
     String orderDescriptionl = "This is the description of an order";
     String orderDateAsString = "DD/MM/YYYY";
+
     int numberOfItemsInTheOrder = 0;
     //An arrayList with all the items of the order in focus
     ArrayList<Item> theItemsofTheActiveOrder = new ArrayList<>();
@@ -76,9 +82,26 @@ public class OrdersActivity extends AppCompatActivity {
     User user;
     Item item;
 
+    Button confirmButton = (Button) findViewById(R.id.confirmButton);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+
+                    String email = "noreply.activityfinder@gmail.com";  // temp gmail account to send mails from
+                    String pass = "something713";
+                    GmailSender gmailSender = new GmailSender(email,pass);
+                    gmailSender.sendMail("test", "Hello gmail","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
 
 
         // same here if the user deosnt exist then you will not be ale to check the orderactivity.
@@ -88,6 +111,9 @@ public class OrdersActivity extends AppCompatActivity {
         }*/
         setContentView(R.layout.activity_order);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
 
         listOrders = (ListView) findViewById(R.id.listview);
         ordersActivity = (ConstraintLayout) findViewById(R.id.OrdersActivity);
@@ -95,6 +121,7 @@ public class OrdersActivity extends AppCompatActivity {
         orderTotalPrice = (TextView) findViewById(R.id.orderTotalPrice);
         ordersAdapter = new DisplayOrderAdapter(getApplicationContext(), R.layout.orders_display_area);
 
+        Button confirmButton = (Button) findViewById(R.id.confirmButton);
 //   fetchOrders(orderInFocus.getUserId());
         fetchItemsInfo();
         orderTotalPrice.setText("" + orderTotal);
@@ -131,6 +158,7 @@ public class OrdersActivity extends AppCompatActivity {
 ////            //DataHolder.itemPopulate().get(itemID); //please don't use that. it will not help.
 ////        //it is a loader for the data. not the ArrayList
 ////    }
+
 
     // this method fetches all the details of the item in focus.
     public void fetchItemsInfo( ) {
