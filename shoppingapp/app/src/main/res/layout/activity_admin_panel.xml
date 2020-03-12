@@ -8,6 +8,8 @@
     android:orientation="vertical"
     tools:context=".AdminPanel">
 
+
+
     <ListView
         android:id="@+id/first_listView_AdminPanel"
         android:layout_width="211dp"
@@ -85,6 +87,8 @@
 
 
         />
+
+
 
 
 </RelativeLayout>

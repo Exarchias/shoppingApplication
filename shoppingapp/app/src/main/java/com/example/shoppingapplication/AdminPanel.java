@@ -5,16 +5,20 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class AdminPanel extends AppCompatActivity {
     private NoteViewModel noteViewModel;
     Button createItem;
     Button editItem;
-    Button creatUser;
+    Button createUser;
     Button editUser;
     Button deleteItem;
     Button deleteUser;
+    int value=2;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +27,83 @@ public class AdminPanel extends AppCompatActivity {
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
         createItem=(Button)findViewById(R.id.btn_createItem);
         editItem=(Button)findViewById(R.id.btn_editItem);
-        creatUser=(Button)findViewById(R.id.btn_CreateUser);
+        createUser=(Button)findViewById(R.id.btn_CreateUser);
         editUser=(Button)findViewById(R.id.btn_editUser);
         deleteItem=(Button)findViewById(R.id.btn_deleteItem);
         deleteUser=(Button)findViewById(R.id.btn_deleteUser);
+
+
+
+
+
+
+
+        createItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adminPanelCreateAnItem(value);
+                Intent intent = new Intent(AdminPanel.this, CreateItemActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+        editItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adminPanelEditItem(value);
+                Intent intent = new Intent(AdminPanel.this, EditItemActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        createUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adminPanelCreateAUser(value);
+                Intent intent = new Intent(AdminPanel.this, CreateUserActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+        editUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adminPanelEditUser(value);
+                Intent intent = new Intent(AdminPanel.this, EditUserActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+        deleteUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                adminPanelDeleteUser(value);
+
+
+            }
+        });
+
+
+
+        deleteItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adminPanelDeleteUser(value);
+            }
+        });
+
+
 
     }
 
@@ -37,8 +114,8 @@ public class AdminPanel extends AppCompatActivity {
                 Item item = RTools.findItemById(id);
                 DataHolder.itemInFocus = item;
                 // The activities need to correspond real activities. (depends on the Activity which it is in)
-                Intent intent = new Intent(AdminPanel.this, CreateItemActivity.class);
-                startActivity(intent);
+               // Intent intent = new Intent(AdminPanel.this, CreateItemActivity.class);
+              //  startActivity(intent);
             }
         }
     }
@@ -50,8 +127,8 @@ public class AdminPanel extends AppCompatActivity {
                 Item item = RTools.findItemById(id);
                 DataHolder.itemInFocus = item;
                 // The activities need to correspond real activities. (depends on the Activity which it is in)
-                Intent intent = new Intent(AdminPanel.this, EditItemActivity.class);
-                startActivity(intent);
+             //   Intent intent = new Intent(AdminPanel.this, EditItemActivity.class);
+             //   startActivity(intent);
             }
         }
     }
@@ -62,8 +139,8 @@ public class AdminPanel extends AppCompatActivity {
                 User user = RTools.findUserById(id);
                 DataHolder.userInFocus = user;
                 // The activities need to correspond real activities. (depends on the Activity which it is in)
-                Intent intent = new Intent(AdminPanel.this, CreateUserActivity.class);
-                startActivity(intent);
+              //  Intent intent = new Intent(AdminPanel.this, CreateUserActivity.class);
+              //  startActivity(intent);
             }
         }
     }
@@ -75,13 +152,13 @@ public class AdminPanel extends AppCompatActivity {
                 User user = RTools.findUserById(id);
                 DataHolder.userInFocus = user;
                 // The activities need to correspond real activities. (depends on the Activity which it is in)
-                Intent intent = new Intent(AdminPanel.this, EditUserActivity.class);
-                startActivity(intent);
+              //  Intent intent = new Intent(AdminPanel.this, EditUserActivity.class);
+              //  startActivity(intent);
             }
         }
     }
     //for the button "Delete Item" on admin Panel
-    void adminPanelDeleteItem(int id){
+    void adminPanelDeleteUser(int id){
         if(DataHolder.isAdmin){
             if(DataHolder.itemIdExists(id)){
                 User user = RTools.findUserById(id);
@@ -91,7 +168,7 @@ public class AdminPanel extends AppCompatActivity {
     }
 
     //for the button "Create a new User" on admin Panel
-    void adminPanelDeleteUser(int id){
+    void adminPanelDeleteItem(int id){
         if(DataHolder.isAdmin){
             if(DataHolder.userIdExists(id)){
                 Item item = RTools.findItemById(id);
