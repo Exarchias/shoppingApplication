@@ -18,7 +18,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
+// this activity is basically used to update the quantity of a specific item.
+
+
 public class OrdersDetail extends AppCompatActivity {
+
     private ImageView closeButton, minuButton, plusButton, itemIcon;
     private Button updateItemInfo;
     public TextView itemTitle, itemLeft, itemCategory;
@@ -36,11 +41,12 @@ public class OrdersDetail extends AppCompatActivity {
 Item item;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders_detail);
         //The following 1 line is kind of necessary in every activity.
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
-
+        System.out.println("add ");
       // if no items exist then you go back
         itemID = getIntent().getStringExtra("itemID");
         if(itemID == null) {
