@@ -8,15 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Alaeddin on 5/21/2017.
- */
-
+//This class will be heavily edited. Don't use any of it for any reason.
 public class GetData {
 
     Connection connect;
     String ConnectionResult = "";
     Boolean isSuccess = false;
+
 
     public List<Map<String,String>> doInBackground() {
 

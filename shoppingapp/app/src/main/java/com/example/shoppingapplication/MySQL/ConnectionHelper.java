@@ -12,6 +12,7 @@ import java.sql.SQLException;
  * Created by Alaeddin on 5/21/2017.
  */
 
+//This class will be heavily edited. Don't use any of it for any reason.
 public class ConnectionHelper {
 
     String ip,db,DBUserNameStr,DBPasswordStr;
