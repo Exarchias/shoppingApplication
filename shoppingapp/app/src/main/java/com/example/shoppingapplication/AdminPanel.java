@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class AdminPanel extends AppCompatActivity {
     private NoteViewModel noteViewModel;
@@ -17,6 +20,11 @@ public class AdminPanel extends AppCompatActivity {
     Button editUser;
     Button deleteItem;
     Button deleteUser;
+    //Robert: This code is here to stay ==============
+    ListView itemsListView;
+    ListView usersListView;
+    RItemAdapter adapter;
+    //=== Code that is here to stay ends here =============
     int value=2;
     
 
@@ -31,6 +39,11 @@ public class AdminPanel extends AppCompatActivity {
         editUser=(Button)findViewById(R.id.btn_editUser);
         deleteItem=(Button)findViewById(R.id.btn_deleteItem);
         deleteUser=(Button)findViewById(R.id.btn_deleteUser);
+        //Robert: This code is here to stay ==============
+        //usersListView = (ListView)findViewById(R.id.first_listView_AdminPanel);
+        itemsListView = (ListView)findViewById(R.id.second_listView_AdminPanel);
+        //=== Code that is here to stay ends here =============
+        populateItemListView();
 
 
 
@@ -103,8 +116,16 @@ public class AdminPanel extends AppCompatActivity {
             }
         });
 
+    }
 
-
+    void populateItemListView(){
+        // Construct the data source
+        ArrayList<Item> arrayOfItems = new ArrayList<Item>();
+        arrayOfItems.add(new Item(1, "Item 1", "Description 1", 2, 1));
+        // Create the adapter to convert the array to views
+        RItemAdapter adapter = new RItemAdapter(AdminPanel.this, arrayOfItems);
+        // Attach the adapter to a ListView
+        itemsListView.setAdapter(adapter);
     }
 
     //for the button "Create a new Item" on admin Panel
