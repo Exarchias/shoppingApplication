@@ -16,8 +16,12 @@ public class RItemAdapter extends ArrayAdapter<Item> {
     String title = "no title";
     String description = "no description";
     String price = "0.0";
+    Context context;
+    ArrayList<Item> items;
     public RItemAdapter(@NonNull Context context, @NonNull ArrayList<Item> items) {
         super(context, 0, items);
+        this.context = context;
+        this.items = items;
     }
 
     @Override
@@ -26,7 +30,7 @@ public class RItemAdapter extends ArrayAdapter<Item> {
         Item item = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.ritem, parent, true);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.ritem, parent, false);
         }
         // Lookup view for data population
         TextView textViewItemTitle = (TextView) convertView.findViewById(R.id.textViewItemTitle);
