@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RItemAdapter extends ArrayAdapter<Item> {
+    String title = "no title";
+    String description = "no description";
+    String price = "0.0";
     public RItemAdapter(@NonNull Context context, @NonNull ArrayList<Item> items) {
         super(context, 0, items);
     }
@@ -31,9 +34,15 @@ public class RItemAdapter extends ArrayAdapter<Item> {
         TextView textViewItemPrice = (TextView) convertView.findViewById(R.id.textViewItemPrice);
         //TextView tvHome = (TextView) convertView.findViewById(R.id.tvHome);
         // Populate the data into the template view using the data object
-        textViewItemTitle.setText(item.getTitle());
-        textViewItemDescription.setText(item.getDescription());
-        textViewItemPrice.setText((int) item.getPrice());
+        assert item != null; //Not sure how necessary it is.
+        if(item != null){
+            title = item.getTitle();
+            description = item.getDescription();
+            price = String.valueOf(item.getPrice());
+        }
+        textViewItemTitle.setText(title);
+        textViewItemDescription.setText(description);
+        textViewItemPrice.setText(price);
         //tvName.setText(user.name);
         //tvHome.setText(user.hometown);
         // Return the completed view to render on screen
