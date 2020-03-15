@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -39,7 +40,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public int itemFetchNumber,itemsPrinted=0,QueueChecker=0, itemID, orderID;
     public boolean isResultFound;
     ArrayList<Item> ListofAllItems = new ArrayList<>();
+    // ==== block of working code. please do not delete ====
     ListView listViewItemsHome;
+    Button toTheCart;
+    // ==== Block of code ends here ====
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         // ==== block of working code. please do not delete ====
         listViewItemsHome = (ListView)findViewById(R.id.listViewItemsHome);
+        toTheCart = (Button) findViewById(R.id.toTheCart);
         populateItemListView();
         // ==== Block of code ends here ====
 
@@ -70,7 +75,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
+    //This Method is highly functional please do not delete
     void populateItemListView(){
         // Construct the data source
         //ArrayList<Item> arrayOfItems = new ArrayList<Item>();
