@@ -39,6 +39,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public int itemFetchNumber,itemsPrinted=0,QueueChecker=0, itemID, orderID;
     public boolean isResultFound;
     ArrayList<Item> ListofAllItems = new ArrayList<>();
+    ListView listViewItemsHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        // ==== block of working code. please do not delete ====
+        listViewItemsHome = (ListView)findViewById(R.id.listViewItemsHome);
+        populateItemListView();
+        // ==== Block of code ends here ====
+
         setActivityLisener();
         getAllViews();
         viewOnClickListeners();
@@ -62,6 +68,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+    }
+
+
+    void populateItemListView(){
+        // Construct the data source
+        //ArrayList<Item> arrayOfItems = new ArrayList<Item>();
+        ArrayList<Item> arrayOfItems = DataHolder.arrayAllItems;
+        //arrayOfItems.add(new Item(1, "Item 1", "Description 1", 2, 1));
+        // Create the adapter to convert the array to views
+        RItemAdapter itemAdapter = new RItemAdapter(HomeActivity.this, arrayOfItems);
+        // Attach the adapter to a ListView
+        listViewItemsHome.setAdapter(itemAdapter);
     }
 
 
