@@ -40,10 +40,11 @@ public class AdminPanel extends AppCompatActivity {
         deleteItem=(Button)findViewById(R.id.btn_deleteItem);
         deleteUser=(Button)findViewById(R.id.btn_deleteUser);
         //Robert: This code is here to stay ==============
-        //usersListView = (ListView)findViewById(R.id.first_listView_AdminPanel);
+        usersListView = (ListView)findViewById(R.id.first_listView_AdminPanel);
         itemsListView = (ListView)findViewById(R.id.second_listView_AdminPanel);
         //=== Code that is here to stay ends here =============
         populateItemListView();
+        populateUserListView();
 
 
 
@@ -120,12 +121,24 @@ public class AdminPanel extends AppCompatActivity {
 
     void populateItemListView(){
         // Construct the data source
-        ArrayList<Item> arrayOfItems = new ArrayList<Item>();
-        arrayOfItems.add(new Item(1, "Item 1", "Description 1", 2, 1));
+        //ArrayList<Item> arrayOfItems = new ArrayList<Item>();
+        ArrayList<Item> arrayOfItems = DataHolder.arrayAllItems;
+        //arrayOfItems.add(new Item(1, "Item 1", "Description 1", 2, 1));
         // Create the adapter to convert the array to views
         RItemAdapter adapter = new RItemAdapter(AdminPanel.this, arrayOfItems);
         // Attach the adapter to a ListView
         itemsListView.setAdapter(adapter);
+    }
+
+    void populateUserListView(){
+        // Construct the data source
+        //ArrayList<Item> arrayOfItems = new ArrayList<Item>();
+        ArrayList<User> arrayOfUsers = DataHolder.arrayAllUsers;
+        //arrayOfItems.add(new Item(1, "Item 1", "Description 1", 2, 1));
+        // Create the adapter to convert the array to views
+        RUserAdapter userAdapter = new RUserAdapter(AdminPanel.this, arrayOfUsers);
+        // Attach the adapter to a ListView
+        usersListView.setAdapter(userAdapter);
     }
 
     //for the button "Create a new Item" on admin Panel
