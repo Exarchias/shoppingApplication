@@ -23,6 +23,7 @@ import java.util.ArrayList;
 //It makes sense, right? :)
 public class OrdersActivity extends AppCompatActivity {
     private ListView listOrders;
+    ListView listViewNote2; //Important for the ListView.
     private DisplayOrderAdapter ordersAdapter;
 
     public TextView orderTotalPrice;
@@ -93,6 +94,10 @@ public class OrdersActivity extends AppCompatActivity {
             startActivity(i);
         }*/
         setContentView(R.layout.activity_order);
+        //============ ListView Code Starts here ================================
+        listViewNote2 = (ListView)findViewById(R.id.listViewNote2);
+        populateNoteListView();
+        //============ ListView Code Ends here ================================
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
@@ -142,6 +147,18 @@ public class OrdersActivity extends AppCompatActivity {
 
 
     }
+
+    //Working code. Useful for the ListView.
+    void populateNoteListView(){
+        // Construct the data source
+        ArrayList<Note> arrayOfNotes = DataHolder.arrayAllNotes;
+        // Create the adapter to convert the array to views
+        RNoteAdapter noteAdapter = new RNoteAdapter(OrdersActivity.this, arrayOfNotes);
+        // Attach the adapter to a ListView
+        listViewNote2.setAdapter(noteAdapter);
+    }
+
+
 //// this method should fetch all itemsinformation
 ////    public void fetchItemsInfo(int itemID, int itemNumPics, int orderID)  {
 ////
