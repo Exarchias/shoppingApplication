@@ -76,6 +76,17 @@ public class DataHolder {
         return false;
     }
 
+    //This will be used when the user forget its password.
+    //name is the username not the full name.
+    static boolean userEmailExists(String emailtobefound){
+        for(User user : arrayAllUsers){
+            if(user.getEmail().equalsIgnoreCase(emailtobefound)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     //This will be used for the login. It checks if a User with the given name exists
     //name is the username not the full name.
     static boolean userNameExists(String name){

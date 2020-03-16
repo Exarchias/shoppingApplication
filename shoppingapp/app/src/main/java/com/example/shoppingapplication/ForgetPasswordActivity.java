@@ -1,6 +1,7 @@
 package com.example.shoppingapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,19 +12,22 @@ import android.widget.Toast;
 
 import com.example.shoppingapplication.gmailSender.GmailSender;
 
+import java.security.SecureRandom;
+
 public class ForgetPasswordActivity extends AppCompatActivity {
 
     private MailSender mailSender;
 
     private EditText emailEditText;
     private Button sendToEmail;
+    private NoteViewModel noteViewModel;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
-
+        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
 
         emailEditText = findViewById(R.id.email_edit_text);
         sendToEmail = findViewById(R.id.send_to_email);
@@ -52,7 +56,9 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             }
         });
 
+
     }
+
 
     public void verifyEmail(){
 
