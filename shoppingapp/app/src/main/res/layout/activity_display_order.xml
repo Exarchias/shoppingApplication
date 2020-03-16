@@ -12,11 +12,9 @@
 
     </view>
 
-    <TextView
-        android:id="@+id/products_txtview_DisplayOrderA"
-        android:layout_width="213dp"
-        android:layout_height="wrap_content"
-        android:text="@string/products"
-        android:textSize="50sp" />
+    <ListView
+        android:id="@+id/listViewNote"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

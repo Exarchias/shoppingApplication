@@ -7,82 +7,107 @@
     tools:context=".HomeActivity">
 
     <LinearLayout
-        android:id="@+id/searchBar"
-        android:layout_width="406dp"
-        android:layout_height="52dp"
-        android:background="#fff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/toogleBar"
-            android:layout_width="50dp"
-            android:layout_height="46dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="2dp"
-            android:background="@drawable/icon_toggle" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="horizontal">
+            android:id="@+id/searchBar"
+            android:layout_width="406dp"
+            android:layout_height="52dp"
+            android:background="#fff">
 
-            <Spinner
-                android:id="@+id/spinner"
+            <ImageView
+                android:id="@+id/toogleBar"
+                android:layout_width="50dp"
+                android:layout_height="46dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/icon_toggle" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="40dp"
+                    android:layout_height="38dp"
+
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/searchField"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="5dp"
+                android:background="@null"
+                android:focusable="auto"
+                android:hint="Search Contents"
+                android:inputType="text"
+                android:paddingHorizontal="5dp"
+                android:typeface="sans"
+                android:visibility="invisible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+
+            <ImageView
+                android:id="@+id/searchButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="@android:drawable/ic_search_category_default" />
+
+            <ImageView
+                android:id="@+id/viewCart"
                 android:layout_width="40dp"
-                android:layout_height="38dp"
-
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-               />
+                android:layout_height="35dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/nedladdning" />
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/searchField"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="5dp"
-            android:background="@null"
-            android:focusable="auto"
-            android:hint="Search Contents"
-            android:inputType="text"
-            android:paddingHorizontal="5dp"
-            android:typeface="sans"
-            android:visibility="invisible" />
+        <Button
+            android:id="@+id/toAdminPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="To the Admin Panel"
+            android:visibility="visible" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+        <Button
+            android:id="@+id/toTheCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="To the Cart"
+            android:visibility="visible" />
 
+        <ListView
+            android:id="@+id/listViewItemsHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/searchButton"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:drawable/ic_search_category_default" />
-
-        <ImageView
-            android:id="@+id/viewCart"
-            android:layout_width="40dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="3dp"
-            android:background="@drawable/nedladdning" />
+        </ListView>
 
     </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="406dp"
-        android:layout_height="453dp"
+        android:layout_width="416dp"
+        android:layout_height="508dp"
         android:layout_marginBottom="92dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -91,7 +116,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <com.example.shoppingapplication.NonScrollListView
                 android:id="@+id/listview"
@@ -131,7 +157,6 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
