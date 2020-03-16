@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,7 +27,8 @@ public class AdminPanel extends AppCompatActivity {
     ListView usersListView;
     RItemAdapter adapter;
     //=== Code that is here to stay ends here =============
-    int value=2;
+    int valueItem=2;
+    int valueUser=2;
     boolean itemsActive = false;
     boolean usersActive = true;
     
@@ -65,6 +67,20 @@ public class AdminPanel extends AppCompatActivity {
         itemsListView.setVisibility(View.GONE);
         //Setting the switch button to "Switch to Items"
         switchTo.setText("Switch to Items");
+
+        itemsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                valueItem = DataHolder.arrayAllItems.get(position).getId();
+            }
+        });
+
+        usersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                valueUser = DataHolder.arrayAllUsers.get(position).getId();
+            }
+        });
 
 
         switchTo.setOnClickListener(new View.OnClickListener() {
@@ -118,10 +134,11 @@ public class AdminPanel extends AppCompatActivity {
         createItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adminPanelCreateAnItem(value);
-                Intent intent = new Intent(AdminPanel.this, CreateItemActivity.class);
-                startActivity(intent);
-
+                if(itemsActive){
+                    adminPanelCreateAnItem(valueItem);
+                    Intent intent = new Intent(AdminPanel.this, CreateItemActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -130,9 +147,11 @@ public class AdminPanel extends AppCompatActivity {
         editItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adminPanelEditItem(value);
-                Intent intent = new Intent(AdminPanel.this, EditItemActivity.class);
-                startActivity(intent);
+                if(itemsActive){
+                    adminPanelEditItem(valueItem);
+                    Intent intent = new Intent(AdminPanel.this, EditItemActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -140,21 +159,24 @@ public class AdminPanel extends AppCompatActivity {
         createUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adminPanelCreateAUser(value);
-                Intent intent = new Intent(AdminPanel.this, CreateUserActivity.class);
-                startActivity(intent);
+                if(usersActive){
+                    adminPanelCreateAUser(valueUser);
+                    Intent intent = new Intent(AdminPanel.this, CreateUserActivity.class);
+                    startActivity(intent);
+                }
             }
         });
-
 
 
 
         editUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adminPanelEditUser(value);
-                Intent intent = new Intent(AdminPanel.this, EditUserActivity.class);
-                startActivity(intent);
+                if(usersActive){
+                    adminPanelEditUser(valueUser);
+                    Intent intent = new Intent(AdminPanel.this, EditUserActivity.class);
+                    startActivity(intent);
+                }
 
             }
         });
@@ -164,10 +186,10 @@ public class AdminPanel extends AppCompatActivity {
         deleteUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                adminPanelDeleteUser(value);
-
-
+                if(usersActive){
+                    adminPanelDeleteUser(valueUser);
+                    populateUserListView();
+                }
             }
         });
 
@@ -176,7 +198,11 @@ public class AdminPanel extends AppCompatActivity {
         deleteItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adminPanelDeleteUser(value);
+                if(itemsActive){
+                    adminPanelDeleteItem(valueItem);
+                    populateItemListView();
+                }
+
             }
         });
 
@@ -206,70 +232,82 @@ public class AdminPanel extends AppCompatActivity {
 
     //for the button "Create a new Item" on admin Panel
      void adminPanelCreateAnItem(int id){
-        if(DataHolder.isAdmin){
-            if(DataHolder.itemIdExists(id)){
-                Item item = RTools.findItemById(id);
-                DataHolder.itemInFocus = item;
-                // The activities need to correspond real activities. (depends on the Activity which it is in)
-               // Intent intent = new Intent(AdminPanel.this, CreateItemActivity.class);
-              //  startActivity(intent);
+        if(itemsActive){
+            if(DataHolder.isAdmin){
+                if(DataHolder.itemIdExists(id)){
+                    Item item = RTools.findItemById(id);
+                    DataHolder.itemInFocus = item;
+                    // The activities need to correspond real activities. (depends on the Activity which it is in)
+                    // Intent intent = new Intent(AdminPanel.this, CreateItemActivity.class);
+                    //  startActivity(intent);
+                }
             }
         }
     }
 
     //for the button "Edit Itemr" on admin Panel
     void adminPanelEditItem(int id){
-        if(DataHolder.isAdmin){
-            if(DataHolder.itemIdExists(id)){
-                Item item = RTools.findItemById(id);
-                DataHolder.itemInFocus = item;
-                // The activities need to correspond real activities. (depends on the Activity which it is in)
-             //   Intent intent = new Intent(AdminPanel.this, EditItemActivity.class);
-             //   startActivity(intent);
+        if(itemsActive){
+            if(DataHolder.isAdmin){
+                if(DataHolder.itemIdExists(id)){
+                    Item item = RTools.findItemById(id);
+                    DataHolder.itemInFocus = item;
+                    // The activities need to correspond real activities. (depends on the Activity which it is in)
+                    //   Intent intent = new Intent(AdminPanel.this, EditItemActivity.class);
+                    //   startActivity(intent);
+                }
             }
         }
     }
     //for the button "Create a new User" on admin Panel
     void adminPanelCreateAUser(int id){
-        if(DataHolder.isAdmin){
-            if(DataHolder.userIdExists(id)){
-                User user = RTools.findUserById(id);
-                DataHolder.userInFocus = user;
-                // The activities need to correspond real activities. (depends on the Activity which it is in)
-              //  Intent intent = new Intent(AdminPanel.this, CreateUserActivity.class);
-              //  startActivity(intent);
+        if(usersActive){
+            if(DataHolder.isAdmin){
+                if(DataHolder.userIdExists(id)){
+                    User user = RTools.findUserById(id);
+                    DataHolder.userInFocus = user;
+                    // The activities need to correspond real activities. (depends on the Activity which it is in)
+                    //  Intent intent = new Intent(AdminPanel.this, CreateUserActivity.class);
+                    //  startActivity(intent);
+                }
             }
         }
     }
 
     //for the button "Edit User" on admin Panel
     void adminPanelEditUser(int id){
-        if(DataHolder.isAdmin){
-            if(DataHolder.userIdExists(id)){
-                User user = RTools.findUserById(id);
-                DataHolder.userInFocus = user;
-                // The activities need to correspond real activities. (depends on the Activity which it is in)
-              //  Intent intent = new Intent(AdminPanel.this, EditUserActivity.class);
-              //  startActivity(intent);
+        if(usersActive){
+            if(DataHolder.isAdmin){
+                if(DataHolder.userIdExists(id)){
+                    User user = RTools.findUserById(id);
+                    DataHolder.userInFocus = user;
+                    // The activities need to correspond real activities. (depends on the Activity which it is in)
+                    //  Intent intent = new Intent(AdminPanel.this, EditUserActivity.class);
+                    //  startActivity(intent);
+                }
             }
         }
     }
     //for the button "Delete Item" on admin Panel
     void adminPanelDeleteUser(int id){
-        if(DataHolder.isAdmin){
-            if(DataHolder.itemIdExists(id)){
-                User user = RTools.findUserById(id);
-                noteViewModel.useThatDeleteUser(user);
+        if(usersActive){
+            if(DataHolder.isAdmin){
+                if(DataHolder.itemIdExists(id)){
+                    User user = RTools.findUserById(id);
+                    noteViewModel.useThatDeleteUser(user);
+                }
             }
         }
     }
 
     //for the button "Create a new User" on admin Panel
     void adminPanelDeleteItem(int id){
-        if(DataHolder.isAdmin){
-            if(DataHolder.userIdExists(id)){
-                Item item = RTools.findItemById(id);
-                noteViewModel.useThatDeleteItem(item);
+        if(itemsActive){
+            if(DataHolder.isAdmin){
+                if(DataHolder.itemIdExists(id)){
+                    Item item = RTools.findItemById(id);
+                    noteViewModel.useThatDeleteItem(item);
+                }
             }
         }
     }

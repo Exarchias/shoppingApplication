@@ -73,7 +73,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else {
             toAdminPanel.setVisibility(View.GONE);
         }
-        // ==== Block of code ends here ====
+
         listViewItemsHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -103,6 +103,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+        // ==== Block of code ends here ====
 
         setActivityLisener();
         getAllViews();
