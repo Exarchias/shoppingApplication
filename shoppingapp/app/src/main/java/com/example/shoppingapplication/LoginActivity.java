@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private String parentDBName = "Users";
     private CheckBox chkBoxRememberMe;
-    private TextView adminLink, notAdminLink;
+    private TextView adminLink, notAdminLink, forgetPass;
 
     private NoteViewModel noteViewModel;
 
@@ -43,11 +43,14 @@ public class LoginActivity extends AppCompatActivity {
 
         adminLink = findViewById(R.id.admin_panel_link);
         notAdminLink = findViewById(R.id.not_admin_panel_link);
+        forgetPass = findViewById(R.id.forgetpassword);
 
         progressDialog = new ProgressDialog(this);
         chkBoxRememberMe = findViewById(R.id.remember_me_chkb);
 
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
+
+
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +64,14 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+            }
+        });
+
+        forgetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -96,5 +107,14 @@ public class LoginActivity extends AppCompatActivity {
 
         }
     }
+
+    public void forgetPassword(String password, String email, String name){
+
+
+    }
+
+
+    // if user unable to login in case they forget their password let them get their
+    //previous info by sending to G-mail.
 
 }
