@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -39,6 +41,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public int itemFetchNumber,itemsPrinted=0,QueueChecker=0, itemID, orderID;
     public boolean isResultFound;
     ArrayList<Item> ListofAllItems = new ArrayList<>();
+    // ==== block of working code. please do not delete ====
+    ListView listViewItemsHome;
+    Button toTheCart;
+    Button toAdminPanel;
+    Item selectedItem;
+    // ==== Block of code ends here ====
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +57,53 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
         }
+
+
         setContentView(R.layout.activity_home);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        // ==== block of working code. please do not delete ====
+        listViewItemsHome = (ListView)findViewById(R.id.listViewItemsHome);
+        toTheCart = (Button) findViewById(R.id.toTheCart);
+        toAdminPanel = (Button) findViewById(R.id.toAdminPanel);
+
+        populateItemListView();
+        if(DataHolder.isAdmin){
+            toAdminPanel.setVisibility(View.VISIBLE);
+        } else {
+            toAdminPanel.setVisibility(View.GONE);
+        }
+
+        listViewItemsHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedItem = DataHolder.arrayAllItems.get(position);
+                String msg = "Send " + selectedItem.getTitle() + " to the cart";
+                toTheCart.setText(msg);
+            }
+        });
+
+        toTheCart.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(selectedItem != null){
+                    DataHolder.arrayCartItems.add(selectedItem);
+                    Toast.makeText(HomeActivity.this, selectedItem.getTitle() +" moved to the shopping cart",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        toAdminPanel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(DataHolder.isAdmin){
+                    Intent intent = new Intent(HomeActivity.this, AdminPanel.class);
+                    HomeActivity.this.startActivity(intent);
+                }
+
+            }
+        });
+        // ==== Block of code ends here ====
 
         setActivityLisener();
         getAllViews();
@@ -62,6 +115,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+    }
+
+    //This Method is highly functional please do not delete
+    void populateItemListView(){
+        // Construct the data source
+        //ArrayList<Item> arrayOfItems = new ArrayList<Item>();
+        ArrayList<Item> arrayOfItems = DataHolder.arrayAllItems;
+        //arrayOfItems.add(new Item(1, "Item 1", "Description 1", 2, 1));
+        // Create the adapter to convert the array to views
+        RItemAdapter itemAdapter = new RItemAdapter(HomeActivity.this, arrayOfItems);
+        // Attach the adapter to a ListView
+        listViewItemsHome.setAdapter(itemAdapter);
+    }
+
+    void sendToTheCart(){
+        DataHolder.arrayCartItems.add(selectedItem);
+//        Toast.makeText(HomeActivity.this, selectedItem.getTitle() +" moved to the basket",
+//                Toast.LENGTH_SHORT).show();
     }
 
 

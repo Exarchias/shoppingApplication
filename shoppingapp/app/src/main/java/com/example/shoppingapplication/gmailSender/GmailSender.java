@@ -1,3 +1,4 @@
+
 package com.example.shoppingapplication.gmailSender;
 
 import android.graphics.Canvas;
@@ -5,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
 import android.os.Environment;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -28,7 +30,10 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+
+
 public class GmailSender extends javax.mail.Authenticator {
+
     private String mailhost = "smtp.gmail.com";
     private String user;
     private String password;
@@ -37,6 +42,8 @@ public class GmailSender extends javax.mail.Authenticator {
     static {
         Security.addProvider(new JSSEProvider());
     }
+
+
 
     public GmailSender(String user, String password) {
         this.user = user;
@@ -183,4 +190,5 @@ public class GmailSender extends javax.mail.Authenticator {
             throw new IOException("Not Supported");
         }
     }
+
 }
