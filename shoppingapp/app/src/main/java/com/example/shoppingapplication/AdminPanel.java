@@ -20,12 +20,15 @@ public class AdminPanel extends AppCompatActivity {
     Button editUser;
     Button deleteItem;
     Button deleteUser;
+    Button switchTo;
     //Robert: This code is here to stay ==============
     ListView itemsListView;
     ListView usersListView;
     RItemAdapter adapter;
     //=== Code that is here to stay ends here =============
     int value=2;
+    boolean itemsActive = false;
+    boolean usersActive = true;
     
 
     @Override
@@ -33,23 +36,83 @@ public class AdminPanel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_panel);
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
+        // if the user doesnt exist then you will be brought back to the login page
+        if (DataHolder.activeUser == null) {
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+        }
+        // if the user is not an admin the user will be brought back to the home page
+        if (!DataHolder.isAdmin) {
+            Intent i = new Intent(this, HomeActivity.class);
+            startActivity(i);
+        }
         createItem=(Button)findViewById(R.id.btn_createItem);
         editItem=(Button)findViewById(R.id.btn_editItem);
         createUser=(Button)findViewById(R.id.btn_CreateUser);
         editUser=(Button)findViewById(R.id.btn_editUser);
         deleteItem=(Button)findViewById(R.id.btn_deleteItem);
         deleteUser=(Button)findViewById(R.id.btn_deleteUser);
-        //Robert: This code is here to stay ==============
+        switchTo=(Button)findViewById(R.id.btn_switch);
         usersListView = (ListView)findViewById(R.id.first_listView_AdminPanel);
         itemsListView = (ListView)findViewById(R.id.second_listView_AdminPanel);
-        //=== Code that is here to stay ends here =============
         populateItemListView();
         populateUserListView();
 
+        //Making sure that the items will be invisible at the beginning.
+        createItem.setVisibility(View.GONE);
+        editItem.setVisibility(View.GONE);
+        deleteItem.setVisibility(View.GONE);
+        itemsListView.setVisibility(View.GONE);
+        //Setting the switch button to "Switch to Items"
+        switchTo.setText("Switch to Items");
 
 
+        switchTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(itemsActive){
+                    //Hiding the items
+                    createItem.setVisibility(View.GONE);
+                    editItem.setVisibility(View.GONE);
+                    deleteItem.setVisibility(View.GONE);
+                    itemsListView.setVisibility(View.GONE);
 
+                    //Revealing the users
+                    createUser.setVisibility(View.VISIBLE);
+                    editUser.setVisibility(View.VISIBLE);
+                    deleteUser.setVisibility(View.VISIBLE);
+                    usersListView.setVisibility(View.VISIBLE);
 
+                    //Adjusting the booleans
+                    itemsActive = false;
+                    usersActive = true;
+
+                    //changing the text on the button
+                    switchTo.setText("Switch to Items");
+
+                } else {
+                    //Hiding the users
+                    createUser.setVisibility(View.GONE);
+                    editUser.setVisibility(View.GONE);
+                    deleteUser.setVisibility(View.GONE);
+                    usersListView.setVisibility(View.GONE);
+
+                    //Revealing the items
+                    createItem.setVisibility(View.VISIBLE);
+                    editItem.setVisibility(View.VISIBLE);
+                    deleteItem.setVisibility(View.VISIBLE);
+                    itemsListView.setVisibility(View.VISIBLE);
+
+                    //Adjusting the booleans
+                    itemsActive = true;
+                    usersActive = false;
+
+                    //changing the text on the button
+                    switchTo.setText("Switch to Users");
+                }
+
+            }
+        });
 
 
         createItem.setOnClickListener(new View.OnClickListener() {
