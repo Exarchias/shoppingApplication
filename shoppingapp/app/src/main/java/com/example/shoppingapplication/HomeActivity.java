@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -43,6 +44,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     // ==== block of working code. please do not delete ====
     ListView listViewItemsHome;
     Button toTheCart;
+    Item selectedItem;
     // ==== Block of code ends here ====
 
     @Override
@@ -62,6 +64,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toTheCart = (Button) findViewById(R.id.toTheCart);
         populateItemListView();
         // ==== Block of code ends here ====
+        listViewItemsHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedItem = DataHolder.arrayAllItems.get(position);
+                String msg = "Send " + selectedItem.getTitle() + " to the cart";
+                toTheCart.setText(msg);
+            }
+        });
+
+        toTheCart.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DataHolder.arrayCartItems.add(selectedItem);
+        Toast.makeText(HomeActivity.this, selectedItem.getTitle() +" moved to the shopping cart",
+                Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         setActivityLisener();
         getAllViews();
@@ -85,6 +104,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         RItemAdapter itemAdapter = new RItemAdapter(HomeActivity.this, arrayOfItems);
         // Attach the adapter to a ListView
         listViewItemsHome.setAdapter(itemAdapter);
+    }
+
+    void sendToTheCart(){
+        DataHolder.arrayCartItems.add(selectedItem);
+//        Toast.makeText(HomeActivity.this, selectedItem.getTitle() +" moved to the basket",
+//                Toast.LENGTH_SHORT).show();
     }
 
 
