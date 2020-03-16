@@ -44,6 +44,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     // ==== block of working code. please do not delete ====
     ListView listViewItemsHome;
     Button toTheCart;
+    Button toAdminPanel;
     Item selectedItem;
     // ==== Block of code ends here ====
 
@@ -56,13 +57,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
         }
+
+
         setContentView(R.layout.activity_home);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         // ==== block of working code. please do not delete ====
         listViewItemsHome = (ListView)findViewById(R.id.listViewItemsHome);
         toTheCart = (Button) findViewById(R.id.toTheCart);
+        toAdminPanel = (Button) findViewById(R.id.toAdminPanel);
+
         populateItemListView();
+        if(DataHolder.isAdmin){
+            toAdminPanel.setVisibility(View.VISIBLE);
+        } else {
+            toAdminPanel.setVisibility(View.GONE);
+        }
         // ==== Block of code ends here ====
         listViewItemsHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -75,9 +85,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         toTheCart.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                DataHolder.arrayCartItems.add(selectedItem);
-        Toast.makeText(HomeActivity.this, selectedItem.getTitle() +" moved to the shopping cart",
-                Toast.LENGTH_SHORT).show();
+                if(selectedItem != null){
+                    DataHolder.arrayCartItems.add(selectedItem);
+                    Toast.makeText(HomeActivity.this, selectedItem.getTitle() +" moved to the shopping cart",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        toAdminPanel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(DataHolder.isAdmin){
+                    Intent intent = new Intent(HomeActivity.this, AdminPanel.class);
+                    HomeActivity.this.startActivity(intent);
+                }
 
             }
         });

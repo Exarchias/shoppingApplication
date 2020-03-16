@@ -38,9 +38,9 @@ public class DataHolder {
         tempAr.add(new Item(1, "Item 1", "Description 1", 2, 1));
         tempAr.add(new Item(2, "item 2", "Description 2", 2,2));
         tempAr.add(new Item(3, "item 3", "Description 3", 2, 3));
-        tempAr.add(new Item(4, "Item 1", "Description 1", 3, 4));
-        tempAr.add(new Item(5, "item 2", "Description 2", 3, 5));
-        tempAr.add(new Item(6, "item 3", "Description 3", 3, 6));
+        tempAr.add(new Item(4, "Item 4", "Description 4", 3, 4));
+        tempAr.add(new Item(5, "item 5", "Description 5", 3, 5));
+        tempAr.add(new Item(6, "item 6", "Description 6", 3, 6));
 
         return tempAr;
     }
@@ -48,7 +48,7 @@ public class DataHolder {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     static ArrayList<User> userPopulate() throws NoSuchAlgorithmException {
         ArrayList<User> tempAr = new ArrayList<>();
-        tempAr.add(new User(1, "Admin", false, RTools.encrypted("12345"), "admin@test.clom", "1234567890"));
+        tempAr.add(new User(1, "Admin", true, RTools.encrypted("12345"), "admin@test.clom", "1234567890"));
         tempAr.add(new User(2, "Alice", false, RTools.encrypted("12345"), "alice@test.clom", "2345678901"));
         tempAr.add(new User(3, "Bob", false, RTools.encrypted("12345"), "Bob@test.clom", "3456789012"));
         return tempAr;
