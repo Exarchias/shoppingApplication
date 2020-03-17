@@ -37,6 +37,7 @@ public class EditItemActivity extends AppCompatActivity {
         editTitleOfTheItem.setText(DataHolder.itemInFocus.getTitle());
         editDescriptionOfTheItem.setText(DataHolder.itemInFocus.getDescription());
         priceOfTheItem.setText(price);
+
     }
     public void editItemBtn(View view){
       Item tmpItem = DataHolder.itemInFocus;
