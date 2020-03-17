@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class CreateUserActivity extends AppCompatActivity {
     private NoteViewModel noteViewModel;
-    EditText name;
+    EditText editName;
     EditText fullname;
     EditText address;
     EditText phoneNumber;
@@ -27,7 +27,7 @@ public class CreateUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_user);
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
-        name=(EditText)findViewById(R.id.name_editText_CreateUser);
+        editName=(EditText)findViewById(R.id.name_editText_CreateUser);
         fullname=(EditText)findViewById(R.id.fullname_editText_CreateUser);
         phoneNumber=(EditText)findViewById(R.id.phone_editText_CreateUser);
         address=(EditText)findViewById(R.id.address_editText_CreateUser);
@@ -39,7 +39,17 @@ public class CreateUserActivity extends AppCompatActivity {
     }
 
     public void onClick(View view){
-        
+
+        User tmp = new User(20,"",false,"12345");
+        String name;
+        name = editName.getText().toString();
+        tmp.setName(name);
+        noteViewModel.useThatCreateUser(tmp);
+
+        int last = DataHolder.arrayAllUsers.size()-1;
+        testing2.setText(DataHolder.arrayAllUsers.get(last).getName());
+
+
 
     }
 }
