@@ -31,17 +31,17 @@
         android:hint="Name..."
         />
     <EditText
-        android:id="@+id/phone_editText_CreateUser"
+        android:id="@+id/password_editText_CreateUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name_editText_CreateUser"
-        android:hint="Phone..."
+        android:hint="Password..."
         />
     <EditText
         android:id="@+id/address_editText_CreateUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/phone_editText_CreateUser"
+        android:layout_below="@+id/password_editText_CreateUser"
         android:hint="Address..."
         />
 

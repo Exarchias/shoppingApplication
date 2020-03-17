@@ -14,7 +14,7 @@ public class CreateUserActivity extends AppCompatActivity {
     EditText editName;
     EditText fullname;
     EditText address;
-    EditText phoneNumber;
+    EditText passwordEditText;
     TextView testing1;
     TextView testing2;
     TextView testing3;
@@ -29,7 +29,7 @@ public class CreateUserActivity extends AppCompatActivity {
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
         editName=(EditText)findViewById(R.id.name_editText_CreateUser);
         fullname=(EditText)findViewById(R.id.fullname_editText_CreateUser);
-        phoneNumber=(EditText)findViewById(R.id.phone_editText_CreateUser);
+        passwordEditText =(EditText)findViewById(R.id.password_editText_CreateUser);
         address=(EditText)findViewById(R.id.address_editText_CreateUser);
         testing1=(TextView)findViewById(R.id.textViewFullNameCreateUserActivity);
         testing2=(TextView)findViewById(R.id.textViewNameCreateUserActivity);
@@ -41,13 +41,19 @@ public class CreateUserActivity extends AppCompatActivity {
     public void onClick(View view){
 
         User tmp = new User(20,"",false,"12345");
-        String name;
+        String name,password,id;
+        Boolean isAdmin;
+        
+        password = passwordEditText.getText().toString();
+        tmp.setPassword(password);
         name = editName.getText().toString();
         tmp.setName(name);
         noteViewModel.useThatCreateUser(tmp);
 
         int last = DataHolder.arrayAllUsers.size()-1;
         testing2.setText(DataHolder.arrayAllUsers.get(last).getName());
+
+        testing3.setText(DataHolder.arrayAllUsers.get(last).getPassword());
 
 
 
