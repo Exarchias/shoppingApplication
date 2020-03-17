@@ -40,7 +40,7 @@ public class CreateItemActivity extends AppCompatActivity {
 
 
     public void onClickUpdate(View view){
-
+      //int i= Integer.parseInt(title_editText_CreateItem.getText().toString());
       Item tmpItem = new Item(122,"","");
       String title,description,price;
 
@@ -51,9 +51,10 @@ public class CreateItemActivity extends AppCompatActivity {
       tmpItem.setTitle(title);
      // tmpItem.setPrice(price);
       tmpItem.setDescription(description);
-      int last=DataHolder.arrayAllItems.size()-1;
+
 
       noteViewModel.useThatCreateItem(tmpItem);
+        int last=DataHolder.arrayAllItems.size()-1;
       textViewTitle.setText(DataHolder.arrayAllItems.get(last).getTitle());
       //textViewPrice.setText( DataHolder.arrayAllItems.get(last).getPrice());
       textViewDescription.setText(DataHolder.arrayAllItems.get(last).getDescription());

@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity {  //Or USER SETTINGS ACT
 
     public void onClick(View view){
 
-        User tmpUser = DataHolder.arrayAllUsers.get(2);
+        User tmpUser = DataHolder.userInFocus;
 
         String fullname,phonenumber,address;
         fullname=editText.getText().toString();
@@ -60,7 +60,8 @@ public class ProfileActivity extends AppCompatActivity {  //Or USER SETTINGS ACT
         tmpUser.setAddress(address);
 
         noteViewModel.useThatUpdateUser(tmpUser);
-        txt.setText(DataHolder.arrayAllUsers.get(2).getFullName());
+       // txt.setText(DataHolder.arrayAllUsers.get(2).getFullName());
+        txt.setText(DataHolder.userInFocus.getFullName());
         txt1.setText(DataHolder.arrayAllUsers.get(2).getMobilePhone());
         txt2.setText(DataHolder.arrayAllUsers.get(2).getAddress());
 
