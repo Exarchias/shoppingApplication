@@ -72,7 +72,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
                 //sendMail(emailid, subject, message);
 
-                try {
+                /*try {
 
                     String email = "berheaklilu1@gmail.com";  // temp gmail account to send mails from
                     String pass = "Eritrea17";
@@ -80,14 +80,14 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                     gmailSender.sendMail("test", "Hello gmail","berheaklilu1@gmail.com", "karl.i.lundh@gmail.com");
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
+                }*/
             }
 
         });
 
     }
 
-    private void sendMail(String email, String subject, String messageBody) {
+  /*  private void sendMail(String email, String subject, String messageBody) {
         Session session = createSessionObject();
 
         try {
@@ -149,5 +149,5 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             return null;
         }
 
-    }
+    }*/
 }
