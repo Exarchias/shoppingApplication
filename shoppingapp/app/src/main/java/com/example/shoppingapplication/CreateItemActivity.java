@@ -40,20 +40,23 @@ public class CreateItemActivity extends AppCompatActivity {
 
 
     public void onClickUpdate(View view){
-      Item tmpItem = DataHolder.arrayAllItems.get(2);
+
+      Item tmpItem = new Item(122,"","");
       String title,description,price;
 
+
       title=title_editText_CreateItem.getText().toString();
-      price=price_editText_CreateItem.getText().toString();
+      //price= price_editText_CreateItem.getText().toString();
       description=description_editText_CreateItem.getText().toString();
       tmpItem.setTitle(title);
      // tmpItem.setPrice(price);
       tmpItem.setDescription(description);
+      int last=DataHolder.arrayAllItems.size()-1;
 
       noteViewModel.useThatCreateItem(tmpItem);
-      textViewTitle.setText(DataHolder.arrayAllItems.get(2).getTitle());
-     // textViewPrice.setText(DataHolder.arrayAllItems.get(2).getPrice());
-      textViewDescription.setText(DataHolder.arrayAllItems.get(2).getDescription());
+      textViewTitle.setText(DataHolder.arrayAllItems.get(last).getTitle());
+      //textViewPrice.setText( DataHolder.arrayAllItems.get(last).getPrice());
+      textViewDescription.setText(DataHolder.arrayAllItems.get(last).getDescription());
 
 
 
