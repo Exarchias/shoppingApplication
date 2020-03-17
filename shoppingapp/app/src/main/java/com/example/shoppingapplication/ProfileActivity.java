@@ -48,7 +48,9 @@ public class ProfileActivity extends AppCompatActivity {  //Or USER SETTINGS ACT
     }
 
     public void onClick(View view){
+
         User tmpUser = DataHolder.arrayAllUsers.get(2);
+
         String fullname,phonenumber,address;
         fullname=editText.getText().toString();
         phonenumber=editText1.getText().toString();

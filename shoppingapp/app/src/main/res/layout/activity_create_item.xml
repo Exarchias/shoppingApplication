@@ -38,7 +38,7 @@
         />
 
     <Button
-        android:id="@+id/btn_createItem_CreateItem"
+        android:id="@+id/btn_createItem_CreateItemActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -52,7 +52,7 @@
         android:id="@+id/textViewDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_createItem_CreateItem"
+        android:layout_below="@+id/btn_createItem_CreateItemActivity"
         android:text="TextView" />
     <TextView
         android:id="@+id/textViewTitle"
