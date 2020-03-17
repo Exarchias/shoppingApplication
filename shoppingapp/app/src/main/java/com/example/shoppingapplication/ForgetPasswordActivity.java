@@ -1,7 +1,6 @@
 package com.example.shoppingapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 
 import com.example.shoppingapplication.gmailSender.GmailSender;
 
-<<<<<<< HEAD
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
@@ -30,9 +28,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-=======
-import java.security.SecureRandom;
->>>>>>> 3e6b797a90552373f6402020c2215d1e74d8edac
 
 public class ForgetPasswordActivity extends AppCompatActivity {
 
@@ -40,7 +35,6 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     private EditText emailEditText;
     private Button sendToEmail;
-<<<<<<< HEAD
     GmailSender gmailSender;
     // new ones
     public String jobNo;
@@ -53,16 +47,13 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     private Multipart multipart = new MimeMultipart();
     private MimeBodyPart messageBodyPart = new MimeBodyPart();
     public File mediaFile;
-=======
-    private NoteViewModel noteViewModel;
->>>>>>> 3e6b797a90552373f6402020c2215d1e74d8edac
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
-        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
+
 
         emailEditText = findViewById(R.id.email_edit_text);
         sendToEmail = findViewById(R.id.send_to_email);
@@ -125,7 +116,6 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         });
     }
 
-<<<<<<< HEAD
     private Message createMessage(String email, String subject, String messageBody, Session session) throws
             MessagingException, UnsupportedEncodingException {
         Message message = new MimeMessage(session);
@@ -138,13 +128,6 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     public class SendMailTask extends AsyncTask<Message, Void, Void> {
         private ProgressDialog progressDialog;
-=======
-
-    }
-
-
-    public void verifyEmail(){
->>>>>>> 3e6b797a90552373f6402020c2215d1e74d8edac
 
         @Override
         protected void onPreExecute() {
