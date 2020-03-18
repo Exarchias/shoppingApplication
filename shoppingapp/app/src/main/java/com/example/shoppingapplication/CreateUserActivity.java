@@ -72,12 +72,11 @@ public class CreateUserActivity extends AppCompatActivity {
         noteViewModel.useThatCreateUser(tmp);
 
          //STUFF USED FOR TESTING
-
-
         Toast.makeText(CreateUserActivity.this,"User is admin: "+tmp.isAdmin(),Toast.LENGTH_SHORT).show();
 
 
         Intent intent = new Intent(CreateUserActivity.this, AdminPanel.class);
+
         CreateUserActivity.this.startActivity(intent);
 
     }

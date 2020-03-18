@@ -15,15 +15,13 @@
 
 
 
-
-    <TextView
-        android:id="@+id/testingTextViewInEditItemActivity"
+    <Button
+        android:id="@+id/closeBtn_editItemActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnEditItem_editItemActivity"
-        android:text="textView"
-
-        />
+        android:onClick="closeBtn"
+        android:textSize="20sp"
+        android:text="@string/close" />
 
     <EditText
         android:id="@+id/titleOfTheItem_editText_editItemActivity"

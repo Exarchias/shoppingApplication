@@ -3,6 +3,7 @@ package com.example.shoppingapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
@@ -15,7 +16,7 @@ public class EditItemActivity extends AppCompatActivity {
     EditText editTitleOfTheItem;
     EditText editDescriptionOfTheItem;
     Button btnEditItem;
-    TextView testingTxtView;
+   Button closeBtn_editItemActivity;
     EditText priceOfTheItem;
 
 
@@ -28,7 +29,7 @@ public class EditItemActivity extends AppCompatActivity {
         editTitleOfTheItem=(EditText)findViewById(R.id.titleOfTheItem_editText_editItemActivity);
         editDescriptionOfTheItem=(EditText)findViewById(R.id.descriptionOfTheItem_editText_editItemActivity);
         btnEditItem=(Button)findViewById(R.id.btnEditItem_editItemActivity);
-        testingTxtView =(TextView)findViewById(R.id.testingTextViewInEditItemActivity);
+        closeBtn_editItemActivity=(Button)findViewById(R.id.closeBtn_editItemActivity);
         priceOfTheItem =(EditText)findViewById(R.id.priceOfTheItem_editText_editItemActivity);
 
 
@@ -51,10 +52,16 @@ public class EditItemActivity extends AppCompatActivity {
       noteViewModel.useThatUpdateItem(tmpItem);
 
 
-        //A TEXTFIELD ADDED FOR TESTING IF U WISH
-     // String testing12 = String.valueOf(DataHolder.itemInFocus.getPrice());
-    //  testingTxtView.setText(testing12);
+        Intent intent = new Intent(EditItemActivity.this, HomeActivity.class);
+        EditItemActivity.this.startActivity(intent);
 
+    }
+
+
+
+    public void closeBtn(View view){
+        Intent intent = new Intent(EditItemActivity.this, HomeActivity.class);
+        EditItemActivity.this.startActivity(intent);
     }
 
 
