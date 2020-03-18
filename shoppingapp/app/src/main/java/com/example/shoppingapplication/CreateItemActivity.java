@@ -41,7 +41,7 @@ public class CreateItemActivity extends AppCompatActivity {
 
     public void onClickUpdate(View view){
       //int i= Integer.parseInt(title_editText_CreateItem.getText().toString());
-      Item tmpItem = new Item(122,"","");
+      Item tmpItem = new Item(5000,"","");
       String title,description,price;
 
 

@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditUserActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <EditText
+        android:id="@+id/phonenumber_editText_editUserActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:hint="Phone Number..."
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/fullname_editText_editUserActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phonenumber_editText_editUserActivity"
+        android:hint="Full Name..."
+        />
+
+    <EditText
+        android:id="@+id/address_editText_editUserActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fullname_editText_editUserActivity"
+        android:hint="Address..."
+        />
+
+    <Button
+        android:id="@+id/btnupdate_editUserActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:onClick="onClick"
+        android:text="update this User"
+        android:textSize="20sp" />
+
+</RelativeLayout>
