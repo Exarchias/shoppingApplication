@@ -3,11 +3,13 @@ package com.example.shoppingapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CreateItemActivity extends AppCompatActivity {
     private NoteViewModel noteViewModel;
@@ -15,9 +17,8 @@ public class CreateItemActivity extends AppCompatActivity {
     EditText description_editText_CreateItem;
     EditText price_editText_CreateItem;
     Button btn_createItem_CreateItemActivity;
-    TextView textViewDescription;
-    TextView textViewTitle;
-    TextView textViewPrice;
+    Button closeBtn_CreateItemActivity;
+
 
 
     @Override
@@ -29,9 +30,7 @@ public class CreateItemActivity extends AppCompatActivity {
         description_editText_CreateItem=(EditText)findViewById(R.id.description_editText_CreateItem);
         price_editText_CreateItem=(EditText)findViewById(R.id.price_editText_CreateItem);
         btn_createItem_CreateItemActivity=(Button)findViewById(R.id.btn_createItem_CreateItemActivity);
-        textViewDescription=(TextView)findViewById(R.id.textViewDescription);
-        textViewPrice=(TextView)findViewById(R.id.textViewPrice);
-        textViewTitle=(TextView)findViewById(R.id.textViewTitle);
+        closeBtn_CreateItemActivity=(Button)findViewById(R.id.closeBtn_CreateItemActivity);
 
 
 
@@ -46,20 +45,27 @@ public class CreateItemActivity extends AppCompatActivity {
 
 
       title=title_editText_CreateItem.getText().toString();
-      //price= price_editText_CreateItem.getText().toString();
+      price= price_editText_CreateItem.getText().toString();
       description=description_editText_CreateItem.getText().toString();
       tmpItem.setTitle(title);
-     // tmpItem.setPrice(price);
+      tmpItem.setPrice(Integer.parseInt(price));
       tmpItem.setDescription(description);
 
 
       noteViewModel.useThatCreateItem(tmpItem);
-        int last=DataHolder.arrayAllItems.size()-1;
-      textViewTitle.setText(DataHolder.arrayAllItems.get(last).getTitle());
-      //textViewPrice.setText( DataHolder.arrayAllItems.get(last).getPrice());
-      textViewDescription.setText(DataHolder.arrayAllItems.get(last).getDescription());
 
 
+          //TESTING
+        Toast.makeText(CreateItemActivity.this,"The Title of the Item is "+tmpItem.getTitle(),Toast.LENGTH_SHORT).show();
 
+        Intent intent = new Intent(CreateItemActivity.this, HomeActivity.class);
+        CreateItemActivity.this.startActivity(intent);
+
+
+    }
+
+    public void closeBtn(View view){
+        Intent intent = new Intent(CreateItemActivity.this, HomeActivity.class);
+        CreateItemActivity.this.startActivity(intent);
     }
 }

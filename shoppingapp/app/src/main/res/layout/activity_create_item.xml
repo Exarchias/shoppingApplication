@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".CreateItemActivity">
 
-    <TextView
-        android:id="@+id/close_settings_textbtn_CreateItem"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
+    <Button
+        android:id="@+id/closeBtn_CreateItemActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="closeBtn"
         android:textSize="20sp"
         android:text="@string/close" />
 
@@ -48,23 +49,6 @@
         android:textSize="20sp" />
 
 
-    <TextView
-        android:id="@+id/textViewDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_createItem_CreateItemActivity"
-        android:text="TextView" />
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewDescription"
-        android:text="TextView" />
-    <TextView
-        android:id="@+id/textViewPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewTitle"
-        android:text="TextView" />
+
 
 </RelativeLayout>
