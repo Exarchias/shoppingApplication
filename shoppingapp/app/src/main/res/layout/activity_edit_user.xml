@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".EditUserActivity">
 
+    <Button
+        android:id="@+id/closeBtn_EditUserActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="closeBtn"
+        android:textSize="20sp"
+        android:text="@string/close" />
 
 
 
@@ -18,7 +25,7 @@
         android:autofillHints="" />
 
     <EditText
-        android:id="@+id/fullname_editText_editUserActivity"
+        android:id="@+id/name_editText_editUserActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/phonenumber_editText_editUserActivity"
@@ -26,10 +33,10 @@
         />
 
     <EditText
-        android:id="@+id/address_editText_editUserActivity"
+        android:id="@+id/emailAddress_editText_editUserActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fullname_editText_editUserActivity"
+        android:layout_below="@+id/name_editText_editUserActivity"
 
         />
 
@@ -48,7 +55,7 @@
         android:id="@+id/checkBoxEditUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/address_editText_editUserActivity"
+        android:layout_below="@+id/emailAddress_editText_editUserActivity"
         android:text="Make the user an admin" />
 
 </RelativeLayout>
