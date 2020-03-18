@@ -13,6 +13,13 @@
         android:layout_height="30dp"
         android:textSize="20sp"
         android:text="@string/close" />
+    <EditText
+        android:id="@+id/UserID_editText_CreateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:hint="User ID..."
+        android:autofillHints="" />
 
 
     <EditText
@@ -31,17 +38,17 @@
         android:hint="Name..."
         />
     <EditText
-        android:id="@+id/phone_editText_CreateUser"
+        android:id="@+id/password_editText_CreateUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name_editText_CreateUser"
-        android:hint="Phone..."
+        android:hint="Password..."
         />
     <EditText
         android:id="@+id/address_editText_CreateUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/phone_editText_CreateUser"
+        android:layout_below="@+id/password_editText_CreateUser"
         android:hint="Address..."
         />
 
@@ -80,6 +87,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewPhoneCreateUserActivity"
         android:text="TextView"/>
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/address_editText_CreateUser"
+        android:text="Create as an Admin" />
 
 
 </RelativeLayout>
