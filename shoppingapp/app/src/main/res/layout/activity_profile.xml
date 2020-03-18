@@ -15,7 +15,7 @@
 
 
     <EditText
-        android:id="@+id/phonenumber_editText_editUserActivity"
+        android:id="@+id/phonenumber_editText_ProfileA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
@@ -23,23 +23,23 @@
         android:autofillHints="" />
 
     <EditText
-        android:id="@+id/fullname_editText_editUserActivity"
+        android:id="@+id/fullname_editText_ProfileA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/phonenumber_editText_editUserActivity"
+        android:layout_below="@+id/phonenumber_editText_ProfileA"
         android:hint="Full Name..."
         />
 
     <EditText
-        android:id="@+id/address_editText_editUserActivity"
+        android:id="@+id/address_editText_ProfileA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fullname_editText_editUserActivity"
+        android:layout_below="@+id/fullname_editText_ProfileA"
         android:hint="Address..."
         />
 
     <Button
-        android:id="@+id/btnupdate_editUserActivity"
+        android:id="@+id/btnupdate_ProfileA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -53,7 +53,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnupdate_editUserActivity"
+        android:layout_below="@+id/btnupdate_ProfileA"
         android:text="TextView" />
     <TextView
         android:id="@+id/textView5"

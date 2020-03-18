@@ -24,7 +24,7 @@ public class ProfileActivity extends AppCompatActivity {  //Or USER SETTINGS ACT
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        btnUpdate=(Button)findViewById(R.id.btnupdate_profileA);
+        btnUpdate=(Button)findViewById(R.id.btnupdate_ProfileA);
         fullNameEditText =(EditText)findViewById(R.id.fullname_editText_ProfileA);
         phoneNumberEditText =(EditText)findViewById(R.id.phonenumber_editText_ProfileA);
         addressEditText =(EditText)findViewById(R.id.address_editText_ProfileA);
