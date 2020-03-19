@@ -15,8 +15,7 @@
             android:id="@+id/searchBar"
             android:layout_width="406dp"
             android:layout_height="52dp"
-            android:background="#fff"
-            tools:ignore="ExtraText">
+            android:background="#fff">
 
             <ImageView
                 android:id="@+id/toogleBar"
@@ -24,12 +23,7 @@
                 android:layout_height="46dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="2dp"
-                />
-<!--
-This should be on the above image view, check if you know it
-            android:background="@drawable/icon_toggle"
--->
-
+                android:background="@drawable/icon_toggle" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -82,7 +76,6 @@ This should be on the above image view, check if you know it
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="3dp"
                 android:background="@drawable/nedladdning" />
-
 
         </LinearLayout>
 

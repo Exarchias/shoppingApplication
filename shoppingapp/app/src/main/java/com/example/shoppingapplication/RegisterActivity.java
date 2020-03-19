@@ -52,8 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 // if password is less than 4 character
                 if (pass.length() < 4) {
-
-                    inputPassword.setError("Password must be greater than 4 characters");
+                    inputPassword.setError("Pass word must be >4");
                     inputPassword.setFocusable(true);
                 } else {
 
