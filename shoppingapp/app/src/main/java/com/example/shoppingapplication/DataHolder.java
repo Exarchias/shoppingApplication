@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DataHolder {
-    static int nextUserId = 4; //it is used for autoincrement of the id.
+    static int nextUserId = 5; //it is used for autoincrement of the id.
 
     static ArrayList<Note> arrayAllNotes = notePopulate(); //testing
     static ArrayList<User> arrayAllUsers; //users as a normal Arraylist
@@ -51,6 +51,7 @@ public class DataHolder {
         tempAr.add(new User(1, "Admin", true, RTools.encrypted("12345"), "admin@test.clom", "1234567890"));
         tempAr.add(new User(2, "Alice", false, RTools.encrypted("12345"), "alice@test.clom", "2345678901"));
         tempAr.add(new User(3, "Bob", false, RTools.encrypted("12345"), "Bob@test.clom", "3456789012"));
+        tempAr.add(new User(4, "Aki", false, RTools.encrypted("1000"), "aki@test.clom", "0764129365"));
         return tempAr;
     }
 

@@ -48,11 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         chkBoxRememberMe = findViewById(R.id.remember_me_chkb);
 
-        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
-
-
-
-
+        //noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -60,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 try {
                     login(inputPhonenumber.getText().toString(), inputPassword.getText().toString());
+
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }

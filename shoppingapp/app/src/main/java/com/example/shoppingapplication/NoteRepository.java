@@ -112,6 +112,8 @@ public class NoteRepository {
     }
 
 
+
+
     //Robert: ASYNC methods. PLEASE don't change anything below this line
     //====================================================================
     //Insert Note, (ASYNC). Testing purposes
@@ -130,6 +132,7 @@ public class NoteRepository {
     }
 
     //Insert User (ASYNC)
+
     private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void> {
         private UserDao userDao;
 
@@ -143,6 +146,8 @@ public class NoteRepository {
             return null;
         }
     }
+
+
 
     //Insert Item (ASYNC)
     private static class InsertItemAsyncTask extends AsyncTask<Item, Void, Void> {

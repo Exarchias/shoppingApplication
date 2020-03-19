@@ -1,52 +1,39 @@
 package com.example.shoppingapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.shoppingapplication.gmailSender.GmailSender;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProviders;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import java.util.Random;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
 
-    private MailSender mailSender;
-
     private EditText emailEditText;
+    private EditText phoneEditText;
     private Button sendToEmail;
-    GmailSender gmailSender;
-    // new ones
-    public String jobNo;
-    public String teamNo;
-    private static final String username = "berheaklilu1@gmail.com";
-    private static final String password = "Eritrea17";
-    private static final String emailid = "mail2@outlook.com";
-    private static final String subject = "Photo";
-    private static final String message = "Hello";
-    private Multipart multipart = new MimeMultipart();
-    private MimeBodyPart messageBodyPart = new MimeBodyPart();
-    public File mediaFile;
+
+    private int confirmCode = 0;
+    private User usertmp;
+
+
+
 
 
     @Override
@@ -54,100 +41,64 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
 
-
         emailEditText = findViewById(R.id.email_edit_text);
+        phoneEditText = findViewById(R.id.phone_edit_text);
         sendToEmail = findViewById(R.id.send_to_email);
 
-        //new ones
-
-        Intent intent = getIntent();
-        jobNo = intent.getStringExtra("Job_No");
-        teamNo = intent.getStringExtra("Team_No");
-        //sendMail(emailid, subject, message);
 
 
         sendToEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 1. check the phone number exists in database
+                // 2. option one send him pass,
+                Log.d("sendButton:", "on click");
+                //generate random code.
+                String phonenumber = phoneEditText.getText().toString();
+                if (DataHolder.userTelephoneExists(phonenumber)) {
+                    usertmp = RTools.findUserByTelephone(phonenumber);
+                    Log.d("sendButton:", usertmp.getEmail());
+                    if (usertmp.getEmail().equalsIgnoreCase(emailEditText.getText().toString())) {
+                        confirmCode = generateRandomCode();
+                        sendVerificationCode("Your Password is: " + confirmCode, phonenumber);
+                        Log.d("sendButton:", String.valueOf(confirmCode));
+                        //Send him to login page.
 
-                //sendMail(emailid, subject, message);
+                        Toast.makeText(ForgetPasswordActivity.this, "Sms sent success", Toast.LENGTH_SHORT).show();
+                        // 1. confirm code send him to confirmation page()
+                        Intent intent = new Intent(v.getContext(), ChangePassActivity.class);
+                        intent.putExtra("phone", usertmp.getTelephone());
+                        intent.putExtra("code", String.valueOf(confirmCode));
+                        startActivity(intent);
+                    }
+                }
 
-                /*try {
-
-                    String email = "berheaklilu1@gmail.com";  // temp gmail account to send mails from
-                    String pass = "Eritrea17";
-                    GmailSender gmailSender = new GmailSender(email,pass);
-                    gmailSender.sendMail("test", "Hello gmail","berheaklilu1@gmail.com", "karl.i.lundh@gmail.com");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }*/
             }
 
         });
 
+
     }
 
-  /*  private void sendMail(String email, String subject, String messageBody) {
-        Session session = createSessionObject();
 
-        try {
-            Message message = createMessage(email, subject, messageBody, session);
-            new SendMailTask().execute(message);
-        } catch (AddressException e) {
-            e.printStackTrace();
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+    /**
+     * This method is to send verification code
+     *
+     * @param code
+     * @param phone
+     */
+    public void sendVerificationCode(String code, String phone) {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 10);
+        } else {
+            SmsManager sms = SmsManager.getDefault();
+            sms.sendTextMessage(phone, null, code, null, null);
         }
     }
 
-    private Session createSessionObject() {
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");//"smtp.mailtrap.io";
-        properties.put("mail.smtp.port", "587");
-
-        return Session.getInstance(properties, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
-            }
-        });
+    public int generateRandomCode() {
+        Random random = new Random();
+        return random.nextInt(10000) + 1;
     }
 
-    private Message createMessage(String email, String subject, String messageBody, Session session) throws
-            MessagingException, UnsupportedEncodingException {
-        Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("berheaklilu1@gmail.com", "Naveed Qureshi"));
-        message.addRecipient(Message.RecipientType.TO, new InternetAddress(email, email));
-        message.setSubject(subject);
-        message.setText(messageBody);
-        return message;
-    }
-
-    public class SendMailTask extends AsyncTask<Message, Void, Void> {
-        private ProgressDialog progressDialog;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog = ProgressDialog.show(ForgetPasswordActivity.this, "Please wait", "Sending mail", true, false);
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            progressDialog.dismiss();
-        }
-        protected Void doInBackground(javax.mail.Message... messages) {
-            try {
-                Transport.send(messages[0]);
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-    }*/
 }

@@ -9,6 +9,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+import javax.crypto.Cipher;
+
 import static androidx.core.content.ContextCompat.startActivity;
 
 //Helpful methods that doen't belong to a specific class.
@@ -42,6 +44,9 @@ public class RTools {
         return bytesToHex(encodedhash);
     }
 
+    //decrypt method. Aklilu
+
+
 
     //checks for password with hash encrypiton
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -51,6 +56,7 @@ public class RTools {
         } else {
             return false;
         }
+
     }
 
 
