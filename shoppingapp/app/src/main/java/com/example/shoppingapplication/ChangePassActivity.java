@@ -37,7 +37,6 @@ public class ChangePassActivity extends AppCompatActivity {
         code = intent.getStringExtra("code");
         phone= intent.getStringExtra("phone");
         String msgtmp = "Genrated Code:" + code + ", telephone:" + phone;
-        //until this line everything seems to work fine.
         //Toast.makeText(ChangePassActivity.this, msgtmp, Toast.LENGTH_SHORT).show();
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
         //user = RTools.findUserByTelephone(phone);
@@ -55,7 +54,6 @@ public class ChangePassActivity extends AppCompatActivity {
                 if (code.equalsIgnoreCase(codeed)){
 //                    String msgtmp2 = "the generated code matches the given code";
 //                    Toast.makeText(ChangePassActivity.this, msgtmp2, Toast.LENGTH_SHORT).show();
-                    //it works until this point.
                     //pass is never null so we check if it is "", (AKA empty)
                     if (!pass.equalsIgnoreCase("")){
                         //String msgtmp3 = "the given password is " + pass;
