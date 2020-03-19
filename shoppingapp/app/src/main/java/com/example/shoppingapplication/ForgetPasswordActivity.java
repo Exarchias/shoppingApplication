@@ -1,25 +1,19 @@
 package com.example.shoppingapplication;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProviders;
 
 import java.util.Random;
 
@@ -27,13 +21,9 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     private EditText emailEditText;
     private EditText phoneEditText;
-    private Button sendToEmail;
-
+    private Button sendToPhone;
     private int confirmCode = 0;
-    private User usertmp;
-
-
-
+    private User userTemporary;
 
 
     @Override
@@ -43,46 +33,42 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
         emailEditText = findViewById(R.id.email_edit_text);
         phoneEditText = findViewById(R.id.phone_edit_text);
-        sendToEmail = findViewById(R.id.send_to_email);
+        sendToPhone = findViewById(R.id.send_to_phone);
 
 
-
-        sendToEmail.setOnClickListener(new View.OnClickListener() {
+        sendToPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 1. check the phone number exists in database
-                // 2. option one send him pass,
+                // 2. option one send him password,
                 Log.d("sendButton:", "on click");
                 //generate random code.
-                String phonenumber = phoneEditText.getText().toString();
-                if (DataHolder.userTelephoneExists(phonenumber)) {
-                    usertmp = RTools.findUserByTelephone(phonenumber);
-                    Log.d("sendButton:", usertmp.getEmail());
-                    if (usertmp.getEmail().equalsIgnoreCase(emailEditText.getText().toString())) {
+                String phoneNumber = phoneEditText.getText().toString();
+                if (DataHolder.userTelephoneExists(phoneNumber)) {
+                    userTemporary = RTools.findUserByTelephone(phoneNumber);
+                    Log.d("sendButton:", userTemporary.getEmail());
+                    if (userTemporary.getEmail().equalsIgnoreCase(emailEditText.getText().toString())) {
                         confirmCode = generateRandomCode();
-                        sendVerificationCode("Your Password is: " + confirmCode, phonenumber);
+                        sendVerificationCode("Your Password is: " + confirmCode, phoneNumber);
                         Log.d("sendButton:", String.valueOf(confirmCode));
                         //Send him to login page.
-
-                        Toast.makeText(ForgetPasswordActivity.this, "Sms sent success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ForgetPasswordActivity.this, "your verification code sent successfully to your phone number", Toast.LENGTH_SHORT).show();
                         // 1. confirm code send him to confirmation page()
                         Intent intent = new Intent(v.getContext(), ChangePassActivity.class);
-                        intent.putExtra("phone", usertmp.getTelephone());
+                        intent.putExtra("phone", userTemporary.getTelephone());
                         intent.putExtra("code", String.valueOf(confirmCode));
                         startActivity(intent);
                     }
+                }else {
+                    Toast.makeText(ForgetPasswordActivity.this, "Invalid email or phone number", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
         });
-
-
     }
 
-
     /**
-     * This method is to send verification code
+     * This method is to send verification code to its phone number
      *
      * @param code
      * @param phone
@@ -96,6 +82,11 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * generate random number to be sent to its phone as a code
+     *
+     * @return
+     */
     public int generateRandomCode() {
         Random random = new Random();
         return random.nextInt(10000) + 1;

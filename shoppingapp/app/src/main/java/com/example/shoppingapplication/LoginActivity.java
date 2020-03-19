@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -23,14 +22,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inputPhonenumber, inputPassword;
 
     private Button loginButton;
-    private ProgressDialog progressDialog;
-
-    private String parentDBName = "Users";
     private CheckBox chkBoxRememberMe;
-    private TextView adminLink, notAdminLink, forgetPass;
-
+    private TextView forgetPass;
     private NoteViewModel noteViewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +32,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         loginButton = findViewById(R.id.login_btn);
-        inputPassword = findViewById(R.id.login_password_input);
-        inputPhonenumber = findViewById(R.id.login_phone_number_input);
+        inputPassword = findViewById(R.id.login_password_editText);
+        inputPhonenumber = findViewById(R.id.login_phone_editText);
 
-        adminLink = findViewById(R.id.admin_panel_link);
-        notAdminLink = findViewById(R.id.not_admin_panel_link);
-        forgetPass = findViewById(R.id.forgetpassword);
+        forgetPass = findViewById(R.id.forgetPassword);
 
-        progressDialog = new ProgressDialog(this);
         chkBoxRememberMe = findViewById(R.id.remember_me_chkb);
 
         //noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
@@ -83,16 +74,15 @@ public class LoginActivity extends AppCompatActivity {
                 DataHolder.activeUser = user;
                 DataHolder.userInFocus = user;
                 DataHolder.isAdmin = user.isAdmin();
-                //move to new activity. This little part maybe in need of small edit,
-                // (depends on the Activity which it is in)
                 if (user.isAdmin()) {
-
+                    Toast.makeText(LoginActivity.this, "You logged in successfully", Toast.LENGTH_SHORT).show();
                     // change an activity when admin logged in/ send to Admin page
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(intent);
 
 
                 } else {
+                    Toast.makeText(LoginActivity.this, "Invalid phone number or password", Toast.LENGTH_SHORT).show();
 
                     // change an activity when user logged in send to User page
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -101,17 +91,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
 
-
         }
     }
 
-    public void forgetPassword(String password, String email, String name){
-
-
-    }
-
-
-    // if user unable to login in case they forget their password let them get their
-    //previous info by sending to G-mail.
 
 }

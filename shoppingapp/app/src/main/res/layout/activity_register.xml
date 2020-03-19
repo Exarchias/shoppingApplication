@@ -4,53 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/register"
+    android:background="@drawable/shopping"
     tools:context=".RegisterActivity">
 
     <ImageView
         android:id="@+id/register_applogo"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:src="@drawable/applogo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        />
+        android:layout_marginTop="20dp" />
 
     <EditText
         android:id="@+id/register_username_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/register_applogo"
-        android:background="@drawable/input_design"
-        android:padding="10dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="6dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/input_design"
         android:hint="Name"
         android:inputType="text"
+        android:padding="10dp"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
         android:textSize="17sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/register_phone_number_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/register_username_input"
-        android:background="@drawable/input_design"
-        android:padding="10dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="6dp"
         android:layout_marginRight="15dp"
-        android:hint="Phone Number"
+        android:background="@drawable/input_design"
+        android:hint="0700000000"
         android:inputType="number"
+        android:padding="10dp"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
-        android:layout_marginTop="6dp"
         android:textSize="17sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <!-- email  edit text -->
     <EditText
@@ -58,18 +54,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/register_phone_number_input"
-        android:background="@drawable/input_design"
-        android:padding="10dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="6dp"
-        android:hint="Email"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/input_design"
+        android:drawableEnd="@drawable/ic_email_black_24dp"
+        android:hint="Example@email.com"
         android:inputType="textEmailAddress"
+        android:padding="10dp"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
         android:textSize="17sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
 
     <EditText
@@ -77,18 +73,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/register_email_input"
-        android:background="@drawable/input_design"
-        android:padding="10dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:layout_marginTop="6dp"
-        android:hint="Password"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/input_design"
+        android:hint="*************"
         android:inputType="textPassword"
+        android:padding="10dp"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
         android:textSize="17sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
 
     <Button
@@ -103,11 +98,9 @@
         android:padding="10dp"
         android:text="Create Account"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/holo_green_dark"
         android:textSize="18sp"
         tools:ignore="RtlCompat" />
-
-
 
 
 </RelativeLayout>
