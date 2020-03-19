@@ -52,6 +52,8 @@ public class DataHolder {
         tempAr.add(new User(2, "Alice", false, RTools.encrypted("12345"), "alice@test.clom", "2345678901"));
         tempAr.add(new User(3, "Bob", false, RTools.encrypted("12345"), "Bob@test.clom", "3456789012"));
         tempAr.add(new User(4, "Aki", false, RTools.encrypted("1000"), "aki@test.clom", "0764129365"));
+        //I am going to regret that sooo hard....
+        tempAr.add(new User(5, "Robert", false, RTools.encrypted("12345"), "RobertKristianAlm@gmail.ocm", "0760882382"));
         return tempAr;
     }
 

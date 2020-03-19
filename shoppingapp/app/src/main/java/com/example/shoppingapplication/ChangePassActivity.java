@@ -44,7 +44,8 @@ public class ChangePassActivity extends AppCompatActivity {
                 user = RTools.findUserByTelephone(phone);
                 Log.d("user: ",user.getEmail());
                 if (code.equalsIgnoreCase(codeed)){
-                    if (pass!=null){
+                    //pass is never null so we check if it is "", (AKA empty)
+                    if (!pass.equalsIgnoreCase("")){
                         user.setPassword(pass);
                         noteViewModel.useThatUpdateUser(user);
 
