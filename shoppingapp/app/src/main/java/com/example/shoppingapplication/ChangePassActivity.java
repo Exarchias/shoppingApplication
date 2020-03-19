@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.security.NoSuchAlgorithmException;
 
 public class ChangePassActivity extends AppCompatActivity {
 
@@ -33,6 +36,9 @@ public class ChangePassActivity extends AppCompatActivity {
         Intent intent = getIntent();
         code = intent.getStringExtra("code");
         phone= intent.getStringExtra("phone");
+        String msgtmp = "Genrated Code:" + code + ", telephone:" + phone;
+        //until this line everything seems to work fine.
+        //Toast.makeText(ChangePassActivity.this, msgtmp, Toast.LENGTH_SHORT).show();
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
         //user = RTools.findUserByTelephone(phone);
         changePass.setOnClickListener(new View.OnClickListener() {
@@ -42,11 +48,24 @@ public class ChangePassActivity extends AppCompatActivity {
                 String pass = newPassEditText.getText().toString();
                 Log.d("pass: ",pass);
                 user = RTools.findUserByTelephone(phone);
+//                String msgtmp2 = "Genrated Code:" + code + ", telephone:" + phone + ", User:" + user.getName();
+//                Toast.makeText(ChangePassActivity.this, msgtmp2, Toast.LENGTH_SHORT).show();
                 Log.d("user: ",user.getEmail());
+                //it seems to work until this point.
                 if (code.equalsIgnoreCase(codeed)){
+//                    String msgtmp2 = "the generated code matches the given code";
+//                    Toast.makeText(ChangePassActivity.this, msgtmp2, Toast.LENGTH_SHORT).show();
+                    //it works until this point.
                     //pass is never null so we check if it is "", (AKA empty)
                     if (!pass.equalsIgnoreCase("")){
-                        user.setPassword(pass);
+                        //String msgtmp3 = "the given password is " + pass;
+                        //Toast.makeText(ChangePassActivity.this, msgtmp3, Toast.LENGTH_SHORT).show();
+                        //The problem is here. it has to be encrypted
+                        try {
+                            user.setPassword(RTools.encrypted(pass));
+                        } catch (NoSuchAlgorithmException e) {
+                            e.printStackTrace();
+                        }
                         noteViewModel.useThatUpdateUser(user);
 
                         Intent intent = new Intent(ChangePassActivity.this, LoginActivity.class);

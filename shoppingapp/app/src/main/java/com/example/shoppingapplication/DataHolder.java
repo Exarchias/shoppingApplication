@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DataHolder {
-    static int nextUserId = 5; //it is used for autoincrement of the id.
+    static int nextUserId = 6; //it is used for autoincrement of the id.
 
     static ArrayList<Note> arrayAllNotes = notePopulate(); //testing
     static ArrayList<User> arrayAllUsers; //users as a normal Arraylist

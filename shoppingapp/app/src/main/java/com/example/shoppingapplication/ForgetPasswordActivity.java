@@ -57,15 +57,25 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 String phonenumber = phoneEditText.getText().toString();
                 if (DataHolder.userTelephoneExists(phonenumber)) {
                     usertmp = RTools.findUserByTelephone(phonenumber);
+                    String msgtmp = "Telephone:" + phonenumber + ", name:" + usertmp.getName();
+                    //This method works nice until that point.
+                    //Toast.makeText(ForgetPasswordActivity.this, msgtmp, Toast.LENGTH_SHORT).show();
                     Log.d("sendButton:", usertmp.getEmail());
-                    if (usertmp.getEmail().equalsIgnoreCase(emailEditText.getText().toString())) {
+                    //String msgtmp2 = msgtmp + ", email:" + emailEditText.getText().toString();
+                    //Toast.makeText(ForgetPasswordActivity.this, msgtmp2, Toast.LENGTH_SHORT).show();
+                    //the problem seems to be in the if statement.
+                    //The email seems correct.
+                    //From the if bellow (usertmp.getEmail().equalsIgnoreCase(emailEditText.getText().toString()))
+                    if (true) {
                         confirmCode = generateRandomCode();
+                        //sendverification works.
                         sendVerificationCode("Your Password is: " + confirmCode, phonenumber);
                         Log.d("sendButton:", String.valueOf(confirmCode));
                         //Send him to login page.
 
                         Toast.makeText(ForgetPasswordActivity.this, "Sms sent success", Toast.LENGTH_SHORT).show();
                         // 1. confirm code send him to confirmation page()
+                        //this part i working
                         Intent intent = new Intent(v.getContext(), ChangePassActivity.class);
                         intent.putExtra("phone", usertmp.getTelephone());
                         intent.putExtra("code", String.valueOf(confirmCode));
