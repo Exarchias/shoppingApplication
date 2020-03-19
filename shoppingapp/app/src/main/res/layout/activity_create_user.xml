@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".CreateUserActivity">
 
+    <Button
+        android:id="@+id/closeBtn_CreateUserActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="closeBtn"
+        android:textSize="20sp"
+        android:text="@string/close" />
+
 
     <TextView
         android:id="@+id/close_settings_textbtn_CreateUser"
@@ -14,34 +22,42 @@
         android:textSize="20sp"
         android:text="@string/close" />
 
+    <EditText
+        android:id="@+id/emailAddress_editText_CreateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:hint="Email Address..."
+        android:autofillHints="" />
+
 
     <EditText
-        android:id="@+id/fullname_editText_CreateUser"
+        android:id="@+id/phoneNumber_editText_CreateUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
-        android:hint="Fullname..."
+        android:hint="Phone Number..."
         android:autofillHints="" />
 
     <EditText
         android:id="@+id/name_editText_CreateUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fullname_editText_CreateUser"
+        android:layout_below="@+id/phoneNumber_editText_CreateUser"
         android:hint="Name..."
         />
     <EditText
-        android:id="@+id/phone_editText_CreateUser"
+        android:id="@+id/password_editText_CreateUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name_editText_CreateUser"
-        android:hint="Phone..."
+        android:hint="Password..."
         />
     <EditText
         android:id="@+id/address_editText_CreateUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/phone_editText_CreateUser"
+        android:layout_below="@+id/password_editText_CreateUser"
         android:hint="Address..."
         />
 
@@ -56,30 +72,14 @@
         android:textSize="20sp" />
 
 
-    <TextView
-        android:id="@+id/textViewFullNameCreateUserActivity"
+
+
+    <CheckBox
+        android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_createUser_CreateUserActivity"
-        android:text="TextView" />
-    <TextView
-        android:id="@+id/textViewNameCreateUserActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewFullNameCreateUserActivity"
-        android:text="TextView" />
-    <TextView
-        android:id="@+id/textViewPhoneCreateUserActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewNameCreateUserActivity"
-        android:text="TextView" />
-    <TextView
-        android:id="@+id/textViewAddressCreateUserActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewPhoneCreateUserActivity"
-        android:text="TextView"/>
+        android:layout_below="@+id/address_editText_CreateUser"
+        android:text="Create as an Admin" />
 
 
 </RelativeLayout>

@@ -13,9 +13,9 @@ import android.widget.TextView;
 public class ProfileActivity extends AppCompatActivity {  //Or USER SETTINGS ACTIVITY
     private NoteViewModel noteViewModel;
     Button adminPanelTest;
-    EditText editText;
-    EditText editText1;
-    EditText editText3;
+    EditText fullNameEditText;
+    EditText phoneNumberEditText;
+    EditText addressEditText;
     Button btnUpdate;
     TextView txt;
     TextView txt1;
@@ -24,10 +24,10 @@ public class ProfileActivity extends AppCompatActivity {  //Or USER SETTINGS ACT
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        btnUpdate=(Button)findViewById(R.id.btnupdate_profileA);
-        editText=(EditText)findViewById(R.id.fullname_editText_ProfileA);
-        editText1=(EditText)findViewById(R.id.phonenumber_editText_ProfileA);
-        editText3=(EditText)findViewById(R.id.address_editText_ProfileA);
+        btnUpdate=(Button)findViewById(R.id.btnupdate_ProfileA);
+        fullNameEditText =(EditText)findViewById(R.id.fullname_editText_ProfileA);
+        phoneNumberEditText =(EditText)findViewById(R.id.phonenumber_editText_ProfileA);
+        addressEditText =(EditText)findViewById(R.id.address_editText_ProfileA);
         noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
         txt=(TextView)findViewById(R.id.textView4);
         txt1=(TextView)findViewById(R.id.textView5);
@@ -49,20 +49,20 @@ public class ProfileActivity extends AppCompatActivity {  //Or USER SETTINGS ACT
 
     public void onClick(View view){
 
-        User tmpUser = DataHolder.arrayAllUsers.get(2);
-
+        User tmpUser = DataHolder.userInFocus;
         String fullname,phonenumber,address;
-        fullname=editText.getText().toString();
-        phonenumber=editText1.getText().toString();
-        address = editText3.getText().toString();
+        fullname= fullNameEditText.getText().toString();
+        phonenumber= phoneNumberEditText.getText().toString();
+        address = addressEditText.getText().toString();
         tmpUser.setFullName(fullname);
         tmpUser.setMobilePhone(phonenumber);
         tmpUser.setAddress(address);
 
         noteViewModel.useThatUpdateUser(tmpUser);
-        txt.setText(DataHolder.arrayAllUsers.get(2).getFullName());
-        txt1.setText(DataHolder.arrayAllUsers.get(2).getMobilePhone());
-        txt2.setText(DataHolder.arrayAllUsers.get(2).getAddress());
+       // txt.setText(DataHolder.arrayAllUsers.get(2).getFullName());
+        txt.setText(DataHolder.userInFocus.getFullName());
+        txt1.setText(DataHolder.userInFocus.getMobilePhone());
+        txt2.setText(DataHolder.userInFocus.getAddress());
 
 
 

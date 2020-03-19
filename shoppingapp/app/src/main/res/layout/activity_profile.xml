@@ -39,7 +39,7 @@
         />
 
     <Button
-        android:id="@+id/btnupdate_profileA"
+        android:id="@+id/btnupdate_ProfileA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -48,11 +48,12 @@
         android:text="@string/update"
         android:textSize="20sp" />
 
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnupdate_profileA"
+        android:layout_below="@+id/btnupdate_ProfileA"
         android:text="TextView" />
     <TextView
         android:id="@+id/textView5"
