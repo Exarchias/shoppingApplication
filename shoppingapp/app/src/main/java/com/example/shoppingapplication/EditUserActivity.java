@@ -35,7 +35,7 @@ public class EditUserActivity extends AppCompatActivity {
 
 
         editTextNameEditUser.setText(DataHolder.userInFocus.getName());
-        editTextPhoneNumberEditUser.setText(DataHolder.userInFocus.getMobilePhone());
+        editTextPhoneNumberEditUser.setText(DataHolder.userInFocus.getTelephone());
         editTextEmailAddressEditUser.setText(DataHolder.userInFocus.getEmail());
     }
 
@@ -49,7 +49,7 @@ public class EditUserActivity extends AppCompatActivity {
         phonenumber=editTextPhoneNumberEditUser.getText().toString();
         tmpUser.setEmail(emailAddress);
         tmpUser.setName(name);
-        tmpUser.setMobilePhone(phonenumber);
+        tmpUser.setTelephone(phonenumber);
 
         checkBoxEditUser.setOnClickListener(new View.OnClickListener(){
 
@@ -68,6 +68,9 @@ public class EditUserActivity extends AppCompatActivity {
 
         noteViewModel.useThatUpdateUser(tmpUser);
 
+        //this line of code ensures that we will not have any strange bug.
+        DataHolder.userInFocus = DataHolder.activeUser;
+
 
 
 
@@ -78,7 +81,6 @@ public class EditUserActivity extends AppCompatActivity {
 
 
         Intent intent = new Intent(EditUserActivity.this, AdminPanel.class);
-
         EditUserActivity.this.startActivity(intent);
 
 

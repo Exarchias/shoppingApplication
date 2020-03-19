@@ -240,6 +240,9 @@ public class NoteViewModel extends AndroidViewModel {
     //to manipulate the data while the data is loading.
     void useThatCreateItem(Item item){
         if(!DataHolder.itemIdExists(item.getId())){
+            int id = DataHolder.nextItemId;
+            DataHolder.nextItemId = id + 1;
+            item.setId(id); //auto increment of the id.
             insertItem(item);
             arrayAllItems.add(item);
             DataHolder.arrayAllItems.add(item);
@@ -252,6 +255,9 @@ public class NoteViewModel extends AndroidViewModel {
     //to manipulate the data while the data is loading.
     void useThatCreateNote(Note note){
         if(!DataHolder.noteIdExists(note.getId())){
+            int id = DataHolder.nextNoteId;
+            DataHolder.nextNoteId = id + 1;
+            note.setId(id); //auto increment of the id.
             insert(note);
             arrayAllNotes.add(note);
             DataHolder.arrayAllNotes.add(note);

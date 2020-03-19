@@ -43,6 +43,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 // 2. option one send him password,
                 Log.d("sendButton:", "on click");
                 //generate random code.
+<<<<<<< HEAD
                 String phoneNumber = phoneEditText.getText().toString();
                 if (DataHolder.userTelephoneExists(phoneNumber)) {
                     userTemporary = RTools.findUserByTelephone(phoneNumber);
@@ -50,6 +51,20 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                     if (userTemporary.getEmail().equalsIgnoreCase(emailEditText.getText().toString())) {
                         confirmCode = generateRandomCode();
                         sendVerificationCode("Your Password is: " + confirmCode, phoneNumber);
+=======
+                String phonenumber = phoneEditText.getText().toString();
+                if (DataHolder.userTelephoneExists(phonenumber)) {
+                    usertmp = RTools.findUserByTelephone(phonenumber);
+                    //String msgtmp = "Telephone:" + phonenumber + ", name:" + usertmp.getName();
+                    //Toast.makeText(ForgetPasswordActivity.this, msgtmp, Toast.LENGTH_SHORT).show();
+                    Log.d("sendButton:", usertmp.getEmail());
+                    //String msgtmp2 = msgtmp + ", email:" + emailEditText.getText().toString();
+                    //Toast.makeText(ForgetPasswordActivity.this, msgtmp2, Toast.LENGTH_SHORT).show();
+                    if (usertmp.getEmail().equalsIgnoreCase(emailEditText.getText().toString())) {
+                        confirmCode = generateRandomCode();
+                        //sendverification works.
+                        sendVerificationCode("Your Password is: " + confirmCode, phonenumber);
+>>>>>>> 90405cbf70c9b2c1bbfcc54b3954898f031ed0d8
                         Log.d("sendButton:", String.valueOf(confirmCode));
                         //Send him to login page.
                         Toast.makeText(ForgetPasswordActivity.this, "your verification code sent successfully to your phone number", Toast.LENGTH_SHORT).show();

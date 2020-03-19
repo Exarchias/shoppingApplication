@@ -32,6 +32,9 @@ public class ProfileActivity extends AppCompatActivity {  //Or USER SETTINGS ACT
         txt=(TextView)findViewById(R.id.textView4);
         txt1=(TextView)findViewById(R.id.textView5);
         txt2=(TextView)findViewById(R.id.textView6);
+        txt.setText(DataHolder.userInFocus.getName());
+        txt1.setText(DataHolder.userInFocus.getTelephone());
+        txt2.setText(DataHolder.userInFocus.getAddress());
         adminPanelTest=(Button)findViewById(R.id.btn_AdminPanel);
 
         adminPanelTest.setOnClickListener(new View.OnClickListener() {
@@ -54,15 +57,21 @@ public class ProfileActivity extends AppCompatActivity {  //Or USER SETTINGS ACT
         fullname= fullNameEditText.getText().toString();
         phonenumber= phoneNumberEditText.getText().toString();
         address = addressEditText.getText().toString();
-        tmpUser.setFullName(fullname);
-        tmpUser.setMobilePhone(phonenumber);
+        tmpUser.setName(fullname);
+        tmpUser.setTelephone(phonenumber);
         tmpUser.setAddress(address);
 
         noteViewModel.useThatUpdateUser(tmpUser);
        // txt.setText(DataHolder.arrayAllUsers.get(2).getFullName());
-        txt.setText(DataHolder.userInFocus.getFullName());
-        txt1.setText(DataHolder.userInFocus.getMobilePhone());
+        txt.setText(DataHolder.userInFocus.getName());
+        txt1.setText(DataHolder.userInFocus.getTelephone());
         txt2.setText(DataHolder.userInFocus.getAddress());
+
+        //this line of code ensures that we will not have any strange bug.
+        DataHolder.userInFocus = DataHolder.activeUser;
+
+        Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
+        ProfileActivity.this.startActivity(intent);
 
 
 
