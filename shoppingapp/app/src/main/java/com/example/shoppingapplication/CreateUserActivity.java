@@ -45,7 +45,7 @@ public class CreateUserActivity extends AppCompatActivity {
         String name,password,phoneNumber,emailAddress;
         Boolean istheUserAdmin;
         phoneNumber=phoneNumberEditText.getText().toString();
-        tmp.setMobilePhone(phoneNumber);
+        tmp.setTelephone(phoneNumber);
 
         emailAddress=emailAddressEditText.getText().toString();
         tmp.setEmail(emailAddress);
