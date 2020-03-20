@@ -16,14 +16,12 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/invoiceView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="wrap_content" />
     </ScrollView>
 
     <EditText
-        android:id="@+id/editText"
         android:layout_width="383dp"
         android:layout_height="64dp"
         android:ems="10"
