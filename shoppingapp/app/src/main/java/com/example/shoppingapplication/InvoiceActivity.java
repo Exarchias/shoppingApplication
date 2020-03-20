@@ -1,5 +1,7 @@
 package com.example.shoppingapplication;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -11,7 +13,7 @@ public class InvoiceActivity extends ShoppingCartActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.invoice);
+        setContentView(R.layout.activity_invoice);
 
         //added by Ingemar
 
