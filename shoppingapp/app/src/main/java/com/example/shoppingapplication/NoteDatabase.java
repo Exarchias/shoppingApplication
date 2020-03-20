@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 //Robert: This is the actual DataBase.
 //PLEASE avoid to do any changes in this class, (apart of the hardcoded populations of course)
-@Database(entities = {Note.class, User.class, Item.class}, version = 8, exportSchema = false)
+@Database(entities = {Note.class, User.class, Item.class}, version = 9, exportSchema = false)
 public abstract class NoteDatabase extends RoomDatabase {
 
     //Robert: it is a singleton pattern. That means that no second Database can be initiated.

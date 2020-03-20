@@ -4,6 +4,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 @Entity(tableName = "note_table")
@@ -21,11 +22,33 @@ public class Note {
 
     private int priority = 0;
     private int userId;
+
+    //This gets populated only in the shopping cart and it has to be stored in the database
+    private String theItems = "No items found";
+
+    //This ArrayList should be used only if someone thinks to make something very elaborate
+    //in the checkout. ONLY there. This arraylist will not be saved in the database.
+    @Ignore
+    public ArrayList<Item> theActualItems;
+
+    @Ignore
+    private String ownersInfo = "The information about to purchaser are not available";
+
+    private double total = 0.0;
+    @Ignore
+    private String totalSTR = "";
+
     private String dateString = "DD/MM/YYYY";
+
+    //The user field should be used only fro advance functionality on checkout. NoWhere else.
+    //user is not stored in the Database
+    @Ignore
+    User user;
 
     @Ignore
     private Date dateDate;
 
+    //preferable constructor.
     public Note(int id, String title, String description, int userId) {
         this.id = id;
         this.title = title;
@@ -98,5 +121,45 @@ public class Note {
 
     public void setDateDate(Date dateDate) {
         this.dateDate = dateDate;
+    }
+
+    public String getTheItems() {
+        return theItems;
+    }
+
+    public void setTheItems(String theItems) {
+        this.theItems = theItems;
+    }
+
+    public String getownersInfo() {
+        return ownersInfo;
+    }
+
+    public void setownersInfo(String ownersInfo) {
+        this.ownersInfo = ownersInfo;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public String getTotalSTR() {
+        return totalSTR;
+    }
+
+    public void setTotalSTR(String totalSTR) {
+        this.totalSTR = totalSTR;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
