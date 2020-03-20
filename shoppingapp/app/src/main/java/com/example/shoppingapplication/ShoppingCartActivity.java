@@ -1,6 +1,7 @@
 package com.example.shoppingapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.room.FtsOptions;
 
 import android.content.Intent;
@@ -20,11 +21,18 @@ public class ShoppingCartActivity extends AppCompatActivity {
     ListView shoppingCartListView;
     Button toCheckOutBtn;
     double total;
+    private NoteViewModel noteViewModel;
+
+    //This variable controls if the payment will be done here or in the nect activity.
+    //if true, the purchase will be done in this activity and the next will be the invoice.
+    //if false the purchase will be in the next activity.
+    boolean payment = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
+        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel.class);
         shoppingCartListView = (ListView)findViewById(R.id.shoppingCartListView);
         toCheckOutBtn = (Button)findViewById(R.id.toCheckOutBtn);
         total = caclulateTotal();
@@ -48,7 +56,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 ordertmp.setUser(DataHolder.userInFocus);
                 ordertmp.theActualItems = DataHolder.arrayCartItems;
                 DataHolder.noteInFocus = ordertmp;
-                //testing();
+                testing();
+                doThePayment();
                 //HomeActivity here needs to be replaced with the activity where the checkout will take place.
                 Intent intent = new Intent(ShoppingCartActivity.this, HomeActivity.class);
                 startActivity(intent);
@@ -64,6 +73,14 @@ public class ShoppingCartActivity extends AppCompatActivity {
         msgtmp2 = msgtmp2 + ordertmp2.getownersInfo() + "\n ";
         msgtmp2 = msgtmp2 + ordertmp2.getDateString() + "\n ";
         Toast.makeText(ShoppingCartActivity.this, msgtmp2, Toast.LENGTH_SHORT).show();
+    }
+
+    void doThePayment(){
+        if(payment){
+            Note ordertmp2 = DataHolder.noteInFocus;
+            noteViewModel.useThatCreateNote(ordertmp2);
+            DataHolder.arrayCartItems.clear();
+        }
     }
 
     void populateCartListView(){
