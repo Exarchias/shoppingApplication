@@ -242,7 +242,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         viewCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), OrdersActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ShoppingCartActivity.class);
                 startActivity(intent);
             }
         });
