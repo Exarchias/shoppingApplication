@@ -16,43 +16,43 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textViewi4"
+            android:id="@+id/titleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textViewi3"
+            android:id="@+id/descriptionView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textViewi2"
+            android:id="@+id/ownerInfoView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textViewi1"
+            android:id="@+id/totalView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView" />
 
         <Button
-            android:id="@+id/buttoni1"
+            android:id="@+id/homeBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Back to home" />
 
         <Button
-            android:id="@+id/buttoni2"
+            android:id="@+id/emailBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Send Email" />
 
         <Button
-            android:id="@+id/buttoni3"
+            android:id="@+id/pdfBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PDF" />
