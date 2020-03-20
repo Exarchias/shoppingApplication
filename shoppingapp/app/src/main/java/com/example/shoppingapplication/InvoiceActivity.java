@@ -10,6 +10,8 @@ public class InvoiceActivity extends ShoppingCartActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.invoice);
 
         //added by Ingemar
 
