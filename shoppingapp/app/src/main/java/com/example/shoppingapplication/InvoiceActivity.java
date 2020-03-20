@@ -21,22 +21,22 @@ public class InvoiceActivity extends ShoppingCartActivity {
 
         StrictMode.setThreadPolicy(policy);
 
-        toCheckOutBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                try {
-
-                    String email = "noreply.activityfinder@gmail.com";  // temp gmail account to send mails from
-                    String pass = "something713";
-                    GmailSender gmailSender = new GmailSender(email,pass);
-                    //gmailSender.sendMail("test", "Hello gmail","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
-                    gmailSender.sendMailWithPdfAttachment("test", "Hello gmail","PDF TEXT","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        toCheckOutBtn.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//
+//                    String email = "noreply.activityfinder@gmail.com";  // temp gmail account to send mails from
+//                    String pass = "something713";
+//                    GmailSender gmailSender = new GmailSender(email,pass);
+//                    //gmailSender.sendMail("test", "Hello gmail","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
+//                    gmailSender.sendMailWithPdfAttachment("test", "Hello gmail","PDF TEXT","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
         //added by Ingemar
 

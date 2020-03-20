@@ -62,7 +62,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 testing();
                 doThePayment();
                 //HomeActivity here needs to be replaced with the activity where the checkout will take place.
-                Intent intent = new Intent(ShoppingCartActivity.this, HomeActivity.class);
+                Intent intent = new Intent(ShoppingCartActivity.this, InvoiceActivity.class);
                 startActivity(intent);
 
             }

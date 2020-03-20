@@ -6,30 +6,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="386dp"
-        android:layout_height="643dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/invoiceView"
+            android:id="@+id/textViewi4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </ScrollView>
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <EditText
-        android:layout_width="383dp"
-        android:layout_height="64dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="INVOICE"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textViewi3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
+        <TextView
+            android:id="@+id/textViewi2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textViewi1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <Button
+            android:id="@+id/buttoni1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back to home" />
+
+        <Button
+            android:id="@+id/buttoni2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send Email" />
+
+        <Button
+            android:id="@+id/buttoni3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PDF" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
