@@ -99,9 +99,10 @@ public class OrdersActivity extends AppCompatActivity {
         populateNoteListView();
         //============ ListView Code Ends here ================================
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-        StrictMode.setThreadPolicy(policy);
+        //Ingemar: saving it for later
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//
+//        StrictMode.setThreadPolicy(policy);
 
         listOrders = (ListView) findViewById(R.id.listview);
         ordersActivity = (ConstraintLayout) findViewById(R.id.OrdersActivity);
@@ -109,23 +110,25 @@ public class OrdersActivity extends AppCompatActivity {
         orderTotalPrice = (TextView) findViewById(R.id.orderTotalPrice);
         ordersAdapter = new DisplayOrderAdapter(getApplicationContext(), R.layout.orders_display_area);
 
-        Button confirmButton = (Button) findViewById(R.id.confirmButton);
 
- confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-
-                    String email = "noreply.activityfinder@gmail.com";  // temp gmail account to send mails from
-                    String pass = "something713";
-                    GmailSender gmailSender = new GmailSender(email,pass);
-                    //gmailSender.sendMail("test", "Hello gmail","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
-                    gmailSender.sendMailWithPdfAttachment("test", "Hello gmail","PDF TEXT","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        //Ingemar: saving  it incase i need it later
+//        Button confirmButton = (Button) findViewById(R.id.confirmButton);
+//
+// confirmButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//
+//                    String email = "noreply.activityfinder@gmail.com";  // temp gmail account to send mails from
+//                    String pass = "something713";
+//                    GmailSender gmailSender = new GmailSender(email,pass);
+//                    //gmailSender.sendMail("test", "Hello gmail","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
+//                    gmailSender.sendMailWithPdfAttachment("test", "Hello gmail","PDF TEXT","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
 
 //   fetchOrders(orderInFocus.getUserId());
