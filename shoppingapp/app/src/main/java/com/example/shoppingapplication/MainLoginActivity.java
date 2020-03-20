@@ -22,14 +22,15 @@ public class MainLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main1);
 
-        joinNowButton = findViewById(R.id.main_join_now_btn);
-        loginButton = findViewById(R.id.main_login_btn);
+        joinNowButton = findViewById(R.id.signUp_btn);
+        loginButton = findViewById(R.id.signIn_btn);
         progressDialog = new ProgressDialog(this);
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
                 Intent intent = new Intent(MainLoginActivity.this, LoginActivity.class);
                 startActivity(intent);
 
@@ -39,6 +40,7 @@ public class MainLoginActivity extends AppCompatActivity {
         joinNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
                 Log.d(TAG,"join btn clicked");
                 Intent intent = new Intent(MainLoginActivity.this, RegisterActivity.class);
                 startActivity(intent);

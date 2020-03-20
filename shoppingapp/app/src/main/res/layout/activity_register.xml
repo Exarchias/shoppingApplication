@@ -4,28 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/register"
-    tools:context=".RegisterActivity">
+    android:background="@drawable/shopping"
+    tools:context=".RegisterActivity"
+    android:paddingTop="110dp"
+    >
 
-    <ImageView
-        android:id="@+id/register_applogo"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:src="@drawable/applogo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        />
 
     <EditText
         android:id="@+id/register_username_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/register_applogo"
         android:background="@drawable/input_design"
         android:padding="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="7dp"
         android:hint="Name"
         android:inputType="text"
         android:textColor="@color/colorPrimaryDark"
@@ -47,12 +40,11 @@
         android:inputType="number"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="7dp"
         android:textSize="17sp"
         android:textStyle="bold"
         />
 
-    <!-- email  edit text -->
     <EditText
         android:id="@+id/register_email_input"
         android:layout_width="match_parent"
@@ -62,9 +54,10 @@
         android:padding="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="7dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
+        android:drawableEnd="@drawable/ic_email_black_24dp"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
         android:textSize="17sp"
@@ -81,8 +74,8 @@
         android:padding="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="6dp"
-        android:hint="Password"
+        android:layout_marginTop="7dp"
+        android:hint="*****password*****"
         android:inputType="textPassword"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
@@ -97,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/register_password_input"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="7dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/buttons"
         android:padding="10dp"

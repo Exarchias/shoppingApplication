@@ -1,25 +1,19 @@
 package com.example.shoppingapplication;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProviders;
 
 import java.util.Random;
 
@@ -30,7 +24,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     private Button sendToEmail;
 
     private int confirmCode = 0;
-    private User usertmp;
+    private User userTemporary;
 
 
 
@@ -43,7 +37,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
         emailEditText = findViewById(R.id.email_edit_text);
         phoneEditText = findViewById(R.id.phone_edit_text);
-        sendToEmail = findViewById(R.id.send_to_email);
+        sendToEmail = findViewById(R.id.sendEmail_editText);
 
 
 
@@ -54,28 +48,33 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 // 2. option one send him pass,
                 Log.d("sendButton:", "on click");
                 //generate random code.
-                String phonenumber = phoneEditText.getText().toString();
-                if (DataHolder.userTelephoneExists(phonenumber)) {
-                    usertmp = RTools.findUserByTelephone(phonenumber);
+                String phoneNumber = phoneEditText.getText().toString();
+                if (DataHolder.userTelephoneExists(phoneNumber)) {
+                    userTemporary = RTools.findUserByTelephone(phoneNumber);
                     //String msgtmp = "Telephone:" + phonenumber + ", name:" + usertmp.getName();
                     //Toast.makeText(ForgetPasswordActivity.this, msgtmp, Toast.LENGTH_SHORT).show();
-                    Log.d("sendButton:", usertmp.getEmail());
+                    Log.d("sendButton:", userTemporary.getEmail());
                     //String msgtmp2 = msgtmp + ", email:" + emailEditText.getText().toString();
                     //Toast.makeText(ForgetPasswordActivity.this, msgtmp2, Toast.LENGTH_SHORT).show();
-                    if (usertmp.getEmail().equalsIgnoreCase(emailEditText.getText().toString())) {
+                    if (userTemporary.getEmail().equalsIgnoreCase(emailEditText.getText().toString())) {
                         confirmCode = generateRandomCode();
                         //sendverification works.
-                        sendVerificationCode("Your Password is: " + confirmCode, phonenumber);
+                        sendVerificationCode("Your Password is: " + confirmCode, phoneNumber);
                         Log.d("sendButton:", String.valueOf(confirmCode));
                         //Send him to login page.
 
-                        Toast.makeText(ForgetPasswordActivity.this, "Sms sent success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ForgetPasswordActivity.this, "verification code sent successfully", Toast.LENGTH_SHORT).show();
                         // 1. confirm code send him to confirmation page()
                         Intent intent = new Intent(v.getContext(), ChangePassActivity.class);
-                        intent.putExtra("phone", usertmp.getTelephone());
+                        intent.putExtra("phone", userTemporary.getTelephone());
                         intent.putExtra("code", String.valueOf(confirmCode));
                         startActivity(intent);
+                    }else {
+                        Toast.makeText(ForgetPasswordActivity.this, "Invalid Email", Toast.LENGTH_SHORT).show();
                     }
+                }else{
+                    Toast.makeText(ForgetPasswordActivity.this, "Invalid phone number", Toast.LENGTH_SHORT).show();
+
                 }
 
             }
@@ -100,6 +99,11 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             sms.sendTextMessage(phone, null, code, null, null);
         }
     }
+
+    /**
+     * This method generates random number
+     * @return
+     */
 
     public int generateRandomCode() {
         Random random = new Random();
