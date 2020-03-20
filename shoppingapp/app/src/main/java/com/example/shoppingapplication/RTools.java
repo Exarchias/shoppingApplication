@@ -7,7 +7,11 @@ import androidx.annotation.RequiresApi;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 import javax.crypto.Cipher;
 
@@ -191,6 +195,25 @@ public class RTools {
             }
         }
         return null;
+    }
+
+
+
+    //Default time format
+    static String DATE_FORMAT_9 = "h:mm a dd MMMM yyyy";
+    //The output will be -: 10:37 am 05 December 2018
+    //public static final String DATE_FORMAT_1 = "hh:mm a";
+
+    public static String getCurrentDateSTR() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_9);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date today = Calendar.getInstance().getTime();
+        return dateFormat.format(today);
+    }
+
+    public static Date getCurrentDate() {
+        Date today = Calendar.getInstance().getTime();
+        return today;
     }
 
 

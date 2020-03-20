@@ -14,7 +14,7 @@ public class Item{
     private int ownersId = 10000;
     private boolean sold = false;
     private int noteId = 0;
-    private double price = 0.0;
+    private double price = 50.0;
 
     private String title = "Item";
     private String type = "generic";
