@@ -16,10 +16,7 @@
         <item
             android:id="@+id/navNew"
 
-            android:title="dd_new_item" />
-        <item
-            android:id="@+id/navConfirm"
-            android:title="Confirm Orders" />
+            android:title="DisplayOrders" />
 
         <item
             android:id="@+id/navSignOut"

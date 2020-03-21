@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     String ownerName;
     private DrawerLayout mDrawerLayout;
     public int numberofItems;
-    public int itemFetchNumber,itemsPrinted=0,QueueChecker=0, itemID, orderID;
+    public int itemFetchNumber, itemsPrinted = 0, QueueChecker = 0, itemID, orderID;
     public boolean isResultFound;
     ArrayList<Item> ListofAllItems = new ArrayList<>();
     // ==== block of working code. please do not delete ====
@@ -63,12 +63,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         // ==== block of working code. please do not delete ====
-        listViewItemsHome = (ListView)findViewById(R.id.listViewItemsHome);
+        listViewItemsHome = (ListView) findViewById(R.id.listViewItemsHome);
         toTheCart = (Button) findViewById(R.id.toTheCart);
         toAdminPanel = (Button) findViewById(R.id.toAdminPanel);
 
         populateItemListView();
-        if(DataHolder.isAdmin){
+        if (DataHolder.isAdmin) {
             toAdminPanel.setVisibility(View.VISIBLE);
         } else {
             toAdminPanel.setVisibility(View.GONE);
@@ -85,9 +85,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         toTheCart.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(selectedItem != null){
+                if (selectedItem != null) {
                     DataHolder.arrayCartItems.add(selectedItem);
-                    Toast.makeText(HomeActivity.this, selectedItem.getTitle() +" moved to the shopping cart",
+                    Toast.makeText(HomeActivity.this, selectedItem.getTitle() + " moved to the shopping cart",
                             Toast.LENGTH_SHORT).show();
                 }
 
@@ -96,7 +96,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         toAdminPanel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(DataHolder.isAdmin){
+                if (DataHolder.isAdmin) {
                     Intent intent = new Intent(HomeActivity.this, AdminPanel.class);
                     HomeActivity.this.startActivity(intent);
                 }
@@ -114,11 +114,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         numberofItems = getNumberOfItems();
 
 
-
     }
 
     //This Method is highly functional please do not delete
-    void populateItemListView(){
+    void populateItemListView() {
         // Construct the data source
         //ArrayList<Item> arrayOfItems = new ArrayList<Item>();
         ArrayList<Item> arrayOfItems = DataHolder.arrayAllItems;
@@ -129,7 +128,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         listViewItemsHome.setAdapter(itemAdapter);
     }
 
-    void sendToTheCart(){
+    void sendToTheCart() {
         DataHolder.arrayCartItems.add(selectedItem);
 //        Toast.makeText(HomeActivity.this, selectedItem.getTitle() +" moved to the basket",
 //                Toast.LENGTH_SHORT).show();
@@ -143,23 +142,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setItemListTwoProperty();
 
 
-
-
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(MainActivity.MODE_APPEND/ 2, LinearLayout.LayoutParams.FILL_PARENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(MainActivity.MODE_APPEND / 2, LinearLayout.LayoutParams.FILL_PARENT);
 
         listItems.setLayoutParams(params);
         listItemsTwo.setLayoutParams(params);
 
-}
-    private boolean displayItems(String itemID, String itemTitle, Double itemPrice, String itemIcon) {
-        itemAdapter.add(new DisplayItems(itemID, itemTitle, itemPrice, itemIcon));
-        return true;
     }
-    private boolean displayItemsTwo(String itemID, String itemTitle, Double itemPrice, String itemIcon) {
-        itemAdapterTwo.add(new DisplayItems(itemID, itemTitle, itemPrice, itemIcon));
-        return true;
-    }
+
 
 
     public void setItemListProperty() {
@@ -173,6 +162,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
+
     public void setItemListTwoProperty() {
         listItemsTwo.setAdapter(itemAdapterTwo);
         listItemsTwo.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
@@ -191,7 +181,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
 
         int numItems = 0;
-        if(DataHolder.userIdExists(numItems)){
+        if (DataHolder.userIdExists(numItems)) {
             ListofAllItems = RTools.theItemsOfTheUser(user);
             numItems = item.getId();
         }
@@ -199,42 +189,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     // when you log in you should end up in this activity-abdul
-
-
-    public void fetchItemsInfo() {
-        int curLeftItems;
-        try {
-
-
-            numberofItems = getNumberOfItems();
-
-            curLeftItems = itemFetchNumber - 8;
-            // i want a list of all items infromation
-            itemID = item.getId();
-            ownerName = RTools.findUserNameById(item.getOwnersId());
-            int i = 0;
-            while ( curLeftItems != itemFetchNumber) {
-                isResultFound = true;
-                if (i >= itemsPrinted) {
-                    itemFetchNumber--;
-                    if (QueueChecker == 0) {
-                        displayItems("" + item.getId(),item.getTitle(), item.getPrice(),item.getPhoto1());
-                        QueueChecker = 1;
-                    } else {
-                        displayItemsTwo("" + item.getId(), item.getTitle(), item.getPrice(), item.getPhoto1());
-                        QueueChecker = 0;
-                    }
-                }
-                i++;
-            }
-            itemsPrinted += 8;
-
-        } catch (Exception ex) {
-
-            Toast.makeText(this, "" + ex.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
-
 
 
     public void viewOnClickListeners() {
@@ -250,16 +204,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 mDrawerLayout.openDrawer(Gravity.LEFT);
-            }
-        });
-
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            public void onScrollChanged() {
-                if (scrollView.getChildAt(0).getBottom() == (scrollView.getHeight() + scrollView.getScrollY())) {
-                    if ((listItems.getCount() + listItemsTwo.getCount()) < numberofItems) {
-                        fetchItemsInfo();
-                    }
-                }
             }
         });
     }
@@ -302,9 +246,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.navProfile) {
             startActivity(new Intent(this, ProfileActivity.class));
         } else if (id == R.id.navNew) {
-            // startActivity(new Intent(this, AddItem.class));
-        } else if (id == R.id.navConfirm) {
-            //startActivity(new Intent(this, CheckoutActivity.class));
+             startActivity(new Intent(this, DisplayOrderActivity.class));
 
         } else if (id == R.id.navSignOut) {
             RTools.logout();

@@ -18,9 +18,15 @@ public class DisplayOrderActivity extends AppCompatActivity {
         populateNoteListView();
     }
 
+
     void populateNoteListView(){
         // Construct the data source
-        ArrayList<Note> arrayOfNotes = DataHolder.arrayAllNotes;
+        ArrayList<Note> arrayOfNotes = new ArrayList<>();
+        for(Note order : DataHolder.arrayAllNotes){
+            if(order.getUserId() == DataHolder.userInFocus.getId()){
+                arrayOfNotes.add(order);
+            }
+        }
         // Create the adapter to convert the array to views
         RNoteAdapter noteAdapter = new RNoteAdapter(DisplayOrderActivity.this, arrayOfNotes);
         // Attach the adapter to a ListView

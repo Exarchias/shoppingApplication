@@ -44,7 +44,7 @@ public class DisplayOrderAdapter extends ArrayAdapter<DisplayOrders>{
         }
         orderTitle   = (TextView) v.findViewById(R.id.orderTitle);
         orderIcon    = (ImageView) v.findViewById(R.id.orderIcon);
-       OrderNumberSelected  = (TextView) v.findViewById(R.id.orderNumPics);
+
         ordersDetail = (LinearLayout) v.findViewById(R.id.ordersDetail);
         itemID       = (TextView) v.findViewById(R.id.itemID);
         orderID      = (TextView) v.findViewById(R.id.orderID);
