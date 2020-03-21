@@ -68,8 +68,10 @@ public class InvoiceActivity extends ShoppingCartActivity {
                     String pass = "something713";
                     GmailSender gmailSender = new GmailSender(email,pass);
                     //gmailSender.sendMail("test", "Hello gmail","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
-                    gmailSender.sendMailWithPdfAttachment("INVOICE", "ORDER" + generateUserInfo(),"PDF TEXT","noreply.activityfinder@gmail.com",
-                            "karl.i.lundh@gmail.com");
+                    gmailSender.sendMailWithPdfAttachment("INVOICE", "ORDER" + "\n" + generateUserInfo() +"\n"+
+                             DataHolder.noteInFocus.getTitle() + "\n" + DataHolder.noteInFocus.getDescription() + "\n" +
+                                    DataHolder.noteInFocus.getownersInfo() + "\n" + "Total: " + DataHolder.noteInFocus.getTotalSTR(),
+                            "PDF TEXT","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -93,29 +95,6 @@ public class InvoiceActivity extends ShoppingCartActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         //Thread mechanics end here.
-
-
-
-        //leaving this here as reference. Ingemar
-//        toCheckOutBtn.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                try {
-//
-//                    String email = "noreply.activityfinder@gmail.com";  // temp gmail account to send mails from
-//                    String pass = "something713";
-//                    GmailSender gmailSender = new GmailSender(email,pass);
-//                    //gmailSender.sendMail("test", "Hello gmail","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
-//                    gmailSender.sendMailWithPdfAttachment("test", "Hello gmail","PDF TEXT","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-
-        //added by Ingemar
-
 
     }
 }
