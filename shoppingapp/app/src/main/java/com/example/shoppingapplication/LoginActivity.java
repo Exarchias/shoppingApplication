@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     // change an activity when user logged in send to User page // tell to @Abdi
                     Toast.makeText(this, "Welcome User you logged in successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, OrdersActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(intent);
 
                 }
