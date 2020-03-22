@@ -1,13 +1,20 @@
 package com.example.shoppingapplication;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.example.shoppingapplication.gmailSender.GmailSender;
+import com.example.shoppingapplication.gmailSender.PDFSaver;
 
 public class InvoiceActivity extends ShoppingCartActivity {
 
@@ -21,6 +28,9 @@ public class InvoiceActivity extends ShoppingCartActivity {
     Button homeBtn;
     Button emailBtn;
     Button pdfBtn;
+
+    boolean storageWrite = false;
+    boolean storageRead = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,27 +77,37 @@ public class InvoiceActivity extends ShoppingCartActivity {
                     String email = "noreply.activityfinder@gmail.com";  // temp gmail account to send mails from
                     String pass = "something713";
                     GmailSender gmailSender = new GmailSender(email,pass);
-                    //gmailSender.sendMail("test", "Hello gmail","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
-                    gmailSender.sendMailWithPdfAttachment("INVOICE", "ORDER" + "\n" + generateUserInfo() +"\n"+
-                             DataHolder.noteInFocus.getTitle() + "\n" + DataHolder.noteInFocus.getDescription() + "\n" +
-                                    DataHolder.noteInFocus.getownersInfo() + "\n" + "Total: " + DataHolder.noteInFocus.getTotalSTR(),
-                            "PDF TEXT","noreply.activityfinder@gmail.com", "karl.i.lundh@gmail.com");
+                    gmailSender.sendMail("test", "ORDER" + "\n" + generateUserInfo() +"\n"+
+                            DataHolder.noteInFocus.getTitle() + "\n" + DataHolder.noteInFocus.getDescription() + "\n" +
+                            DataHolder.noteInFocus.getownersInfo() + "\n" + "Total: " + DataHolder.noteInFocus.getTotalSTR()
+                            ,"noreply.activityfinder@gmail.com", "trade.matej@gmail.com");
+
+
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
-                //added by Ingemar
-                //some awesome code.
+
 
 
         //generate pdf functionality here.
         pdfBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //some awesome code.
+
+                askPermission();
+
+                    PDFSaver pdf = new PDFSaver();
+                    pdf.toExternalStorage(getApplicationContext(), "ORDER" + "\n" + generateUserInfo() +"\n"+
+                            DataHolder.noteInFocus.getTitle() + "\n" + DataHolder.noteInFocus.getDescription() + "\n" +
+                            DataHolder.noteInFocus.getownersInfo() + "\n" + "Total: " + DataHolder.noteInFocus.getTotalSTR()
+                    );
+
             }
         });
+
+
 
 
         //legacy code for reconsideration
@@ -96,5 +116,49 @@ public class InvoiceActivity extends ShoppingCartActivity {
         StrictMode.setThreadPolicy(policy);
         //Thread mechanics end here.
 
+    }
+
+    private void askPermission(){
+        boolean returnVal = false;
+//        if (ContextCompat.checkSelfPermission(this,
+//                Manifest.permission.READ_EXTERNAL_STORAGE)
+//                != PackageManager.PERMISSION_GRANTED) {
+//
+//                ActivityCompat.requestPermissions(this,
+//                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+//                        1);
+//        }
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    2);
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                 storageRead = true;
+                } else {
+
+                }
+                case 2: {
+                    if (grantResults.length > 0
+                            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                        storageWrite = true;
+                    } else {
+
+                    }
+            }
+        }
     }
 }

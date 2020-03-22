@@ -68,6 +68,7 @@ public class GmailSender extends javax.mail.Authenticator {
     }
 
     public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception {
+        createPdf(body);
         try{
             MimeMessage message = new MimeMessage(session);
             DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
@@ -120,7 +121,7 @@ public class GmailSender extends javax.mail.Authenticator {
         }
     }
 
-    private void createPdf(String sometext){
+    public void createPdf(String sometext){
         // create a new document
         PdfDocument document = new PdfDocument();
         // crate a page description
@@ -142,6 +143,7 @@ public class GmailSender extends javax.mail.Authenticator {
         }
         String targetPdf = directory_path+"temp.pdf";
         File filePath = new File(targetPdf);
+
         try {
             document.writeTo(new FileOutputStream(filePath));
         } catch (IOException e) {
