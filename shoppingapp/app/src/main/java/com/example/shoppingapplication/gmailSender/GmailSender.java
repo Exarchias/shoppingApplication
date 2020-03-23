@@ -68,19 +68,25 @@ public class GmailSender extends javax.mail.Authenticator {
     }
 
     public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception {
-        createPdf(body);
+        //createPdf(body); //this code is probably no good for this method. don't use it.
         try{
             MimeMessage message = new MimeMessage(session);
-            DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
+            //The problem seems to lie on the handler
+            //deactivated for now for testing purposes
+            //DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
             message.setSender(new InternetAddress(sender));
             message.setSubject(subject);
-            message.setDataHandler(handler);
-            if (recipients.indexOf(',') > 0)
+            //deactivated for now for testing purposes
+            //message.setDataHandler(handler);
+            if (recipients.indexOf(',') > 0) {
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients));
-            else
+            }else {
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipients));
-            Transport.send(message);
-            System.out.println("Message sent");
+            }
+            //The handler is mandatory so we have to fix the handler.
+            //deactivated for now for testing purposes
+            //Transport.send(message);
+            //System.out.println("Message sent");
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -46,25 +46,26 @@ public class ShoppingCartActivity extends AppCompatActivity {
         toCheckOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = "Order:" + DataHolder.nextNoteId +  ", Items:" + DataHolder.arrayCartItems.size();
-                String description = "a description of the order";
-                description = produceADescription();
-                Note ordertmp = new Note(DataHolder.nextNoteId, title, description, DataHolder.userInFocus.getId());
-                ordertmp.setTotal(total);
-                ordertmp.setTotalSTR(String.valueOf(total));
-                ordertmp.setownersInfo(generateUserInfo());
-                ordertmp.setDateString(RTools.getCurrentDateSTR());
-                ordertmp.setDateDate(RTools.getCurrentDate());
-                ordertmp.setTheItems(produceAListOfItems());
-                ordertmp.setUser(DataHolder.userInFocus);
-                ordertmp.theActualItems = DataHolder.arrayCartItems;
-                DataHolder.noteInFocus = ordertmp;
-                testing();
-                doThePayment();
-                //HomeActivity here needs to be replaced with the activity where the checkout will take place.
-                Intent intent = new Intent(ShoppingCartActivity.this, InvoiceActivity.class);
-                startActivity(intent);
-
+                if(!DataHolder.arrayCartItems.isEmpty()){
+                    String title = "Order:" + DataHolder.nextNoteId +  ", Items:" + DataHolder.arrayCartItems.size();
+                    String description = "a description of the order";
+                    description = produceADescription();
+                    Note ordertmp = new Note(DataHolder.nextNoteId, title, description, DataHolder.userInFocus.getId());
+                    ordertmp.setTotal(total);
+                    ordertmp.setTotalSTR(String.valueOf(total));
+                    ordertmp.setownersInfo(generateUserInfo());
+                    ordertmp.setDateString(RTools.getCurrentDateSTR());
+                    ordertmp.setDateDate(RTools.getCurrentDate());
+                    ordertmp.setTheItems(produceAListOfItems());
+                    ordertmp.setUser(DataHolder.userInFocus);
+                    ordertmp.theActualItems = DataHolder.arrayCartItems;
+                    DataHolder.noteInFocus = ordertmp;
+                    testing();
+                    doThePayment();
+                    //HomeActivity here needs to be replaced with the activity where the checkout will take place.
+                    Intent intent = new Intent(ShoppingCartActivity.this, InvoiceActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }

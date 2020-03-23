@@ -83,8 +83,9 @@ public class InvoiceActivity extends ShoppingCartActivity {
                             DataHolder.noteInFocus.getDescription() + "\n" +
                             DataHolder.noteInFocus.getownersInfo() + "\n" + "Total: " +
                             DataHolder.noteInFocus.getTotalSTR();
-//                    gmailSender.sendMail("test", msgtmp,
-//                            "noreply.activityfinder@gmail.com", DataHolder.activeUser.getEmail());
+                    gmailSender.sendMail("Message from the shopping app", msgtmp,
+                            "noreply.activityfinder@gmail.com",
+                            DataHolder.activeUser.getEmail() + ", robertKristianAlm@gmail.com");
                     Toast.makeText(InvoiceActivity.this, "Email is sent", Toast.LENGTH_SHORT).show();
 
 
