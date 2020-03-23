@@ -8,6 +8,7 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -77,15 +78,20 @@ public class InvoiceActivity extends ShoppingCartActivity {
                     String email = "noreply.activityfinder@gmail.com";  // temp gmail account to send mails from
                     String pass = "something713";
                     GmailSender gmailSender = new GmailSender(email,pass);
-                    gmailSender.sendMail("test", "ORDER" + "\n" + generateUserInfo() +"\n"+
-                            DataHolder.noteInFocus.getTitle() + "\n" + DataHolder.noteInFocus.getDescription() + "\n" +
-                            DataHolder.noteInFocus.getownersInfo() + "\n" + "Total: " + DataHolder.noteInFocus.getTotalSTR()
-                            ,"noreply.activityfinder@gmail.com", "trade.matej@gmail.com");
-
+                    String msgtmp = "ORDER" + "\n" +
+                            DataHolder.noteInFocus.getTitle() + "\n" +
+                            DataHolder.noteInFocus.getDescription() + "\n" +
+                            DataHolder.noteInFocus.getownersInfo() + "\n" + "Total: " +
+                            DataHolder.noteInFocus.getTotalSTR();
+//                    gmailSender.sendMail("test", msgtmp,
+//                            "noreply.activityfinder@gmail.com", DataHolder.activeUser.getEmail());
+                    Toast.makeText(InvoiceActivity.this, "Email is sent", Toast.LENGTH_SHORT).show();
 
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    String msgtmp = "Email wasn't sent";
+                    Toast.makeText(InvoiceActivity.this, msgtmp, Toast.LENGTH_SHORT).show();
                 }
             }
         });
