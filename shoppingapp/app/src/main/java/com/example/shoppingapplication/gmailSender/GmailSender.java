@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
+import android.os.AsyncTask;
 import android.os.Environment;
 
 
@@ -67,30 +68,29 @@ public class GmailSender extends javax.mail.Authenticator {
         return new PasswordAuthentication(user, password);
     }
 
-    public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception {
+    //tag synchronized is removed
+    public void sendMail(String subject, String body, String sender, String recipients) throws Exception {
         //createPdf(body); //this code is probably no good for this method. don't use it.
         try{
             MimeMessage message = new MimeMessage(session);
-            //The problem seems to lie on the handler
-            //deactivated for now for testing purposes
-            //DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
+            DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
             message.setSender(new InternetAddress(sender));
             message.setSubject(subject);
-            //deactivated for now for testing purposes
-            //message.setDataHandler(handler);
+            message.setDataHandler(handler);
             if (recipients.indexOf(',') > 0) {
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients));
             }else {
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipients));
             }
-            //The handler is mandatory so we have to fix the handler.
-            //deactivated for now for testing purposes
-            //Transport.send(message);
+            Transport.send(message);
             //System.out.println("Message sent");
         }catch(Exception e){
             e.printStackTrace();
         }
     }
+
+
+
 
     public synchronized void sendMailWithPdfAttachment(String subject, String body, String pdfText, String sender, String recipients) throws Exception {
         try{

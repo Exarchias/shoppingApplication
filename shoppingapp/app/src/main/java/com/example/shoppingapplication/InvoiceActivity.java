@@ -3,6 +3,7 @@ package com.example.shoppingapplication;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -10,12 +11,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.shoppingapplication.gmailSender.GmailSender;
 import com.example.shoppingapplication.gmailSender.PDFSaver;
+
+import java.util.concurrent.CompletableFuture;
 
 public class InvoiceActivity extends ShoppingCartActivity {
 
@@ -70,6 +74,7 @@ public class InvoiceActivity extends ShoppingCartActivity {
         //send email functionality here
         emailBtn.setOnClickListener(new View.OnClickListener() {
 
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
 
@@ -77,17 +82,32 @@ public class InvoiceActivity extends ShoppingCartActivity {
 
                     String email = "noreply.activityfinder@gmail.com";  // temp gmail account to send mails from
                     String pass = "something713";
-                    GmailSender gmailSender = new GmailSender(email,pass);
-                    String msgtmp = "ORDER" + "\n" +
+                    final GmailSender gmailSender = new GmailSender(email,pass);
+                    final String msgtmp = "ORDER" + "\n" +
                             DataHolder.noteInFocus.getTitle() + "\n" +
                             DataHolder.noteInFocus.getDescription() + "\n" +
                             DataHolder.noteInFocus.getownersInfo() + "\n" + "Total: " +
                             DataHolder.noteInFocus.getTotalSTR();
-                    gmailSender.sendMail("Message from the shopping app", msgtmp,
-                            "noreply.activityfinder@gmail.com",
-                            DataHolder.activeUser.getEmail() + ", robertKristianAlm@gmail.com");
-                    Toast.makeText(InvoiceActivity.this, "Email is sent", Toast.LENGTH_SHORT).show();
+                    //I tried to solve the issue by using Async. At least it does not crash now
+                    //but I don't have a clue it actual works. As I see it takes an eternity to send the message.
+                    //The idea with the thread is great but the issue is that it seems that the thread crashes because
+                    //of the code and it has nothing to do with overloading the main thread.
+                    //The problem probably lies in the handler of gmailsender.
+                    CompletableFuture.runAsync(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                gmailSender.sendMail("Message from the shopping app", msgtmp,
+                                        "noreply.activityfinder@gmail.com",
+                                        DataHolder.activeUser.getEmail() + ", robertKristianAlm@gmail.com");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Toast.makeText(InvoiceActivity.this, "Email is NOT sent", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
 
+                    Toast.makeText(InvoiceActivity.this, "Email is sent", Toast.LENGTH_SHORT).show();
 
                 } catch (Exception e) {
                     e.printStackTrace();
