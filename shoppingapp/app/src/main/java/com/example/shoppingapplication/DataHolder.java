@@ -37,12 +37,29 @@ public class DataHolder {
 
     static ArrayList<Item> itemPopulate(){
         ArrayList<Item> tempAr = new ArrayList<>();
-        tempAr.add(new Item(1, "Item 1", "Description 1", 2, 1));
-        tempAr.add(new Item(2, "item 2", "Description 2", 2,2));
-        tempAr.add(new Item(3, "item 3", "Description 3", 2, 3));
-        tempAr.add(new Item(4, "Item 4", "Description 4", 3, 4));
-        tempAr.add(new Item(5, "item 5", "Description 5", 3, 5));
-        tempAr.add(new Item(6, "item 6", "Description 6", 3, 6));
+        Item tmpItem = new Item(1, "Packet of Matches", "Always useful", 2, 1);
+        tmpItem.setPrice(0.50);
+        tempAr.add(tmpItem);
+
+        tmpItem = new Item(2, "An old battery", "It has still some juice in", 2,2);
+        tmpItem.setPrice(1.0);
+        tempAr.add(tmpItem);
+
+        tmpItem = new Item(3, "Lego parts", "They are collectibles", 2, 3);
+        tmpItem.setPrice(0.50);
+        tempAr.add(tmpItem);
+
+        tmpItem = new Item(4, "Rusty Coins", "Some of them are really old", 3, 4);
+        tmpItem.setPrice(1.50);
+        tempAr.add(tmpItem);
+
+        tmpItem = new Item(5, "A hat", "Not a fedora hat", 3, 5);
+        tmpItem.setPrice(8.20);
+        tempAr.add(tmpItem);
+
+        tmpItem = new Item(6, "Pizza Margarita", "fresh pizza", 3, 6);
+        tmpItem.setPrice(5.50);
+        tempAr.add(tmpItem);
 
         return tempAr;
     }
@@ -50,22 +67,65 @@ public class DataHolder {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     static ArrayList<User> userPopulate() throws NoSuchAlgorithmException {
         ArrayList<User> tempAr = new ArrayList<>();
-        tempAr.add(new User(1, "Admin", true, RTools.encrypted("12345"), "admin@test.clom", "1234567890"));
-        tempAr.add(new User(2, "Alice", false, RTools.encrypted("12345"), "alice@test.clom", "2345678901"));
-        tempAr.add(new User(3, "Bob", false, RTools.encrypted("12345"), "Bob@test.clom", "3456789012"));
-        tempAr.add(new User(4, "Aki", false, RTools.encrypted("1000"), "aki@test.clom", "0764129365"));
-        tempAr.add(new User(5, "Robert", true, RTools.encrypted("1"), "RobertKristianAlm@gmail.com", "0760882382"));
+        User tmpUser = new User(1, "Admin", true, RTools.encrypted("12345"),
+                "admin@test.clom", "1234567890");
+        tmpUser.setFullName("Bill Clinton");
+        tmpUser.setAddress("The White House");
+        tempAr.add(tmpUser);
+        tmpUser = new User(2, "Alice", false, RTools.encrypted("12345"),
+                "alice@test.clom", "2345678901");
+        tmpUser.setFullName("Alice von Wonderland");
+        tmpUser.setAddress("Don't ask Avenue 54");
+        tempAr.add(tmpUser);
+        tmpUser = new User(3, "Bob", false, RTools.encrypted("12345"),
+                "Bob@test.clom", "3456789012");
+        tmpUser.setFullName("Bob Smith");
+        tmpUser.setAddress("The middle of nowhere 62");
+        tempAr.add(tmpUser);
+        tmpUser = new User(4, "Aki", false, RTools.encrypted("1000"),
+                "aki@test.clom", "0764129365");
+        tmpUser.setFullName("John Doe");
+        tmpUser.setAddress("A random Street 123");
+        tempAr.add(tmpUser);
+        tmpUser = new User(5, "Robert", true, RTools.encrypted("1"),
+                "RobertKristianAlm@gmail.com", "555");
+        tmpUser.setFullName("Robert Alm");
+        tmpUser.setAddress("Yolo Street 665");
+        tempAr.add(tmpUser);
         return tempAr;
     }
 
     static ArrayList<Note> notePopulate(){
         ArrayList<Note> tempAr = new ArrayList<>();
-        tempAr.add(new Note(1, "Al Title 1", "Description 1", 2));
-        tempAr.add(new Note(2,"Al Title 2", "Description 2", 2));
-        tempAr.add(new Note(3, "Al Title 3", "Description 3", 2));
-        tempAr.add(new Note(4, "Bob Title 1", "Description 1", 3));
-        tempAr.add(new Note(5,"Bob Title 2", "Description 2", 3));
-        tempAr.add(new Note(6, "Bob Title 3", "Description 3", 3));
+        Note tmpOrder = new Note(1, "Order:1, Item:1", "Packet of Matches", 2);
+        tmpOrder.setDateString("10:37 am 13 March 2020");
+        tmpOrder.setTotalSTR("0.50");
+        tempAr.add(tmpOrder);
+
+        tmpOrder = new Note(2,"Order:2, Item:1", "An old battery", 2);
+        tmpOrder.setDateString("10:42 am 15 March 2020");
+        tmpOrder.setTotalSTR("1.0");
+        tempAr.add(tmpOrder);
+
+        tmpOrder = new Note(3, "Order:3, Item:1", "Lego parts", 2);
+        tmpOrder.setDateString("10:56 am 20 March 2020");
+        tmpOrder.setTotalSTR("0.50");
+        tempAr.add(tmpOrder);
+
+        tmpOrder = new Note(4, "Order:4, Item:1", "Rusty Coins", 3);
+        tmpOrder.setDateString("10:27 am 14 March 2020");
+        tmpOrder.setTotalSTR("1.50");
+        tempAr.add(tmpOrder);
+
+        tmpOrder = new Note(5,"Order:5, Item:1", "A hat", 3);
+        tmpOrder.setDateString("11:52 am 15 March 2020");
+        tmpOrder.setTotalSTR("8.20");
+        tempAr.add(tmpOrder);
+
+        tmpOrder = new Note(6, "Order:6, Item:1", "Pizza Margarita", 3);
+        tmpOrder.setDateString("12:28 am 16 March 2020");
+        tmpOrder.setTotalSTR("5.50");
+        tempAr.add(tmpOrder);
         return tempAr;
     }
 

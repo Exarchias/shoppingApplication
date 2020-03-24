@@ -16,6 +16,7 @@ public class RNoteAdapter extends ArrayAdapter<Note> {
     String title = "no title";
     String description = "no description";
     String price = "0.0";
+    String dateSTR = "HH:MM am DD Month YYYY";
     Context context;
     ArrayList<Note> notes;
     public RNoteAdapter(@NonNull Context context, @NonNull ArrayList<Note> notes) {
@@ -35,6 +36,8 @@ public class RNoteAdapter extends ArrayAdapter<Note> {
         // Lookup view for data population
         TextView textViewNoteTitle = (TextView) convertView.findViewById(R.id.textViewNoteTitle);
         TextView textViewNoteDescription = (TextView) convertView.findViewById(R.id.textViewNoteDescription);
+        TextView textViewNoteTotal = (TextView) convertView.findViewById(R.id.textViewNoteTotal);
+        TextView textViewNoteDateSTR = (TextView) convertView.findViewById(R.id.textViewNoteDateSTR);
         //TextView textViewItemPrice = (TextView) convertView.findViewById(R.id.textViewNotePrice);
         //TextView tvHome = (TextView) convertView.findViewById(R.id.tvHome);
         // Populate the data into the template view using the data object
@@ -42,10 +45,14 @@ public class RNoteAdapter extends ArrayAdapter<Note> {
         if(note != null){
             title = note.getTitle();
             description = note.getDescription();
+            price = note.getTotalSTR();
+            dateSTR = note.getDateString();
             //price = String.valueOf(note.get());
         }
         textViewNoteTitle.setText(title);
         textViewNoteDescription.setText(description);
+        textViewNoteDateSTR.setText(dateSTR);
+        textViewNoteTotal.setText("Total: " + price);
         //textViewItemPrice.setText(price);
         //tvName.setText(user.name);
         //tvHome.setText(user.hometown);
