@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.security.NoSuchAlgorithmException;
+
 public class CreateUserActivity extends AppCompatActivity {
     private NoteViewModel noteViewModel;
     EditText editName;
@@ -39,7 +41,7 @@ public class CreateUserActivity extends AppCompatActivity {
 
     }
 
-    public void onClick(View view){
+    public void onClick(View view) throws NoSuchAlgorithmException {
 
         final User tmp = new User(5000,"",false,"12345");
         String name,password,phoneNumber,emailAddress;
@@ -51,7 +53,7 @@ public class CreateUserActivity extends AppCompatActivity {
         tmp.setEmail(emailAddress);
         password = passwordEditText.getText().toString();
 
-        tmp.setPassword(password);
+        tmp.setPassword(RTools.encrypted(password));
         name = editName.getText().toString();
         tmp.setName(name);
         checkBox.setOnClickListener(new View.OnClickListener(){

@@ -77,6 +77,7 @@
         android:layout_marginEnd="138dp"
         android:layout_marginBottom="72dp"
         android:text="AdminPanelTest"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/settingsbtn"
         app:layout_constraintStart_toStartOf="parent"

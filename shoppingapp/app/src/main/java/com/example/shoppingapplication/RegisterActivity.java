@@ -80,8 +80,8 @@ public class RegisterActivity extends AppCompatActivity {
                 try {
                     User tmpUser = new User(5000, username, admin, RTools.encrypted(password),
                             email, phone);
-                    // creating new user and saving it into Data Holder
-                    DataHolder.arrayAllUsers.add(tmpUser);
+                    // creating new user through useThat method
+                    noteViewModel.useThatCreateUser(tmpUser);
                     return true;
                 } catch (Exception e) {
                     return false;
