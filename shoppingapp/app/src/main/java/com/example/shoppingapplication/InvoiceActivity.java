@@ -29,6 +29,9 @@ public class InvoiceActivity extends ShoppingCartActivity {
     TextView descriptionView;
     TextView titleView;
 
+    TextView dateAndTime;
+    TextView dateAndTimeOfOrderArrival;
+
     //initiations of the buttons
     Button homeBtn;
     Button emailBtn;
@@ -47,7 +50,8 @@ public class InvoiceActivity extends ShoppingCartActivity {
         ownerInfoView = (TextView)findViewById(R.id.ownerInfoView);
         descriptionView = (TextView)findViewById(R.id.descriptionView);
         titleView = (TextView)findViewById(R.id.titleView);
-
+        dateAndTime = (TextView)findViewById(R.id.dateAndTime_Of_Order);
+        dateAndTimeOfOrderArrival=(TextView)findViewById(R.id.dateAndTimeOfOrderArrival);
         //assignment of the buttons
         homeBtn = (Button)findViewById(R.id.homeBtn);
         emailBtn = (Button)findViewById(R.id.emailBtn);
@@ -58,6 +62,10 @@ public class InvoiceActivity extends ShoppingCartActivity {
         ownerInfoView.setText(DataHolder.noteInFocus.getownersInfo());
         descriptionView.setText(DataHolder.noteInFocus.getDescription());
         titleView.setText(DataHolder.noteInFocus.getTitle());
+        dateAndTime.setText("Order time/date: " + DataHolder.noteInFocus.getDateString());
+
+
+        dateAndTimeOfOrderArrival.setText("You will receive the order 3-5 days after " + DataHolder.noteInFocus.getDateString());
 
         //assigning onclick methods for the buttons
 
